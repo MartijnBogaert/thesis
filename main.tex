@@ -25,7 +25,7 @@
 %
 
 % Note: remove `openany` for printed version
-\documentclass[11pt,a4paper,openany,dutch,english]{book}
+\documentclass[11pt,a4paper,openany,english]{book}
 \usepackage[a4paper,includeheadfoot,margin=2.50cm]{geometry}
 
 
@@ -109,8 +109,7 @@
 
 % We use the package `minted` for modern code highlighting.
 \usepackage[newfloat,chapter]{minted}
-\SetupFloatingEnvironment{listing}{name=Codefragment, listname=Lijst van codefragmenten}
-%\SetupFloatingEnvironment{listing}{name=Code Fragment, listname=List of Code Fragments} % lang:english
+\SetupFloatingEnvironment{listing}{name=Code Fragment, listname=List of Code Fragments}
 
 
 \PassOptionsToPackage{hyphens}{url}
@@ -137,25 +136,11 @@
 \newcolumntype{C}[1]{>{\centering\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 \newcolumntype{R}[1]{>{\raggedleft\let\newline\\\arraybackslash\hspace{0pt}}m{#1}}
 
-%
-% Support for splitting Dutch words correctly
-%
 \usepackage{polyglossia}
-\setdefaultlanguage[babelshorthands=true]{dutch} % lang:dutch
-%\setmainlanguage{english}                       % lang:english
-
-% Manually specify additional hypnations for words
-%
-% Translated strings. If these aren't set, the English words are used.
-%
-\addto\captionsenglish{\renewcommand{\contentsname}{Inhoudsopgave}}   % lang:dutch
+\setmainlanguage{english}
 
 % Fix error "Package hyperref Warning: The anchor of a bookmark and its parent's must not be the same. Added a new anchor on ..."
 \newcommand{\sectionbreak}{\phantomsection}
-
-\renewcommand\appendixtocname{Bijlagen}                     % lang:dutch
-\renewcommand\appendixpagename{Bijlagen}                    % lang:dutch
-
 
 \usepackage[toc,acronym]{glossaries}  % for list of acronyms
 \makeglossaries                       % start internal list of acronyms
@@ -195,14 +180,12 @@
 \mainmatter
 \pagestyle{fancy} % Use header
 \include{chapters/6_introduction}
-\include{chapters/7_chapter_2}
-\include{chapters/7_chapter_3}
-\include{chapters/7_chapter_4}
-\include{chapters/8_conclusion}
-\include{chapters/9_bibliography}
+\include{chapters/7_related_work}
+\include{chapters/9_conclusion}
+\include{chapters/10_bibliography}
 
 \pagestyle{numberless} 
 \pagestyle{empty}
-\include{chapters/10_appendices}
+\include{chapters/11_appendices}
 
 \end{document}
