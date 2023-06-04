@@ -3,9 +3,10 @@
 
 \section{Linked Data}
 
-This section explores the related work in linked traversal-based query processing, focusing on the fundamental concepts and technologies that form the backbone of the Linked Data ecosystem. The discussion begins with a concise definition of Linked Data and an examination of the principles put forth by Tim Berners-Lee, emphasizing the importance of unique URIs, dereferencing, and data linking. Subsequently, the Resource Description Framework (RDF) is explored as the foundational data model for representing knowledge in Linked Data format. RDF Schema (RDFS) and Web Ontology Language (OWL) are then introduced to extend the capabilities of RDF by allowing the definition of ontologies and richer semantics. Moving forward, the attention shifts to JavaScript Object Notation for Linked Data (JSON-LD) as a popular format for representing Linked Data in JSON, with a focus on its incorporation of Linked Data principles within JSON documents. The discussion continues with an exploration of SPARQL and query interfaces, encompassing the syntax, capabilities, and different interfaces for efficient access and retrieval of Linked Data. Finally, the section concludes by examining the challenges and advantages associated with Linked Data, emphasizing the importance of addressing data quality, scalability, integration, and the potential benefits of improved interoperability and knowledge graph creation. This comprehensive exploration of related work provides a solid foundation for the subsequent discussions on linked traversal-based query processing.
+This section presents a comprehensive exploration of Linked Data, encompassing its fundamental principles, data modeling, syntax, query interfaces, and the associated challenges and advantages. In Section \ref{subsec:introduction_principles}, the concept of Linked Data and its principles are introduced, highlighting the significance of unique URIs, dereferencing, and data interlinking. Section \ref{subsec:rdf} focuses on the Resource Description Framework (RDF) as the cornerstone for representing relationships and knowledge connections within Linked Data. Section \ref{subsec:rdf_syntax} provides an overview of RDF syntax, including popular formats such as XML, Turtle, N-Triples, and JSON-LD, which facilitate the flexible expression and exchange of RDF data. \ref{subsec:rdfs_owl} explores the Resource Description Framework Schema (RDFS) and Web Ontology Language (OWL), enabling the extension of Linked Data through ontology definition and enhanced semantic representation. \ref{subsec:sparql} delves into SPARQL, the query language for Linked Data, and discusses various query interfaces that facilitate efficient data access and retrieval. Lastly, Section \ref{subsec:challenges_advantages} examines the challenges and advantages of Linked Data, addressing aspects such as data quality, scalability, integration, and the benefits of improved interoperability and knowledge graph creation. This comprehensive examination provides a solid foundation for the subsequent discussions on linked traversal-based query processing.
 
 \subsection{Introduction and Principles}
+\label{subsec:introduction_principles}
 
 To better understand the origins of the idea behind Linked Data, it is important to examine the origins of the World Wide Web. For example, its first, but still rather primitive, underlying technology was introduced in 1989 at CERN. Tim Berners-Lee was the man responsible for its development. By using HyperText Markup Language (HTML), it enabled scientists, and later the rest of the world, to publish documents that could contain links to other documents. This helped create a mesh of documents and information. However, since these documents in fact contained nothing more than raw data dumps and links between documents represented simply an indication of how to reach the document, these documents and their relationships lacked semantics. Figure~\ref{fig:no_linked_data} illustrates what a web of documents without unambiguous indications of what their contents and the links between them represent, might look like. It is necessary to note here that the used icons are not the contents of their respective documents, but only a representation of their contents. Nevertheless, in themselves, they prove the weakness of such web as much as when the effective content of the documents had been represented. After all, just from the raw content of documents and their mutual links, a person cannot clearly infer exactly what their constellation represents, let alone a computer. From that deficiency, therefore, emerged the idea of Linked Data. \citep{jacksi2019development} \citep{bizer2011linked}
 
@@ -39,26 +40,66 @@ To clarify the concept of Linked Data, \citet{berners2006linked} put forth four 
     The principle of using the HTTP protocol to dereference URIs was also touched on above. Nevertheless, it is important to reiterate its importance, as there are other protocols besides HTTP for dereferencing URIs. However, these will technically differ from the HTTP protocol, each in its own different ways. For example, not using the ubiquitous Domain Name System (DNS), is, among others, a common practice among alternative protocols. However, in light of clarity and uniformity, as well as for other technical reasons, the HTTP protocol should be adhered to. \citep{berners2006linked}
     
     \item \textbf{When someone looks up a URI, provide useful information, using the standards (RDF, SPARQL)}\\
-    Obviously, it would not fit within the spirit of Linked Data to obtain a raw data dump when dereferencing a URI that was included from another document as a \textit{Linked Data link}. The obtained data itself must comply with Linked Data principles. Therefore, there are some standards that clearly indicate how ontologies can be described. Consequently, to enable the construction of applications that deal with Linked Data, it goes without saying that a Linked Data document should be built according to the principles of an existing standard. RDF, RDFS and OWL are common such standards and are therefore discussed further in Sections~\ref{subsec:rdf} and~\ref{subsec:rdfs-owl}. In addition, Section~\ref{subsec:sparql} introduces the SPARQL query interface. After all, large datasets are expected to also provide such interface. \citep{berners2006linked}
+    Obviously, it would not fit within the spirit of Linked Data to obtain a raw data dump when dereferencing a URI that was included from another document as a \textit{Linked Data link}. The obtained data itself must comply with Linked Data principles. Therefore, there are some standards that clearly indicate how ontologies can be described. Consequently, to enable the construction of applications that deal with Linked Data, it goes without saying that a Linked Data document should be built according to the principles of an existing standard. RDF, RDFS and OWL are common such standards and are therefore discussed further in Sections~\ref{subsec:rdf} and~\ref{subsec:rdfs_owl}. In addition, Section~\ref{subsec:sparql} introduces the SPARQL query interface. After all, large datasets are expected to also provide such interface. \citep{berners2006linked}
     
     \item \textbf{Include links to other URIs so that they can discover more things}\\
     The fourth and final principle, too, is rather obvious. After all, by definition, one can only speak of Linked Data when a document refers to at least one other document. In addition, to help advance the cause of transforming the World Wide Web in its current form into a semantic World Wide Web, aided by the concepts of Linked Data, it is preferable to also include links to documents belonging to other sites. \citep{berners2006linked}
     
 \end{enumerate}
 
-In conclusion, Linked Data plays a crucial role in giving meaning to the web by enabling the interconnection and integration of diverse data sources. By adhering to the principles of unique URIs, dereferencing, linking, and using standardized formats, Linked Data fosters a more structured and interconnected web of knowledge. Examples such as DBpedia\footnote{\href{https://www.dbpedia.org}{https://www.dbpedia.org}}, which provides a structured representation of Wikipedia data, and Friend of a Friend (FOAF), which allows for the description of people and their relationships, illustrate how publishing data as Linked Data benefits from enhanced data discoverability, interlinking with other datasets, and enabling novel applications and insights. Local initiatives like Collections of Ghent (CoGhent\footnote{\href{https://www.collections.gent}{https://www.collections.gent}}), which digitizes art collections from cultural houses in Ghent and will be further discussed in Section~\ref{sec:coghent}, similarly demonstrate the potential of Linked Data for local organizations in contributing to the broader web of knowledge. \citep{auer2007dbpedia} \citep{golbeck2008linking} \citep{van2022publishing}
+In conclusion, Linked Data plays a crucial role in giving meaning to the Web by enabling the interconnection and integration of diverse data sources. By adhering to the principles of unique URIs, dereferencing, linking, and using standardized formats, Linked Data fosters a more structured and interconnected web of knowledge. Examples such as DBpedia\footnote{\href{https://www.dbpedia.org}{https://www.dbpedia.org}}, which provides a structured representation of Wikipedia data, and Friend of a Friend (FOAF), which allows for the description of people and their relationships, illustrate how publishing data as Linked Data benefits from enhanced data discoverability, interlinking with other datasets, and enabling novel applications and insights. Local initiatives like Collections of Ghent (CoGhent\footnote{\href{https://www.collections.gent}{https://www.collections.gent}}), which digitizes art collections from cultural houses in Ghent and will be further discussed in Section~\ref{sec:coghent}, similarly demonstrate the potential of Linked Data for local organizations in contributing to the broader web of knowledge. \citep{auer2007dbpedia} \citep{golbeck2008linking} \citep{van2022publishing}
 
 \subsection{Resource Description Framework}
 \label{subsec:rdf}
 
+The idea behind Linked Data is interesting in itself, but does not yet describe exactly how to get started with it. Therefore, this section introduces the Recourse Description Framework (RDF). Developed under the auspices of the World Wide Web Consortium (W3C), RDF is an infrastructure that allows for the construction of Linked Data datasets and their metadata. Consequently, this not only allows data publishers to lay out their data as Linked Data, but also gives data consumers clear guidance on how the data can be understood. Note here that data consumers can be both individuals and computer applications. \citep{miller1998introduction}
+
+An interesting way to understand RDF is to first make a jump to the English language. Take the sentence below:
+\begin{center}
+    \textbf{The birthplace of Georges Seurat is France.}
+\end{center}
+According to English grammar, the \textit{who} or \textit{what} around which a sentence revolves, is called the subject of the sentence. Therefore, when looking at the sentence above, \textit{Georges Seurat} is its subject. In addition, the part of a sentence that gives more information about the subject, is referred to as the predicate, making \textit{the birthplace} the predicate in the above sentence. Finally, the matching value complementing the predicate and completing the sentence, is also of importance. Logically, in the case of the sentence above, that would be \textit{France}. Together, these three components form the most basic building blocks of a sentence. In fact, no matter their lengths, combined, they will always establish a piece of knowledge, exactly what RDF also seeks to accomplish. \citep{powers2003practical}
+
+The building blocks of RDF data are basically exactly the same as those of linguistic sentences. After all, they are also three in number and even partly share the same names. Moreover, much like with sentences, combined, they form a single yet very clear piece of knowledge. Unlike the English language, however, they are not referred to as sentences. Rather, they are called triples. \citep{powers2003practical}
+\begin{itemize}
+
+    \item \textbf{Resource}\\
+    \cite{miller1998introduction} defines a resource as any object that is uniquely identifiable by a URI. This enables it to come in different forms: as a web page, as an entire website or simply as any resource on the Web that conveys information in one way or another. \citep{candan2001resource}
+    
+    To make the comparison with the English language again, in a triple, the resource corresponds to the subject in a sentence. Moreover, in practice, the term \textit{subject} is often preferred over \textit{resource}. \citep{powers2003practical}
+
+    \item \textbf{Property Type}\\
+    A property type, or simply a property, introduces a specific aspect, characteristic, attribute, or relationship of a resource. A property type always expects a value to ultimately define the piece of knowledge represented by a triple. \citep{candan2001resource} \citep{miller1998introduction}
+    
+    As for property types, in practice, the corresponding term from the English language, \textit{predicate}, is also frequently used as opposed to the more theoretical \textit{property type}. \citep{powers2003practical}
+
+    \item \textbf{Value}\\
+    A value resolves the concept or relationship initiated by a property type. In this way, it captures the knowledge conveyed by the triple. Values can be represented as text strings, numbers, or any atomic data. However, they can also be resources themselves. This characteristic allows triples therefore to be the building blocks of a web of knowledge. \citep{miller1998introduction}
+    
+    It is evident that a value in a triple corresponds to a value in an English sentence. However, in practice, the term \textit{object} is often preferred. \citep{powers2003practical}
+    
+\end{itemize}
+
+While triples convey a clear and distinct piece of knowledge, a collection of triples can naturally convey a more comprehensive knowledge. Such a collection of triples, interconnected by values that are themselves resources, is also referred to as an \textit{RDF description}. Figure~\ref{fig:rdf_description} illustrates what such an RDF description might look like. Additionally, it is important to note that each of its components, whether it be a resource, property type, or value, does not necessarily have to be a digital concept. After all, Web assets can perfectly represent real-life concepts. \citep{miller1998introduction} \citep{candan2001resource}
+
+\begin{figure}[htbp]
+    \centering
+	\includegraphics[width=\textwidth]{images/rdf_description.jpg}
+    \captionsetup{justification=centering}
+	\caption{Representation of an RDF description}
+    \caption*{Circles represent resources, arrows represent property types and values are situated at the end of arrows}
+	\label{fig:rdf_description}
+\end{figure}
+
+Clearly, different terms exist to denote the same RDF concepts. For instance, in addition to the synonyms mentioned above, in literature, the term \textit{statement} is sometimes preferred over \textit{triple}. However, in light of uniformity and clarity, throughout the rest of this text, the terms \textit{triple}, \textit{subject}, \textit{predicate} and \textit{object} will be used instead of their counterparts. \citep{candan2001resource}
+
+\subsection{Resource Description Framework Syntax}
+\label{subsec:rdf_syntax}
+
 TODO
 
 \subsection{Resource Description Framework Schema and Web Ontology Language}
-\label{subsec:rdfs-owl}
-
-TODO
-
-\subsection{JavaScript Object Notation for Linked Data}
+\label{subsec:rdfs_owl}
 
 TODO
 
@@ -68,6 +109,7 @@ TODO
 TODO
 
 \subsection{Challenges and Advantages}
+\label{subsec:challenges_advantages}
 
 TODO
 

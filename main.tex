@@ -43,7 +43,12 @@
 \usepackage{subcaption}
 \usepackage[toc,page]{appendix}
 \usepackage{fontspec}
-\usepackage[T1]{fontenc}
+
+% Allow Japanese characters
+\usepackage{xeCJK}
+\setCJKmainfont{IPAMincho}
+\setCJKsansfont{IPAGothic}
+\setCJKmonofont{IPAGothic}
 
 % Don't indent table of contents, list of figures, and list of tables
 \usepackage{tocloft}
@@ -53,6 +58,9 @@
 \setlength{\cfttabindent}{0pt}    % remove indentation from tables in List of Tables
 
 \usepackage{parskip} % Add space between two paragraphs and don't indent the first line of the paragraph
+
+\widowpenalty=10000
+\clubpenalty=10000
 
 % To generate fake lorem ipsum text
 \usepackage{lipsum}
