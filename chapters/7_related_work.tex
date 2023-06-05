@@ -3,7 +3,7 @@
 
 \section{Linked Data}
 
-This section presents a comprehensive exploration of Linked Data, encompassing its fundamental principles, data modeling, syntax, query interfaces, and the associated challenges and advantages. In Section \ref{subsec:introduction_principles}, the concept of Linked Data and its principles are introduced, highlighting the significance of unique URIs, dereferencing, and data interlinking. Section \ref{subsec:rdf} focuses on the Resource Description Framework (RDF) as the cornerstone for representing relationships and knowledge connections within Linked Data. Section \ref{subsec:rdf_syntax} provides an overview of RDF syntax, including popular formats such as XML, Turtle, N-Triples, and JSON-LD, which facilitate the flexible expression and exchange of RDF data. \ref{subsec:rdfs_owl} explores the Resource Description Framework Schema (RDFS) and Web Ontology Language (OWL), enabling the extension of Linked Data through ontology definition and enhanced semantic representation. \ref{subsec:sparql} delves into SPARQL, the query language for Linked Data, and discusses various query interfaces that facilitate efficient data access and retrieval. Lastly, Section \ref{subsec:challenges_advantages} examines the challenges and advantages of Linked Data, addressing aspects such as data quality, scalability, integration, and the benefits of improved interoperability and knowledge graph creation. This comprehensive examination provides a solid foundation for the subsequent discussions on linked traversal-based query processing.
+This section presents a comprehensive exploration of Linked Data, encompassing its fundamental principles, data modeling, syntax, query interfaces, and the associated challenges and advantages. In Section~\ref{subsec:introduction_principles}, the concept of Linked Data and its principles are introduced, highlighting the significance of unique URIs, dereferencing, and data interlinking. Section~\ref{subsec:rdf} focuses on the Resource Description Framework (RDF) as the cornerstone for representing relationships and knowledge connections within Linked Data. Section~\ref{subsec:rdf_syntax} provides an overview of RDF syntax, including popular formats such as XML, Turtle, N-Triples, and JSON-LD, which facilitate the flexible expression and exchange of RDF data. Section~\ref{subsec:rdfs_owl} explores the Resource Description Framework Schema (RDFS) and Web Ontology Language (OWL), enabling the extension of Linked Data through ontology definition and enhanced semantic representation. Section~\ref{subsec:sparql} delves into SPARQL, the query language for Linked Data, and discusses various query interfaces that facilitate efficient data access and retrieval. Lastly, Section~\ref{subsec:challenges_advantages} examines the challenges and advantages of Linked Data, addressing aspects such as data quality, scalability, integration, and the benefits of improved interoperability and knowledge graph creation. This comprehensive examination provides a solid foundation for the subsequent discussions on linked traversal-based query processing.
 
 \subsection{Introduction and Principles}
 \label{subsec:introduction_principles}
@@ -96,7 +96,161 @@ Clearly, different terms exist to denote the same RDF concepts. For instance, in
 \subsection{Resource Description Framework Syntax}
 \label{subsec:rdf_syntax}
 
-TODO
+What constitutes RDF exactly, should be clear by now, but the question of how to actually write down RDF descriptions, still remains to be answered. Therefore, this section introduces some RDF syntaxes. However, since they are not the focus of this research, they will not be discussed in detail. Instead, their outlines will be illustrated by presenting the RDF description from Figure~\ref{fig:rdf_description} in the syntax in question. Incidentally, since the schema presented in Figure~\ref{fig:rdf_description} also has clear guidelines on how to be used, in itself, it also qualifies as an RDF syntax, albeit a graphical one. \citep{miller1998introduction}
+
+All the syntaxes to be discussed are instantiations of the RDF Model and Syntax Specification, providing concrete implementations. However, the first syntax stands apart from the rest as it primarily serves as a notation recommendation for humans to express RDF descriptions in a manner that is unambiguous yet simple. Unlike the other syntaxes, this particular one is not intended for machine consumption. Code Fragment~\ref{lst:human_rdf_syntax} demonstrates how the RDF descriptor, as schematically depicted in Figure~\ref{fig:rdf_description}, can be represented using this human-centric syntax. In this representation, resources are enclosed in straight brackets, while property types are represented by arrows. Furthermore, the representation of values varies depending on their types. As denoted, resources are encapsulated within brackets. However, if the values are atomic in nature, they are simply enclosed in quotation marks. \citep{miller1998introduction}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{text}
+[The Circus] ------name--------> "The Circus"
+[The Circus] ------painter-----> [Georges Seurat]
+[Georges Seurat] --name--------> "Georges Seurat"
+[Georges Seurat] --birthplace--> [France]
+    \end{minted}
+    \caption{RDF description depicted using a human-centric RDF syntax}
+    \label{lst:human_rdf_syntax}
+\end{listing}
+
+The example from Code Fragment~\ref{lst:human_rdf_syntax} is easy to read, but at the same time rather confusing. Indeed, certain resource names correspond to certain atomic values. One could of course try to give the resources a more generic name to indicate what exactly the resource in question means. However, that would make little sense given the way the following machine-readable RDF syntaxes refer to resources. After all, they use URIs, allowing for a more clear distinction between resources and atomic values.
+
+\begin{itemize}
+
+    \item \textbf{N-Triples}\\
+    TODO (see Code Fragment~\ref{lst:n_triples_syntax}
+
+    \begin{listing}[htbp]
+        \begin{minted}[samepage, fontsize=\footnotesize]{turtle}
+<http://example.org/The_Circus> <http://example.org/name> "The Circus" .
+<http://example.org/The_Circus> <http://example.org/painter> <http://example.org/Georges_Seurat> .
+<http://example.org/Georges_Seurat> <http://example.org/name> "Georges Seurat" .
+<http://example.org/Georges_Seurat> <http://example.org/birthplace> <http://dbpedia.org/resource/France> .
+        \end{minted}
+        \caption{RDF description depicted using the N-Triples syntax}
+        \label{lst:n_triples_syntax}
+    \end{listing}
+
+    \item \textbf{N3}\\
+    TODO (see Code Fragment~\ref{lst:n3_turtle_syntax}
+
+    \begin{listing}[htbp]
+        \begin{minted}[samepage]{turtle}
+@prefix ex: <http://example.org/> .
+@prefix dbp: <http://dbpedia.org/resource/> .
+
+ex:The_Circus ex:name "The Circus" .
+ex:The_Circus ex:painter ex:Georges_Seurat .
+ex:Georges_Seurat ex:name "Georges Seurat" .
+ex:Georges_Seurat ex:birthplace dbp:France .
+        \end{minted}
+        \caption{RDF description depicted using the N3 and Turtle syntaxes}
+        \label{lst:n3_turtle_syntax}
+    \end{listing}
+
+    \item \textbf{Turtle}\\
+    TODO (see Code Fragment~\ref{lst:n3_turtle_syntax}
+
+    \item  \textbf{XML/RDF}\\
+    TODO (see Code Fragment~\ref{lst:xml_syntax})
+
+    \begin{listing}[htbp]
+        \begin{minted}[samepage]{xml}
+<rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+         xmlns:ex="http://example.org/"
+         xmlns:dbp="http://dbpedia.org/resource/">
+  <rdf:Description rdf:about="http://example.org/The_Circus">
+    <ex:name>The Circus</ex:name>
+    <ex:painter rdf:resource="http://example.org/Georges_Seurat"/>
+  </rdf:Description>
+  <rdf:Description rdf:about="http://example.org/Georges_Seurat">
+    <ex:name>Georges Seurat</ex:name>
+    <ex:birthplace rdf:resource="http://dbpedia.org/resource/France"/>
+  </rdf:Description>
+</rdf:RDF>
+        \end{minted}
+        \caption{RDF description depicted using the XML/RDF syntax}
+        \label{lst:xml_syntax}
+    \end{listing}
+
+    \item \textbf{JSON-LD}
+    TODO (see Code Fragments~\ref{lst:json_ld_nested_syntax},~\ref{lst:json_ld_spread_syntax} and~\ref{lst:json_ld_graph_syntax}
+
+        \begin{listing}[htbp]
+        \begin{minted}[samepage]{jsonld}
+{
+  "@context": {
+    "ex": "http://example.org/",
+    "dbp": "http://dbpedia.org/resource/"
+  },
+  "@id": "ex:The_Circus",
+  "ex:name": "The Circus",
+  "ex:painter": {
+    "@id": "ex:Georges_Seurat",
+    "ex:name": "Georges Seurat",
+    "ex:birthplace": "dbp:France"
+  }
+}
+        \end{minted}
+        \caption{RDF description with nested objects depicted using the JSON-LD syntax}
+        \label{lst:json_ld_nested_syntax}
+    \end{listing}
+
+        \begin{listing}[htbp]
+        \begin{minted}[samepage, escapeinside=||]{jsonld}
+|Document 1:|
+{
+  "@context": {
+    "ex": "http://example.org/"
+  },
+  "@id": "ex:The_Circus",
+  "ex:name": "The Circus",
+  "ex:painter": "ex:Georges_Seurat"
+}
+
+|Document 2:|
+{
+  "@context": {
+    "ex": "http://example.org/",
+    "dbp": "http://dbpedia.org/resource/"
+  },
+  "@id": "ex:Georges_Seurat",
+  "ex:name": "Georges Seurat",
+  "ex:birthplace": "dbp:France"
+}
+        \end{minted}
+        \caption{RDF description spread over two documents depicted using the JSON-LD syntax}
+        \label{lst:json_ld_spread_syntax}
+    \end{listing}
+
+            \begin{listing}[htbp]
+        \begin{minted}[samepage]{jsonld}
+{
+  "@context": {
+    "ex": "http://example.org/",
+    "dbp": "http://dbpedia.org/resource/"
+  },
+  "@graph": [
+    {
+      "@id": "ex:The_Circus",
+      "ex:name": "The Circus",
+      "ex:painter": {
+        "@id": "ex:Georges_Seurat"
+      }
+    },
+    {
+      "@id": "ex:Georges_Seurat",
+      "ex:name": "Georges Seurat",
+      "ex:birthplace": {
+        "@id": "dbp:France"
+      }
+    }
+  ]
+}
+        \end{minted}
+        \caption{RDF description as a graph depicted using the JSON-LD syntax}
+        \label{lst:json_ld_graph_syntax}
+    \end{listing}
+    
+\end{itemize}
 
 \subsection{Resource Description Framework Schema and Web Ontology Language}
 \label{subsec:rdfs_owl}
