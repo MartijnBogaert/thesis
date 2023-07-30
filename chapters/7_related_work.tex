@@ -3,7 +3,7 @@
 
 \section{Linked Data}
 
-This section presents a comprehensive exploration of Linked Data, encompassing its fundamental principles, data modeling, syntax, query interfaces, and the associated challenges and advantages. In Section~\ref{subsec:introduction_principles}, the concept of Linked Data and its principles are introduced, highlighting the significance of unique URIs, dereferencing, and data interlinking. Section~\ref{subsec:rdf} focuses on the Resource Description Framework (RDF) as the cornerstone for representing relationships and knowledge connections within Linked Data. Section~\ref{subsec:rdf_syntax} provides an overview of RDF syntax, including popular formats such as XML, Turtle, N-Triples, and JSON-LD, which facilitate the flexible expression and exchange of RDF data. Section~\ref{subsec:rdfs_owl} explores the Resource Description Framework Schema (RDFS) and Web Ontology Language (OWL), enabling the extension of Linked Data through ontology definition and enhanced semantic representation. Section~\ref{subsec:sparql} delves into SPARQL, the query language for Linked Data, and discusses various query interfaces that facilitate efficient data access and retrieval. Lastly, Section~\ref{subsec:challenges_advantages} examines the challenges and advantages of Linked Data, addressing aspects such as data quality, scalability, integration, and the benefits of improved interoperability and knowledge graph creation. This comprehensive examination provides a solid foundation for the subsequent discussions on linked traversal-based query processing.
+This section presents a comprehensive exploration of Linked Data, encompassing its fundamental principles, data modeling, syntax, query interfaces, and the associated challenges and advantages. In Section~\ref{subsec:introduction_principles}, the concept of Linked Data and its principles are introduced, highlighting the significance of unique URIs, dereferencing, and data interlinking. Section~\ref{subsec:rdf} focuses on the Resource Description Framework (RDF) as the cornerstone for representing relationships and knowledge connections within Linked Data. Section~\ref{subsec:rdf_syntax} provides an overview of RDF syntax, including popular formats such as XML, Turtle, N-Triples, and JSON-LD, which facilitate the flexible expression and exchange of RDF data. Section~\ref{subsec:rdfs_owl} explores the Resource Description Framework Schema (RDFS) and Web Ontology Language (OWL), enabling the extension of Linked Data through ontology definition and enhanced semantic representation. Lastly, Section~\ref{subsec:sparql} delves into SPARQL, the query language for Linked Data, and discusses various query interfaces that facilitate efficient data access and retrieval. This comprehensive examination serves as a solid foundation for the subsequent discussions on linked traversal-based query processing.
 
 \subsection{Introduction and Principles}
 \label{subsec:introduction_principles}
@@ -98,7 +98,7 @@ Clearly, different terms exist to denote the same RDF concepts. For instance, in
 
 What constitutes RDF exactly, should be clear by now, but the question of how to actually write down RDF descriptions, still remains to be answered. Therefore, this section introduces some RDF syntaxes. However, since they are not the focus of this research, they will not be discussed in detail. Instead, their outlines will be illustrated by presenting the RDF description from Figure~\ref{fig:rdf_description} in the syntax in question. Incidentally, since the schema presented in Figure~\ref{fig:rdf_description} also has clear guidelines on how to be used, in itself, it also qualifies as an RDF syntax, albeit a graphical one. \citep{miller1998introduction}
 
-All the syntaxes to be discussed are instantiations of the RDF Model and Syntax Specification, providing concrete implementations. However, the first syntax stands apart from the rest as it primarily serves as a notation recommendation for humans to express RDF descriptions in a manner that is unambiguous yet simple. Unlike the other syntaxes, this particular one is not intended for machine consumption. Code Fragment~\ref{lst:human_rdf_syntax} demonstrates how the RDF descriptor, as schematically depicted in Figure~\ref{fig:rdf_description}, can be represented using this human-centric syntax. In this representation, resources are enclosed in straight brackets, while property types are represented by arrows. Furthermore, the representation of values varies depending on their types. As denoted, resources are encapsulated within brackets. However, if the values are atomic in nature, they are simply enclosed in quotation marks. \citep{miller1998introduction}
+All the syntaxes to be discussed are instantiations of the RDF Model and Syntax Specification, providing concrete implementations. However, the first syntax stands apart from the rest as it primarily serves as a notation recommendation for humans to express RDF descriptions in a manner that is unambiguous yet simple. Unlike the other syntaxes, this particular one is not intended for machine consumption. Code Fragment~\ref{lst:human_rdf_syntax} demonstrates how the RDF description, as schematically depicted in Figure~\ref{fig:rdf_description}, can be represented using this human-centric syntax. In this representation, resources are enclosed in straight brackets, while property types are represented by arrows. Furthermore, the representation of values varies depending on their types. As denoted, resources are encapsulated within brackets. However, if the values are atomic in nature, they are simply enclosed in quotation marks. \citep{miller1998introduction}
 
 \begin{listing}[htbp]
     \begin{minted}[samepage]{text}
@@ -116,7 +116,7 @@ The example from Code Fragment~\ref{lst:human_rdf_syntax} is easy to read, but a
 \begin{itemize}
 
     \item \textbf{N-Triples}\\
-    TODO (see Code Fragment~\ref{lst:n_triples_syntax}
+    Code Fragment~\ref{lst:n_triples_syntax} depicts the representation of the RDF description using N-Triples. In this syntax, each line corresponds to a triple, wherein the subject, predicate, and object are delimited by spaces or tabs. The triple is terminated by a period and a new line character. \citep{seaborne2014rdf}
 
     \begin{listing}[htbp]
         \begin{minted}[samepage, fontsize=\footnotesize]{turtle}
@@ -128,9 +128,15 @@ The example from Code Fragment~\ref{lst:human_rdf_syntax} is easy to read, but a
         \caption{RDF description depicted using the N-Triples syntax}
         \label{lst:n_triples_syntax}
     \end{listing}
+    
+    Furthermore, absolute URLs are employed to denote resources, while atomic values are enclosed within quotation marks. With that in mind, it is important to note that if a value itself contains a quotation mark, it must be properly escaped to ensure correct interpretation. \citep{seaborne2014rdf}
 
     \item \textbf{N3}\\
-    TODO (see Code Fragment~\ref{lst:n3_turtle_syntax}
+    Parsing an RDF description in N-Triples syntax is relatively straightforward for computers, but it can be challenging for humans to comprehend at a glance. The use of absolute URLs in N-Triples can lead to visual clutter and hinder readability. To address this, the N3 syntax builds upon N-Triples by introducing the concept of relative URIs. \citep{seaborne2014rdf}
+
+    In N3, it is possible to specify a base URI by including a \mintinline{text}{@base <URI>} directive at the beginning of the document. When a relative URI is encountered elsewhere in the document, the parser appends it to the specified base URI. This allows for a more concise representation of URIs. \citep{berners2011notation3}
+
+    However, RDF descriptions may contain URIs with different base URIs, making a single base URI insufficient. To overcome this limitation, N3 allows the document to be preceded by one or more \mintinline{text}{@prefix prefix: <URI>} directives. These directives associate prefixes with URIs, and the parser appends any relative URI preceded by a prefix to the corresponding base URI associated with that prefix. This mechanism enables the use of multiple base URIs within the same document and enhances the flexibility and expressiveness of the N3 syntax. Code Fragment~\ref{lst:n3_turtle_syntax} illustrates the use of prefixes for the N3 syntax.  \citep{berners2011notation3}
 
     \begin{listing}[htbp]
         \begin{minted}[samepage]{turtle}
@@ -147,10 +153,12 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     \end{listing}
 
     \item \textbf{Turtle}\\
-    TODO (see Code Fragment~\ref{lst:n3_turtle_syntax}
+    The Turtle syntax is very similar to N3. In fact, Turtle is a subset of N3. Specifically, Code Fragment~\ref{lst:n3_turtle_syntax} can be processed by a Turtle parser just as well. However, while N3 allows for more expressiveness in principle, Turtle keeps things simpler, making it a popular choice for human readability. \citep{berners2011notation3} \citep{prudhommeaux2014turtle}
 
-    \item  \textbf{XML/RDF}\\
-    TODO (see Code Fragment~\ref{lst:xml_syntax})
+    Providing an exhaustive list of the precise differences between the two syntaxes would exceed the scope of this text since the intricacies of RDF syntaxes are not the primary focus here.
+
+    \item  \textbf{RDF/XML}\\
+    RDF/XML is one of the earliest RDF syntaxes and remains widely used. To introduce this syntax, Code Fragment~\ref{lst:xml_syntax} serves as a guide.
 
     \begin{listing}[htbp]
         \begin{minted}[samepage]{xml}
@@ -167,14 +175,24 @@ ex:Georges_Seurat ex:birthplace dbp:France .
   </rdf:Description>
 </rdf:RDF>
         \end{minted}
-        \caption{RDF description depicted using the XML/RDF syntax}
+        \caption{RDF description depicted using the RDF/XML syntax}
         \label{lst:xml_syntax}
     \end{listing}
 
-    \item \textbf{JSON-LD}
-    TODO (see Code Fragments~\ref{lst:json_ld_nested_syntax},~\ref{lst:json_ld_spread_syntax} and~\ref{lst:json_ld_graph_syntax}
+    The RDF description in RDF/XML is enclosed within \mintinline{text}{rdf:RDF} elements, where necessary prefixes can also be defined. While an XML declaration like \mintinline{text}{<?xml version="1.0"?>} can precede the RDF/XML document, it is optional and omitted in Code Fragment~\ref{lst:xml_syntax} to focus primarily on the basics of RDF syntaxes. \citep{gandon2014xml}
 
-        \begin{listing}[htbp]
+    Upon encountering the \mintinline{text}{rdf:RDF} tag, a parser recognizes that it should process an RDF description. In RDF/XML, such an RDF description is constructed using one or more \mintinline{text}{rdf:Description} elements. In fact, each \mintinline{text}{rdf:Description} element represents a subject, and its optional \mintinline{text}{rdf:about} attribute denotes the subject's URI. Consequently, the triples associated with the subject are enclosed within the corresponding \mintinline{text}{rdf:Description} tags. Predicates on the one hand, whether represented using a prefix or not, have their own elements. The representation of subjects, on the other hand, depends on their nature: for atomic values, they can simply be placed between opening and closing subject tags, while for resource subjects, their URLs are included as the value of an \mintinline{text}{rdf:resource} attribute within the subject tag. \citep{gandon2014xml}
+
+    Once again, it is important to note that the Code Fragments used in this section provide only an introductory glimpse of the proposed syntaxes. They cover only a small portion of the potential scope of a syntax. Code Fragment~\ref{lst:xml_syntax}, in particular, demonstrates that RDF/XML syntax can obscure simplicity, especially when dealing with more extensive RDF descriptions. Consequently, RDF/XML is not commonly used for human-readable purposes but rather as a syntax primarily intended for machine consumption. \citep{dongo2019srdf}
+
+    \item \textbf{JSON-LD}\\
+    The final RDF syntax introduced is called JSON-LD. Similar to RDF/XML, JSON-LD builds upon an existing syntax for representing data on the web. However, JSON-LD representations are generally more human-readable. As most resources and examples in the following text will be presented in JSON-LD, a slightly more comprehensive overview of this syntax is provided compared to the previous ones. Nevertheless, what follows is not an exhaustive listing of all the intricacies of the syntax. Instead, it aims to offer readers a concise introduction to JSON-LD without prior knowledge, making the rest of the text more easily comprehensible. For those seeking more in-depth information about JSON-LD, it is recommended to consult other sources\footnote{The \href{https://www.w3.org/TR/json-ld11/}{W3C JSON-LD 1.1 Recommendation} provides very in-depth information about the JSON-LD syntax.}.
+
+    It is evident that the same data can be represented in various ways, and this applies to RDF data as well. While the visual representation of an RDF description, as depicted in Figure~\ref{fig:rdf_description}, is relatively straightforward, converting it into a fully textual format poses certain choices to be made. After all, there are numerous possibilities regarding the exact data representation. In the introduction of previous syntaxes, a specific representation was chosen each time. However, in this section, three different approaches for representing the same set of data using the JSON-LD syntax are presented.
+
+    To start off, Code Fragment~\ref{lst:json_ld_nested_syntax} closely resembles the previous examples, using nesting to store all the data in a single JSON-LD document. However, some may question whether it is appropriate to make the \mintinline{text}{George_Seurat} resource a child of \mintinline{text}{The_Circus} resource, implying a hierarchical relationship that may not be relevant.
+
+    \begin{listing}[htbp]
         \begin{minted}[samepage]{jsonld}
 {
   "@context": {
@@ -194,7 +212,9 @@ ex:Georges_Seurat ex:birthplace dbp:France .
         \label{lst:json_ld_nested_syntax}
     \end{listing}
 
-        \begin{listing}[htbp]
+    Subsequently, in Code Fragment~\ref{lst:json_ld_spread_syntax}, the data is split into two JSON-LD documents. Utilizing URIs, the documents can still refer to each other uniquely, without suggesting any hierarchical relationship between the resources.
+
+    \begin{listing}[htbp]
         \begin{minted}[samepage, escapeinside=||]{jsonld}
 |Document 1:|
 {
@@ -221,7 +241,11 @@ ex:Georges_Seurat ex:birthplace dbp:France .
         \label{lst:json_ld_spread_syntax}
     \end{listing}
 
-            \begin{listing}[htbp]
+    Finally, Code Fragment~\ref{lst:json_ld_graph_syntax} takes a distinct approach by using the \mintinline{text}{@graph} property. This allows listing the necessary resources in a JSON array, placing them on equal footing within a single document. However, this method introduces extra clutter and overhead compared to the previous approaches. \citep{kellogg2020jsonld}
+
+    Ultimately, the choice of representation depends on the specific use case and the desired balance between simplicity and expressiveness. Each approach has its advantages and trade-offs, showcasing the flexibility of the JSON-LD syntax in accommodating different data representation needs.
+
+    \begin{listing}[htbp]
         \begin{minted}[samepage]{jsonld}
 {
   "@context": {
@@ -249,8 +273,59 @@ ex:Georges_Seurat ex:birthplace dbp:France .
         \caption{RDF description as a graph depicted using the JSON-LD syntax}
         \label{lst:json_ld_graph_syntax}
     \end{listing}
+
+    Understanding Code Fragments~\ref{lst:json_ld_nested_syntax}, \ref{lst:json_ld_spread_syntax}, and \ref{lst:json_ld_graph_syntax} becomes relatively straightforward after having discussed the previous syntaxes. However, two aspects deserve further attention: the use of \mintinline{text}{@id} and \mintinline{text}{@context} keywords in JSON-LD.
+
+    Firstly, the \mintinline{text}{@id} keywords uniquely identify the proposed resources using URIs. Indeed, in the given examples, the id's do exactly that. \citep{kellogg2020jsonld}
+
+    Secondly, the \mintinline{text}{@context} keyword plays a crucial role in JSON-LD. It introduces specifics that can be taken for granted in the actual data, reducing the need for repetitive information and cleaning up the actual JSON. While Code Fragments~\ref{lst:json_ld_nested_syntax}, \ref{lst:json_ld_spread_syntax}, and \ref{lst:json_ld_graph_syntax} use the context in a straightforward way by introducing prefixes, in practice, it can do more than that. Essentially, the context maps terms to URIs. These terms can be freely chosen to enhance human readability. \citep{kellogg2020jsonld}
+
+    W3C's JSON-LD Recommendation\footnote{\href{https://www.w3.org/TR/json-ld11/}{https://www.w3.org/TR/json-ld11/}} offers a valuable example of how the context is typically used, as illustrated in Code Fragment~\ref{lst:json_ld_context}. The provided context clearly indicates that when the key \mintinline{text}{name} appears in the data, it refers to \mintinline{text}{http://schema.org/name}. Similarly, for \mintinline{text}{image} and \mintinline{text}{homepage}, their respective values are \textit{expanded} into objects that hold additional information. The \mintinline{text}{@type} keyword is also used in the example to indicate the type of the final value. In Code Fragment~\ref{lst:json_ld_context}, it shows that the \mintinline{text}{image} and \mintinline{text}{homepage} keys are followed by an \mintinline{text}{@id}, representing unique resources. Moreover, JSON-LD supports various other types, and custom types can be defined to suit specific requirements. \citep{kellogg2020jsonld}
+
+    \begin{listing}[htbp]
+        \begin{minted}[samepage]{jsonld}
+{
+  "@context": {
+    "name": "http://schema.org/name",
+    "image": {
+      "@id": "http://schema.org/image",
+      "@type": "@id"
+    },
+    "homepage": {
+      "@id": "http://schema.org/url",
+      "@type": "@id"
+    }
+  },
+  "name": "Manu Sporny",
+  "homepage": "http://manu.sporny.org/",
+  "image": "http://manu.sporny.org/images/manu.png"
+}
+        \end{minted}
+        \caption{Example of context use in JSON-LD, proposed by \cite{kellogg2020jsonld}}
+        \label{lst:json_ld_context}
+    \end{listing}
+
+    To further enhance the cleanliness of a JSON-LD document, one can opt to store the context as a separate resource rather than embedding it directly in the document. Using this approach, the JSON-LD document includes the URI that references the context as the value for the \mintinline{text}{@context} key. Storing the context separately allows for greater modularity and reusability, making it easier to manage and maintain complex JSON-LD documents. The use of separate contexts can significantly improve the organization and readability of JSON-LD data, enhancing its compatibility with RDF and Linked Data principles. \citep{kellogg2020jsonld}
+
+    To finish off this section on JSON-LD, it is interesting to note that when the JSON-LD document presented in Code Fragment~\ref{lst:json_ld_context} is \textit{expanded}, the data takes on its typical RDF form, adhering fully to the Linked Data principles. This expansion, as shown in Code Fragment~\ref{lst:json_ld_expanded}, reveals the underlying structure of the data and its connection to other resources. \citep{kellogg2020jsonld}
+
+    \begin{listing}[htbp]
+        \begin{minted}[samepage]{jsonld}
+[{
+  "http://schema.org/name": [{"@value": "Manu Sporny"}],
+  "http://schema.org/url": [{ "@id": "http://manu.sporny.org/" }],
+  "http://schema.org/image": [{ "@id": "http://manu.sporny.org/images/manu.png" }]
+}]
+        \end{minted}
+        \caption{Example of an expanded JSON-LD document, proposed by \cite{kellogg2020jsonld}}
+        \label{lst:json_ld_expanded}
+    \end{listing}
+
+    In summary, the \mintinline{text}{@id} and \mintinline{text}{@context} keywords in JSON-LD contribute to the readability, expressiveness, and flexibility of representing RDF data, enabling a more human-friendly approach to data serialization.
     
 \end{itemize}
+
+Before concluding this section on RDF syntaxes, it is crucial to reiterate that the explanations provided are not exhaustive. Only a surface-level overview of these syntaxes was covered, and there is much more to explore and learn about them. This section serves as a reference for those with limited or no prior knowledge of RDF syntaxes, aiming to facilitate their understanding of the remaining text. In the following sections, several RDF examples will be presented, with the majority of them using the JSON-LD syntax. However, there will be no further elaboration on new elements that are specific to each syntax unless they are essential for a clear understanding of the text. For readers seeking a more in-depth understanding of the syntaxes, additional resources are recommended to further explore their intricacies and capabilities.
 
 \subsection{Resource Description Framework Schema and Web Ontology Language}
 \label{subsec:rdfs_owl}
@@ -259,11 +334,6 @@ TODO
 
 \subsection{SPARQL and Query Interfaces}
 \label{subsec:sparql}
-
-TODO
-
-\subsection{Challenges and Advantages}
-\label{subsec:challenges_advantages}
 
 TODO
 
