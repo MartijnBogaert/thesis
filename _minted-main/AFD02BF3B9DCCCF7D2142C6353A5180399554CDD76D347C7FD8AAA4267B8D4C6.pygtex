@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nv}{\PYGZlt{}http://example.org/The\PYGZus{}Circus\PYGZgt{}} \PYG{n+nv}{\PYGZlt{}http://example.org/name\PYGZgt{}} \PYG{l+s}{\PYGZdq{}The Circus\PYGZdq{}} \PYG{p}{.}
+\PYG{n+nv}{\PYGZlt{}http://example.org/The\PYGZus{}Circus\PYGZgt{}} \PYG{n+nv}{\PYGZlt{}http://example.org/painter\PYGZgt{}} \PYG{n+nv}{\PYGZlt{}http://example.org/Georges\PYGZus{}Seurat\PYGZgt{}} \PYG{p}{.}
+\PYG{n+nv}{\PYGZlt{}http://example.org/Georges\PYGZus{}Seurat\PYGZgt{}} \PYG{n+nv}{\PYGZlt{}http://example.org/name\PYGZgt{}} \PYG{l+s}{\PYGZdq{}Georges Seurat\PYGZdq{}} \PYG{p}{.}
+\PYG{n+nv}{\PYGZlt{}http://example.org/Georges\PYGZus{}Seurat\PYGZgt{}} \PYG{n+nv}{\PYGZlt{}http://example.org/birthplace\PYGZgt{}} \PYG{n+nv}{\PYGZlt{}http://dbpedia.org/resource/France\PYGZgt{}} \PYG{p}{.}
+\end{Verbatim}

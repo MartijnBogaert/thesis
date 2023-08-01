@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{@prefix}\PYG{+w}{ }\PYG{n+nn}{ex:}\PYG{+w}{ }\PYG{n+nv}{\PYGZlt{}http://example.org/\PYGZgt{}}\PYG{+w}{ }\PYG{p}{.}
+\PYG{k}{@prefix}\PYG{+w}{ }\PYG{n+nn}{dbp:}\PYG{+w}{ }\PYG{n+nv}{\PYGZlt{}http://dbpedia.org/resource/\PYGZgt{}}\PYG{+w}{ }\PYG{p}{.}
+
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{The\PYGZus{}Circus} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{name} \PYG{l+s}{\PYGZdq{}The Circus\PYGZdq{}} \PYG{p}{.}
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{The\PYGZus{}Circus} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{painter} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{Georges\PYGZus{}Seurat} \PYG{p}{.}
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{Georges\PYGZus{}Seurat} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{name} \PYG{l+s}{\PYGZdq{}Georges Seurat\PYGZdq{}} \PYG{p}{.}
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{Georges\PYGZus{}Seurat} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{birthplace} \PYG{n+nn}{dbp}\PYG{p}{:}\PYG{n+nt}{France} \PYG{p}{.}
+\end{Verbatim}

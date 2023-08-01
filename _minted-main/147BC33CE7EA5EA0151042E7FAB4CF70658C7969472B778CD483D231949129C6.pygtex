@@ -1,0 +1,14 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nt}{\PYGZlt{}rdf:RDF}\PYG{+w}{ }\PYG{n+na}{xmlns:rdf=}\PYG{l+s}{\PYGZdq{}http://www.w3.org/1999/02/22\PYGZhy{}rdf\PYGZhy{}syntax\PYGZhy{}ns\PYGZsh{}\PYGZdq{}}
+\PYG{+w}{         }\PYG{n+na}{xmlns:ex=}\PYG{l+s}{\PYGZdq{}http://example.org/\PYGZdq{}}
+\PYG{+w}{         }\PYG{n+na}{xmlns:dbp=}\PYG{l+s}{\PYGZdq{}http://dbpedia.org/resource/\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZlt{}rdf:Description}\PYG{+w}{ }\PYG{n+na}{rdf:about=}\PYG{l+s}{\PYGZdq{}http://example.org/The\PYGZus{}Circus\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+\PYG{+w}{    }\PYG{n+nt}{\PYGZlt{}ex:name\PYGZgt{}}The\PYG{+w}{ }Circus\PYG{n+nt}{\PYGZlt{}/ex:name\PYGZgt{}}
+\PYG{+w}{    }\PYG{n+nt}{\PYGZlt{}ex:painter}\PYG{+w}{ }\PYG{n+na}{rdf:resource=}\PYG{l+s}{\PYGZdq{}http://example.org/Georges\PYGZus{}Seurat\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZlt{}/rdf:Description\PYGZgt{}}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZlt{}rdf:Description}\PYG{+w}{ }\PYG{n+na}{rdf:about=}\PYG{l+s}{\PYGZdq{}http://example.org/Georges\PYGZus{}Seurat\PYGZdq{}}\PYG{n+nt}{\PYGZgt{}}
+\PYG{+w}{    }\PYG{n+nt}{\PYGZlt{}ex:name\PYGZgt{}}Georges\PYG{+w}{ }Seurat\PYG{n+nt}{\PYGZlt{}/ex:name\PYGZgt{}}
+\PYG{+w}{    }\PYG{n+nt}{\PYGZlt{}ex:birthplace}\PYG{+w}{ }\PYG{n+na}{rdf:resource=}\PYG{l+s}{\PYGZdq{}http://dbpedia.org/resource/France\PYGZdq{}}\PYG{n+nt}{/\PYGZgt{}}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZlt{}/rdf:Description\PYGZgt{}}
+\PYG{n+nt}{\PYGZlt{}/rdf:RDF\PYGZgt{}}
+\end{Verbatim}

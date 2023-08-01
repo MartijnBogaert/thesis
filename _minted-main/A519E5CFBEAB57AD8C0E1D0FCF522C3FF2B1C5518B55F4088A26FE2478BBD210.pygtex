@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{[\PYGZob{}}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}http://schema.org/name\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[\PYGZob{}}\PYG{n+nd}{\PYGZdq{}@value\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Manu Sporny\PYGZdq{}}\PYG{p}{\PYGZcb{}],}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}http://schema.org/url\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[\PYGZob{}}\PYG{+w}{ }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}http://manu.sporny.org/\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{}],}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}http://schema.org/image\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[\PYGZob{}}\PYG{+w}{ }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}http://manu.sporny.org/images/manu.png\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{}]}
+\PYG{p}{\PYGZcb{}]}
+\end{Verbatim}

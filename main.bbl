@@ -1,0 +1,98 @@
+\begin{thebibliography}{}
+
+\bibitem[Auer et~al., 2007]{auer2007dbpedia}
+Auer, S., Bizer, C., Kobilarov, G., Lehmann, J., Cyganiak, R., and Ives, Z.
+  (2007).
+\newblock Dbpedia: A nucleus for a web of open data.
+\newblock In {\em The Semantic Web: 6th International Semantic Web Conference,
+  2nd Asian Semantic Web Conference, ISWC 2007+ ASWC 2007, Busan, Korea,
+  November 11-15, 2007. Proceedings}, pages 722--735. Springer.
+
+\bibitem[Beckett, 2014]{seaborne2014rdf}
+Beckett, D. (2014).
+\newblock {RDF} 1.1 n-triples.
+\newblock {W3C} recommendation, W3C.
+\newblock https://www.w3.org/TR/2014/REC-n-triples-20140225/.
+
+\bibitem[Beckett et~al., 2014]{prudhommeaux2014turtle}
+Beckett, D., Berners-Lee, T., Prud'hommeaux, E., and Carothers, G. (2014).
+\newblock {RDF} 1.1 turtle.
+\newblock {W3C} recommendation, W3C.
+\newblock https://www.w3.org/TR/2014/REC-turtle-20140225/.
+
+\bibitem[Berners-Lee, 2006]{berners2006linked}
+Berners-Lee, T. (2006).
+\newblock Linked data-design issues.
+\newblock {\em http://www.w3.org/DesignIssues/LinkedData.html}.
+
+\bibitem[Berners-Lee and Connolly, 2011]{berners2011notation3}
+Berners-Lee, T. and Connolly, D. (2011).
+\newblock Notation3 (n3): A readable rdf syntax.
+\newblock {W3C} team submission, W3C.
+\newblock http://www.w3.org/TeamSubmission/2011/SUBM-n3-20110328/.
+
+\bibitem[Bizer et~al., 2011]{bizer2011linked}
+Bizer, C., Heath, T., and Berners-Lee, T. (2011).
+\newblock Linked data: The story so far.
+\newblock In {\em Semantic services, interoperability and web applications:
+  emerging concepts}, pages 205--227. IGI global.
+
+\bibitem[Candan et~al., 2001]{candan2001resource}
+Candan, K.~S., Liu, H., and Suvarna, R. (2001).
+\newblock Resource description framework: metadata and its applications.
+\newblock {\em Acm Sigkdd Explorations Newsletter}, 3(1):6--19.
+
+\bibitem[Dongo and Chbeir, 2019]{dongo2019srdf}
+Dongo, I. and Chbeir, R. (2019).
+\newblock {S-RDF: A New RDF Serialization Format for Better Storage Without
+  Losing Human Readability}.
+\newblock In {\em {On the Move to Meaningful Internet Systems: OTM 2019
+  Conferences}}, 28th International Conference on COOPERATIVE INFORMATION
+  SYSTEMS, pages 246--264, Rhodes, Greece. {Springer International Publishing}.
+
+\bibitem[Gandon et~al., 2014]{gandon2014xml}
+Gandon, F., Schreiber, G., and Becket, D. (2014).
+\newblock {RDF} 1.1 {XML} syntax.
+\newblock {W3C} recommendation, W3C.
+\newblock https://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/.
+
+\bibitem[Golbeck and Rothstein, 2008]{golbeck2008linking}
+Golbeck, J. and Rothstein, M. (2008).
+\newblock Linking social networks on the web with foaf: A semantic web case
+  study.
+\newblock In {\em AAAI}, volume~8, pages 1138--1143.
+
+\bibitem[Jacksi and Abass, 2019]{jacksi2019development}
+Jacksi, K. and Abass, S.~M. (2019).
+\newblock Development history of the world wide web.
+\newblock {\em Int. J. Sci. Technol. Res}, 8(9):75--79.
+
+\bibitem[Miller, 1998]{miller1998introduction}
+Miller, E. (1998).
+\newblock An introduction to the resource description framework.
+\newblock {\em ディジタル図書館}, 13:3--11.
+
+\bibitem[Powers, 2003]{powers2003practical}
+Powers, S. (2003).
+\newblock {\em Practical RDF: solving problems with the resource description
+  framework}.
+\newblock O'Reilly Media, Inc.
+
+\bibitem[Sporny et~al., 2020]{kellogg2020jsonld}
+Sporny, M., Longley, D., Kellogg, G., Lanthaler, M., Champin, P.-A., and
+  Lindström, N. (2020).
+\newblock {JSON}-ld {1.1}.
+\newblock {W3C} recommendation, W3C.
+\newblock https://www.w3.org/TR/2020/REC-json-ld11-20200716/.
+
+\bibitem[Van~de Vyvere et~al., 2022]{van2022publishing}
+Van~de Vyvere, B., D’Huynslager, O.~V., Atauil, A., Segers, M., Van~Campe,
+  L., Vandekeybus, N., Teugels, S., Saenko, A., Pauwels, P.-J., and Colpaert,
+  P. (2022).
+\newblock Publishing cultural heritage collections of ghent with linked data
+  event streams.
+\newblock In {\em Metadata and Semantic Research: 15th International
+  Conference, MTSR 2021, Virtual Event, November 29--December 3, 2021, Revised
+  Selected Papers}, pages 357--369. Springer.
+
+\end{thebibliography}
