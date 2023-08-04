@@ -351,3 +351,69 @@ TODO
 \label{sec:coghent}
 
 TODO
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX adms:<http://www.w3.org/ns/adms#>
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+PREFIX la:<https://linked.art/ns/terms/>
+
+SELECT ?title ?note ?image ?objectname ?objectnumber ?associatie ?creator ?plaats ?timespan ?techniek ?materiaal
+
+WHERE {
+    # Title
+    ?o cidoc:P102_has_title ?title.
+
+    # Description
+    ?o cidoc:P3_has_note ?note.
+
+    # Image
+    ?o cidoc:P129i_is_subject_of ?image.
+
+    # Objectname
+    ?o cidoc:P41i_was_classified_by ?classified.
+    ?classified cidoc:P42_assigned ?assigned.
+    ?assigned skos:prefLabel ?objectname.
+
+    # Association
+    ?o cidoc:P128_carries ?carries.
+    ?carries cidoc:P129_is_about ?about.
+    ?about cidoc:P2_has_type ?type.
+    ?type skos:prefLabel ?associatie.
+
+    # Objectnumber
+    ?o adms:identifier ?identifier.
+    ?identifier skos:notation ?objectnumber.
+
+    # Creator
+    ?o cidoc:P108i_was_produced_by ?production.
+    ?production cidoc:P14_carried_out_by ?producer.
+    ?producer la:equivalent ?equivalent.
+    ?equivalent rdfs:label ?creator.
+
+    # Place
+    ?o cidoc:P108i_was_produced_by ?produced.
+    ?produced cidoc:P7_took_place_at ?tookplace.
+    ?tookplace la:equivalent ?plaatsequivalent.
+    ?plaatsequivalent skos:prefLabel ?plaats.
+
+    # Date
+    ?o cidoc:P108i_was_produced_by ?produced.
+    ?produced cidoc:P4_has_time-span ?timespan.
+
+    # Technique
+    ?o cidoc:P108i_was_produced_by ?produced.
+    ?produced cidoc:P32_used_general_technique ?technique.
+    ?technique cidoc:P2_has_type ?hastype.
+    ?hastype skos:prefLabel ?techniek.
+
+    # Material
+    ?o cidoc:P45_consists_of ?consists.
+    ?consists cidoc:P2_has_type ?materiaaltype.
+    ?materiaaltype skos:prefLabel ?materiaal.
+}
+    \end{minted}
+    \caption{Example of SPARQL query created by original CoGhent Query Builder}
+    \label{lst:coghent_builder_original}
+\end{listing}
