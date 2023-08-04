@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{PREFIX} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}}
+\PYG{k}{PREFIX} \PYG{n+nn}{adms}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.w3.org/ns/adms\PYGZsh{}\PYGZgt{}}
+\PYG{k}{PREFIX} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.w3.org/2004/02/skos/core\PYGZsh{}\PYGZgt{}}
+\PYG{k}{PREFIX} \PYG{n+nn}{la}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}https://linked.art/ns/terms/\PYGZgt{}}
+\end{Verbatim}

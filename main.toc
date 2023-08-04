@@ -15,12 +15,12 @@
 \contentsline {section}{\numberline {2.2}Link-Traversal-based Query Processing}{17}{section*.19}%
 \contentsline {section}{\numberline {2.3}Comunica}{17}{section*.20}%
 \contentsline {section}{\numberline {2.4}Collections of Ghent}{17}{section*.21}%
-\contentsline {chapter}{\numberline {3}Querying CoGhent Collections}{18}{chapter.3}%
-\contentsline {chapter}{\numberline {4}Building an App for Discovering CoGhent Collections}{19}{chapter.4}%
-\contentsline {chapter}{\numberline {5}Saving Query Results}{20}{chapter.5}%
-\contentsline {chapter}{Conclusion}{21}{chapter*.22}%
-\contentsline {section}{Ethical and social reflection}{21}{section*.24}%
-\contentsline {chapter}{References}{22}{chapter*.25}%
-\contentsline {chapter}{Appendices}{24}{section*.26}%
-\contentsline {section}{Appendix A}{25}{section*.27}%
-\contentsline {section}{Appendix B}{26}{section*.28}%
+\contentsline {chapter}{\numberline {3}Extended CoGhent Query Builder}{19}{chapter.3}%
+\contentsline {chapter}{\numberline {4}General Query Builder}{24}{chapter.4}%
+\contentsline {chapter}{\numberline {5}Saving Query Results}{25}{chapter.5}%
+\contentsline {chapter}{Conclusion}{26}{chapter*.32}%
+\contentsline {section}{Ethical and social reflection}{26}{section*.34}%
+\contentsline {chapter}{References}{27}{chapter*.35}%
+\contentsline {chapter}{Appendices}{29}{section*.36}%
+\contentsline {section}{Appendix A}{30}{section*.37}%
+\contentsline {section}{Appendix B}{31}{section*.38}%

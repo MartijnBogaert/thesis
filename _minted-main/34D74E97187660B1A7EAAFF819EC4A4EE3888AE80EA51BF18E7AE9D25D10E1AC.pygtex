@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nx}{objectname}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{prefix}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}cidoc\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{predicate}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{prefix}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}cidoc\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{predicate}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}P42\PYGZus{}assigned\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{prefix}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}skos\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{predicate}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}prefLabel\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{p}{]}
+\end{Verbatim}

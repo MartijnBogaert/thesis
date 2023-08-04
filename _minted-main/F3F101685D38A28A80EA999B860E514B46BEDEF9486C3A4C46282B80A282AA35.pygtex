@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Place}
+\PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P108i\PYGZus{}was\PYGZus{}produced\PYGZus{}by} \PYG{n+nv}{?produced}\PYG{p}{.}
+\PYG{n+nv}{?produced} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P7\PYGZus{}took\PYGZus{}place\PYGZus{}at} \PYG{n+nv}{?tookplace}\PYG{p}{.}
+\PYG{n+nv}{?tookplace} \PYG{n+nn}{la}\PYG{p}{:}\PYG{n+nt}{equivalent} \PYG{n+nv}{?plaatsequivalent}\PYG{p}{.}
+\PYG{n+nv}{?plaatsequivalent} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?plaats}\PYG{p}{.}
+\PYG{c}{\PYGZsh{} Date}
+\PYG{n+nv}{?produced} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P4\PYGZus{}has\PYGZus{}time\PYGZhy{}span} \PYG{n+nv}{?timespan}\PYG{p}{.}
+\end{Verbatim}
