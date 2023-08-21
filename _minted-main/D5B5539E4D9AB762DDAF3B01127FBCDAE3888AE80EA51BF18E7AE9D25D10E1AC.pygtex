@@ -20,7 +20,7 @@
 \PYG{p}{\PYGZcb{};}
 
 \PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{prefixes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
-\PYG{+w}{    }\PYG{n+nx}{cidoc}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}\PYGZsq{}}\PYG{p}{,}
-\PYG{+w}{    }\PYG{n+nx}{skos}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}\PYGZlt{}http://www.w3.org/2004/02/skos/core\PYGZsh{}\PYGZgt{}\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n+nx}{cidoc}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{n+nx}{skos}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}http://www.w3.org/2004/02/skos/core\PYGZsh{}\PYGZsq{}}\PYG{p}{,}
 \PYG{p}{\PYGZcb{};}
 \end{Verbatim}

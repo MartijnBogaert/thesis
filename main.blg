@@ -10,15 +10,15 @@ A level-1 auxiliary file: chapters/5_list_of_acronyms.aux
 A level-1 auxiliary file: chapters/6_introduction.aux
 A level-1 auxiliary file: chapters/7_related_work.aux
 A level-1 auxiliary file: chapters/8_coghent_query_builder.aux
-A level-1 auxiliary file: chapters/9_general_query_builder.aux
-A level-1 auxiliary file: chapters/10_saving_results.aux
+A level-1 auxiliary file: chapters/9_tools_query_building.aux
+A level-1 auxiliary file: chapters/10_handling_query_results.aux
 A level-1 auxiliary file: chapters/11_conclusion.aux
 A level-1 auxiliary file: chapters/12_bibliography.aux
 A level-1 auxiliary file: chapters/13_appendices.aux
 Database file #1: references.bib
 You've used 15 entries,
             1935 wiz_defined-function locations,
-            579 strings with 7248 characters,
+            579 strings with 7255 characters,
 and the built_in function-call counts, 6490 in all, are:
 = -- 658
 > -- 276

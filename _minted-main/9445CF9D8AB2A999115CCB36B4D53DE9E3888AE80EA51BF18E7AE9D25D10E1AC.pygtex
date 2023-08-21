@@ -1,0 +1,16 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{properties}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n+nx}{title}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{statements}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{            }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{prefix}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}cidoc\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{predicate}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}P102\PYGZus{}has\PYGZus{}title\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{        }\PYG{p}{],}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{    }\PYG{n+nx}{description}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{        }\PYG{n+nx}{statements}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{            }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{prefix}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}cidoc\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{predicate}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}P3\PYGZus{}has\PYGZus{}note\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{object\PYGZus{}variable\PYGZus{}name}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}note\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{        }\PYG{p}{],}
+\PYG{+w}{        }\PYG{n+nx}{filters}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{string}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}luchter\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{language}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}nl\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{        }\PYG{n+nx}{optional}\PYG{o}{:}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{,}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{},}
+\PYG{p}{\PYGZcb{};}
+\end{Verbatim}

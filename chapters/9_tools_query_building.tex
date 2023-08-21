@@ -1,0 +1,287 @@
+\chapter{Tools for Query Building}
+\label{chap:tools_query_building}
+
+TODO
+
+\section{Building Queries from Predicate Sequences}
+\label{sec:building_queries_predicate_sequences}
+
+TODO (see LateX comments for notes)
+
+
+% Easiest way to rebuild existing app:
+%
+% - Keep dict of properties (e.g. title, description ...) and their necessary statements for WHERE clause
+%   E.g.:
+%   title: '?o cidoc:P102_has_title ?title.'
+%   OR for properties needing more than one statement
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{js}
+objectname: [
+    '?o cidoc:P41i_was_classified_by ?classified.',
+    '?classified cidoc:P42_assigned ?assigned.',
+    '?assigned skos:prefLabel ?objectname.',
+]
+    \end{minted}
+    \caption{WHERE clause statements to query for \textit{objectname} stored as elements in array}
+    \label{lst:where_statements_array}
+\end{listing}
+%   Above can also be saved as one single string
+%
+% - Always add all prefixes at top of query:
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX adms:<http://www.w3.org/ns/adms#>
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+PREFIX la:<https://linked.art/ns/terms/>
+    \end{minted}
+    \caption{All possible PREFIX statements of original CoGhent Query Builder}
+    \label{lst:prefix_statements_original}
+\end{listing}
+%
+% Downsides: WHERE clause statements very much hardcoded + hardcoded prefixes not good for modularity app
+
+
+
+% Other idea:
+%
+% in fact, only predicates are important -> save only those
+% together with predicate, save prefix
+% E.g.:
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{js}
+objectname: [
+    { prefix: 'cidoc', predicate: 'P41i_was_classified_by' },
+    { prefix: 'cidoc', predicate: 'P42_assigned' },
+    { prefix: 'skos', predicate: 'prefLabel' },
+]
+    \end{minted}
+    \caption{Prefixes and predicates for WHERE clause statements to query for \textit{objectname} stored as elements in array}
+    \label{lst:where_statements_array_predicates}
+\end{listing}
+%
+% Downsides:
+% - app needs to come up with variable names itself
+%   e.g.
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+# Objectname
+?o cidoc:P41i_was_classified_by ?s1.
+?s1 cidoc:P42_assigned ?s2.
+?s2 skos:prefLabel ?s3.
+    \end{minted}
+    \caption{WHERE clause statements with object variable names constructed using numbers}
+    \label{lst:where_statements_objects_numbers}
+\end{listing}
+%   OR
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+# Objectname
+?o
+    cidoc:P41i_was_classified_by
+        ?o_cidoc_P41i_was_classified_by.
+?o_cidoc_P41i_was_classified_by
+    cidoc:P42_assigned
+        ?o_cidoc_P41i_was_classified_by_cidoc_P42_assigned.
+?o_cidoc_P41i_was_classified_by_cidoc_P42_assigned
+    skos:prefLabel
+        ?o_cidoc_P41i_was_classified_by_cidoc_P42_assigned_skos_prefLabel.
+    \end{minted}
+    \caption{WHERE clause statements with object variable names constructed from preceding statements}
+    \label{lst:where_statements_objects_long}
+\end{listing}
+%   -> both very unreadable
+%   -> query builder not only to help build queries but also to help understand queries and data
+%   -> better to have readable variables (proposed by humans up front) OR use no variables (property path sequence)
+%
+% Upside: keeping track of "bare" predicates one by one can help "clean up" query later on when start statements might overlap
+% E.g.:
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+# Place
+?o cidoc:P108i_was_produced_by ?produced.
+?produced cidoc:P7_took_place_at ?tookplace.
+?tookplace la:equivalent ?plaatsequivalent.
+?plaatsequivalent skos:prefLabel ?plaats.
+# Date
+?produced cidoc:P4_has_time-span ?timespan.
+    \end{minted}
+    \caption{WHERE clause statements without overlapping statements}
+    \label{lst:where_statements_no_overlapping}
+\end{listing}
+% instead of
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+# Place
+?o cidoc:P108i_was_produced_by ?produced.
+?produced cidoc:P7_took_place_at ?tookplace.
+?tookplace la:equivalent ?plaatsequivalent.
+?plaatsequivalent skos:prefLabel ?plaats.
+# Date
+?o cidoc:P108i_was_produced_by ?produced.
+?produced cidoc:P4_has_time-span ?timespan.
+    \end{minted}
+    \caption{WHERE clause statements with overlapping statements}
+    \label{lst:where_statements_overlapping}
+\end{listing}
+% Might make a difference in length of query when more statements overlap, but when the query is run, Comunica will "clean things up" for us, so doesn't have influence on data retrieval (TODO: check if true)
+% To keep queries readable & app not too complicated -> let's not worry about such "feature"
+
+
+
+% Compromise:
+%
+% app expects dict with properties (keys) and corresponding necessary statements (values)
+% as seen before, values are arrays containing objects
+% each object will be mapped to a triple (or will be part of property path sequence) in the WHERE clause, and:
+% - must have predicate ('predicate')
+% - may have prefix (for predicate) ('prefix')
+% - may have variable name for predicate's object ('object_variable_name')
+%   in case not present, construct property path sequence (no need for object variable names)
+%
+% dict with necessary prefixes mapped to uri's also fed to app
+%
+% An example:
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{js}
+const properties = {
+    title: [
+        { prefix: 'cidoc', predicate: 'P102_has_title' }
+    ],
+    description: [
+        { prefix: 'cidoc', predicate: 'P3_has_note', object_variable_name: 'note' },
+    ],
+    objectname: [
+        { prefix: 'cidoc', predicate: 'P41i_was_classified_by' },
+        { prefix: 'cidoc', predicate: 'P42_assigned' },
+        { prefix: 'skos', predicate: 'prefLabel' },
+    ],
+    association: [
+        { prefix: 'cidoc', predicate: 'P128_carries' },
+        { prefix: 'cidoc', predicate: 'P129_is_about', object_variable_name: 'about' },
+        { prefix: 'cidoc', predicate: 'P2_has_type' },
+        { prefix: 'skos', predicate: 'prefLabel' },
+    ],
+};
+
+const prefixes = {
+    cidoc: 'http://www.cidoc-crm.org/cidoc-crm/',
+    skos: 'http://www.w3.org/2004/02/skos/core#',
+};
+    \end{minted}
+    \caption{Properties and prefixes ready to be consumed by query building function}
+    \label{lst:properties_prefixes_query_build_function}
+\end{listing}
+% results in (title has no object var name, description has, objectname hasn't -> property path sequence, assocation has both)
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?title ?note ?objectname ?association
+
+WHERE {
+    # title
+    ?human_made_object cidoc:P102_has_title ?title.
+    
+    # description
+    ?human_made_object cidoc:P3_has_note ?note.
+    
+    # objectname
+    ?human_made_object
+        cidoc:P41i_was_classified_by/cidoc:P42_assigned/skos:prefLabel
+            ?objectname.
+    
+    # association
+    ?human_made_object cidoc:P128_carries/cidoc:P129_is_about ?about.
+    ?about cidoc:P2_has_type/skos:prefLabel ?association.
+}
+    \end{minted}
+    \caption{SPARQL query generated from input displayed in Code Fragment \ref{lst:properties_prefixes_query_build_function}}
+    \label{lst:query_generated_edge_cases}
+\end{listing}
+
+
+
+% FILTER
+% possible to create extra dict with property names as keys and filter details as values and feed to app
+% but having too many dicts becomes little chaotic
+% better to extend original propeties dict so it can house extra information (like filter details) apart from statements
+%
+% original app: only filter using string values
+% this version: make multiple types of filter possible
+% e.g. give string for string filtering (regex, case insensitive) + give language for language filtering
+% app functionality can easily be extended for more filter types
+
+% OPTIONAL
+% extend original app functionality with optional properties
+% in properties dict: 'optional' (key) - boolean (value)
+
+% EXAMPLE with filter & optional
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{js}
+const properties = {
+    title: {
+        statements: [
+            { prefix: 'cidoc', predicate: 'P102_has_title' }
+        ],
+    },
+    description: {
+        statements: [
+            { prefix: 'cidoc', predicate: 'P3_has_note', object_variable_name: 'note' },
+        ],
+        filters: { string: 'luchter', language: 'nl' },
+        optional: true,
+    },
+};
+    \end{minted}
+    \caption{Example of properties dictionary to illustrate use of filters and optionals}
+    \label{lst:properties_filter_optionals}
+\end{listing}
+% results in (note filters and optional keys)
+\begin{listing}[htbp]
+    \begin{minted}[samepage]{sparql}
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+
+SELECT ?title ?note
+
+WHERE {
+    # title
+    ?human_made_object cidoc:P102_has_title ?title.
+    
+    # description
+    OPTIONAL {
+        ?human_made_object cidoc:P3_has_note ?note.
+        
+        FILTER(REGEX(?note, "luchter", "i"))
+        FILTER(LANG(?note) = "nl")
+    }
+}
+    \end{minted}
+    \caption{SPARQL query generated from input displayed in Code Fragment \ref{lst:properties_filter_optionals}}
+    \label{lst:query_generated_filters_optionals}
+\end{listing}
+
+% FROM
+%const datasets = [
+%	'http://stad.gent/ldes/hva',
+%	'http://stad.gent/ldes/dmg',
+%	'http://stad.gent/ldes/archief',
+%	'http://stad.gent/ldes/stam',
+%	'http://stad.gent/ldes/industriemuseum',
+%];
+
+% LIMIT and OFFSET
+% according to coghent documentation "the SparQL endpoint limits results to 1.000 lines." (https://coghent.github.io/basicqueries.html), but Cominica gives more by default: 10.000 -> what's up with this (TODO: ask)
+% in app, just feed to query building function as arguments
+
+\section{A New Query Builder}
+\label{sec:new_query_builder}
+
+TODO
+
+\section{Discovering Predicate Sequences}
+\label{sec:discovering_predicate_sequences}
+
+TODO
