@@ -1,0 +1,29 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n+nd}{\PYGZdq{}@context\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}https://linkedsoftwaredependencies.org/bundles/npm/}
+\PYG{l+s+s2}{        @comunica/runner/\PYGZca{}2.0.0/components/context.jsonld\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}https://linkedsoftwaredependencies.org/bundles/npm/}
+\PYG{l+s+s2}{        @comunica/actor\PYGZhy{}extract\PYGZhy{}links\PYGZhy{}predicates/\PYGZca{}0.0.0/components/context.jsonld\PYGZdq{}}
+\PYG{+w}{  }\PYG{p}{],}
+\PYG{+w}{  }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}urn:comunica:default:Runner\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{  }\PYG{n+nd}{\PYGZdq{}@type\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Runner\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}actors\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}urn:comunica:default:extract\PYGZhy{}links/actors\PYGZsh{}predicates\PYGZhy{}common\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nd}{\PYGZdq{}@type\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}ActorExtractLinksPredicates\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nt}{\PYGZdq{}checkSubject\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{k+kc}{false}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nt}{\PYGZdq{}predicateRegexes\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/P129i\PYGZus{}is\PYGZus{}subject\PYGZus{}of\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://iiif.io/api/presentation/2\PYGZsh{}hasSequences\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://www.w3.org/1999/02/22\PYGZhy{}rdf\PYGZhy{}syntax\PYGZhy{}ns\PYGZsh{}first\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://iiif.io/api/presentation/2\PYGZsh{}hasCanvases\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://www.w3.org/2003/12/exif/ns\PYGZsh{}height\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://iiif.io/api/presentation/2\PYGZsh{}hasImageAnnotations\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://www.w3.org/1999/02/22\PYGZhy{}rdf\PYGZhy{}syntax\PYGZhy{}ns\PYGZsh{}first\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{        }\PYG{l+s+s2}{\PYGZdq{}http://www.w3.org/ns/oa\PYGZsh{}hasBody\PYGZdq{}}
+\PYG{+w}{      }\PYG{p}{]}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{p}{]}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

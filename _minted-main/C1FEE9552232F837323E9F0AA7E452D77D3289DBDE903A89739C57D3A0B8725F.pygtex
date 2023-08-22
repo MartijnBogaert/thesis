@@ -1,0 +1,36 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             dmg/objecten
+             \PYGZob{} ... , method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+...
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/cultureel\PYGZhy{}erfgoed\PYGZhy{}object\PYGZhy{}ap.jsonld
+             \PYGZob{} ..., method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/persoon\PYGZhy{}basis.jsonld
+             \PYGZob{} ..., method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/cultureel\PYGZhy{}erfgoed\PYGZhy{}event\PYGZhy{}ap.jsonld
+             \PYGZob{} ..., method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/organisatie\PYGZhy{}basis.jsonld
+             \PYGZob{} ..., method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/generiek\PYGZhy{}basis.jsonld
+             \PYGZob{} ..., method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/dossier.jsonld
+             \PYGZob{} ..., method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  INFO: Identified as file source:
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             dmg/objecten?generatedAtTime=2023\PYGZhy{}08\PYGZhy{}12T00:01:27.217Z
+             \PYGZob{} actor: \PYGZsq{}urn:comunica:default:rdf\PYGZhy{}resolve\PYGZhy{}hypermedia/actors\PYGZsh{}none\PYGZsq{} \PYGZcb{}
+...
+\end{Verbatim}

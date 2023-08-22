@@ -14,7 +14,8 @@
 \contentsline {section}{\numberline {2.2}Link-Traversal-based Query Processing}{16}{section*.19}%
 \contentsline {section}{\numberline {2.3}Comunica}{16}{section*.20}%
 \contentsline {section}{\numberline {2.4}Collections of Ghent}{16}{section*.21}%
-\contentsline {subsection}{\numberline {2.4.1}Example Queries}{16}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.1}Linked Data Event Streams}{16}{subsection.2.4.1}%
+\contentsline {subsection}{\numberline {2.4.2}Example Queries}{16}{subsection.2.4.2}%
 \contentsline {chapter}{\numberline {3}CoGhent Data and Link Traversal}{18}{chapter.3}%
 \contentsline {section}{\numberline {3.1}CoGhent Data Sources}{19}{section*.23}%
 \contentsline {subsection}{\numberline {3.1.1}URI Redirection}{19}{subsection.3.1.1}%
@@ -22,21 +23,28 @@
 \contentsline {subsection}{\numberline {3.1.3}Duplicate Human-Made Objects}{22}{subsection.3.1.3}%
 \contentsline {subsection}{\numberline {3.1.4}Conclusion}{23}{subsection.3.1.4}%
 \contentsline {section}{\numberline {3.2}Comunica Link Traversal Engine Configuration}{23}{section*.30}%
-\contentsline {section}{\numberline {3.3}Links to Follow}{23}{section*.31}%
-\contentsline {subsection}{\numberline {3.3.1}IIIF Manifest}{24}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Wikidata}{24}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Stad Gent}{24}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Getty Vocabularies}{24}{subsection.3.3.4}%
-\contentsline {chapter}{\numberline {4}Tools for Query Building}{25}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Building Queries from Predicate Sequences}{25}{section*.32}%
-\contentsline {section}{\numberline {4.2}A New Query Builder}{30}{section*.44}%
-\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{30}{section*.45}%
-\contentsline {chapter}{\numberline {5}Handling Query Results}{31}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Visualizing Query Results}{31}{section*.46}%
-\contentsline {section}{\numberline {5.2}Saving Query Results}{31}{section*.47}%
-\contentsline {chapter}{Conclusion}{32}{chapter*.48}%
-\contentsline {section}{Ethical and social reflection}{32}{section*.50}%
-\contentsline {chapter}{References}{33}{chapter*.51}%
-\contentsline {chapter}{Appendices}{35}{section*.52}%
-\contentsline {section}{Appendix A}{36}{section*.53}%
-\contentsline {section}{Appendix B}{37}{section*.54}%
+\contentsline {subsection}{\numberline {3.2.1}Base Configuration}{24}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Basic Link Extractors}{24}{subsection.3.2.2}%
+\contentsline {subsection}{\numberline {3.2.3}Extracting Links based on Predicates}{25}{subsection.3.2.3}%
+\contentsline {subsection}{\numberline {3.2.4}Comparing Link Extractors}{30}{subsection.3.2.4}%
+\contentsline {subsection}{\numberline {3.2.5}Traversing LDES Pages}{31}{subsection.3.2.5}%
+\contentsline {subsection}{\numberline {3.2.6}Conclusion}{31}{subsection.3.2.6}%
+\contentsline {section}{\numberline {3.3}Links to Follow}{32}{section*.37}%
+\contentsline {subsection}{\numberline {3.3.1}IIIF Manifest}{32}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Wikidata}{32}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Stad Gent}{32}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Getty Vocabularies}{33}{subsection.3.3.4}%
+\contentsline {section}{\numberline {3.4}Conclusion}{33}{section*.38}%
+\contentsline {chapter}{\numberline {4}Tools for Query Building}{34}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Building Queries from Predicate Sequences}{34}{section*.39}%
+\contentsline {section}{\numberline {4.2}A New Query Builder}{39}{section*.51}%
+\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{39}{section*.52}%
+\contentsline {chapter}{\numberline {5}Handling Query Results}{40}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Visualizing Query Results}{40}{section*.53}%
+\contentsline {section}{\numberline {5.2}Saving Query Results}{40}{section*.54}%
+\contentsline {chapter}{Conclusion}{41}{chapter*.55}%
+\contentsline {section}{Ethical and social reflection}{41}{section*.57}%
+\contentsline {chapter}{References}{42}{chapter*.58}%
+\contentsline {chapter}{Appendices}{44}{section*.59}%
+\contentsline {section}{Appendix A}{45}{section*.60}%
+\contentsline {section}{Appendix B}{46}{section*.61}%
