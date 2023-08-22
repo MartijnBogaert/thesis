@@ -10,7 +10,165 @@ This chapter therefore aims to explore the use of link traversal for discovering
 \section{CoGhent Data Sources}
 \label{sec:coghent_data_sources}
 
-TODO
+CoGhent provides a set of LDESs for each participating institution. These LDESs are accessible through specific endpoints, as listed in Table~\ref{tab:ldes_endpoints}
+
+\begin{table}[htbp]
+    \centering
+    \captionsetup{justification=centering}
+    \caption{CoGhent LDES endpoints as published by \citet{floreverk2022ldes}}
+    \label{tab:ldes_endpoints}
+    \begin{tabular}{ll}
+        \toprule
+        \multicolumn{1}{c}{Publishing organisation} & \multicolumn{1}{c}{Endpoint URI} \\
+        \midrule
+        Design Museum Gent (DMG) & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/dmg/objecten} \\
+        Huis van Alijn (HVA) & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/hva/objecten} \\
+        Industriemuseum & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/industriemuseum/objecten} \\
+        STAM & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/stam/objecten} \\
+        Archief Gent & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/archiefgent/objecten} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{URI Redirection}
+
+When accessing any of the URIs listed in Table~\ref{tab:ldes_endpoints}, it is resolved to the same URI but with an additional query parameter \linebreak\mintinline{text}{generatedAtTime}. For example, accessing the LDES from Industriemuseum results in the original URI being extended with \mintinline{text}{?generatedAtTime=2023-08-17T00:07:32.016Z}\footnote{Since the query parameter's value is time-dependent, this specific value serves only as an example of how it is structured.}.
+
+This behavior is confirmed by running the following command:
+\begin{center}
+    {\small \mintinline{bash}{curl -i "https://apidg.gent.be/opendata/adlib2eventstream/v1/industriemuseum/objecten"}}
+\end{center}
+This returns an HTTP \mintinline{text}{302 Found} response code and a \mintinline{text}{Location} header with the extended URI, indicating a redirect to that link. Eventually, when a client (e.g. a browser or Comunica) sends a \mintinline{text}{GET} request to the updated link, the server returns the last (most recent) page of the requested LDES in JSON-LD format. \citep{mdn2023found302}
+
+\subsection{Non-deterministic results}
+
+When configuring a query engine, any or multiple of the CoGhent endpoints can be chosen as data sources, depending on the specific data of interest. Naturally, due to the nature of LDESs, the same query should never be assumed to yield the same results across multiple executions. However, even when running the same query multiple times in a row with the certainty that the LDES hasn't updated yet, the results will still differ in terms of content and order. This variability is attributed to the nature of LTQP and Comunica's implementation of it. After all, results are influenced by the order in which links are pushed to the link queue, which in turn is influenced by the time it takes for the corresponding HTTP requests to get resolved.
+
+This phenomenon is demonstrated by running the query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}\footnote{The query's specifics are discussed in Section~\ref{subsec:links_to_follow_manifest}.} twice, using Design Museum Gent's LDES as data source. Tables~\ref{tab:results_query_first_run} and~\ref{tab:results_query_second_run} show, for both executions respectively, each result's IIIF Manifest URI, as well as the order in which the results were returned. Comparing both outputs clearly proves the results from the two executions differ in both content and order.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+PREFIX iiif: <http://iiif.io/api/presentation/2#>
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX w3-exif: <http://www.w3.org/2003/12/exif/ns#>
+PREFIX w3-oa: <http://www.w3.org/ns/oa#>
+SELECT ?manifest ?height ?image
+WHERE {
+  # Manifest URI
+  ?human_made_object cidoc:P129i_is_subject_of ?manifest.
+  # Image height
+  ?manifest iiif:hasSequences/rdf:first/iiif:hasCanvases/rdf:first/w3-exif:height ?height.
+  # Image URI
+  ?canvas iiif:hasImageAnnotations/rdf:first/w3-oa:hasBody ?image.
+}
+LIMIT 10
+    \end{minted}
+    \caption{SPARQL query fetching ten Human-Made Object's IIIF Manifest URIs, image heights and image file URIs}
+    \label{lst:sparql_manifest_height_image}
+\end{listing}
+
+\begin{table}[htbp]
+    \centering
+    \captionsetup{justification=centering}
+    \caption{(Part of) results after \textbf{first} execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}}
+    \label{tab:results_query_first_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3086\_3-5 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1992-0068 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3130 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1990-0051\_0-5 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3054 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3124 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0284 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0296 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0305 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0281\_21-21 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \captionsetup{justification=centering}
+    \caption{(Part of) results after \textbf{second} execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}}
+    \label{tab:results_query_second_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3075 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0305 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3054 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1563 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1987-0447 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1987-1127\_1-2 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0271 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0284 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0296 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2990\_0-4 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+For similar reasons, the order in which CoGhent endpoint URIs are given to the engine as data sources does not necessarily imply that one endpoint's data has priority over the other. This is illustrated by running the same query (see Code Fragment~\ref{lst:sparql_manifest_height_image}) with the Design Museum Gent LDES first and the Huis Van Alijn LDES second, and then reversing the order. The results from both executions, as shown in Tables~\ref{tab:results_query_third_run} and~\ref{tab:results_query_fourth_run} respectively, once again show variations in content and order, yet most importantly don't seem to show any notable correlation to the order in which the endpoints were given to the engine.
+
+\begin{table}[htbp]
+    \centering
+    \captionsetup{justification=centering}
+    \caption{(Part of) results after execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image} with Design Museum Gent (\textbf{DMG}) LDES endpoint as \textbf{first} data source and Huis Van Alijn (\textbf{HVA}) LDES endpoint as \textbf{second} data source}
+    \label{tab:results_query_third_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-015 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2015-024-001 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:3223 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:3086\_3-5 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:1563 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-001 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:1987-1127\_2-2 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-002 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:1987-0447 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-003 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \captionsetup{justification=centering}
+    \caption{(Part of) results after execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image} with Huis Van Alijn (\textbf{HVA}) LDES endpoint as \textbf{first} data source and Design Museum Gent (\textbf{DMG}) LDES endpoint as \textbf{second} datasource}
+    \label{tab:results_query_fourth_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-002 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-001 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-003 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2009-018-568 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2009-018-568 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2015-024-004 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:2018-0261 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:2990\_4-4 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:2018-0260 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2015-024-001 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Duplicate Human-Made Objects}
+
+It is also important to note that, since updates to an LDES object are performed by adding a new version of the object to the LDES, it is possible to receive multiple results for the same Human-Made Object. As discussed in Secion~\ref{sec:coghent_example_queries}, a potential workaround would be to use a combination of \mintinline{text}{distinct} and \mintinline{text}{order by} clauses in the query itself, to only retrieve the newest versions. However, since ordering can only occur when all results are in, this approach prevents them from appearing in a \textit{streaming} manner. A more efficient solution, therefore, is to let the application that initiated the query, keep track of Human-Made Object URIs while the results are coming in. That way, when the application encounters duplicate Human-Made Objects, it can decide to only retain the latest version's results. Since implementing such a solution is considered trivial, the issue will not be discussed further in this research.
+
+\subsection{Conclusion}
+
+In conclusion, the CoGhent LDES endpoints work perfectly well to initiate the Link Traversal-based Querying process from. Each institution having a separate LDES is an added bonus, as this gives users the flexibility to choose which institutions' data to query. However, it is essential to be aware that the results and order of results are not predictable due to the nature of LDESs as well as Comunica's LTQP implementation. Additionally, Human-Made Objects are spread over multiple pages in the LDES, which needs to be taken into consideration when building the Comunica link traversal engine configuration.
 
 \section{Comunica Link Traversal Engine Configuration}
 \label{sec:comunica_link_traversal_engine_configuration}
@@ -19,5 +177,22 @@ TODO
 
 \section{Links to Follow}
 \label{sec:links_to_follow}
+
+TODO
+
+\subsection{IIIF Manifest}
+\label{subsec:links_to_follow_manifest}
+
+TODO
+
+\subsection{Wikidata}
+
+TODO
+
+\subsection{Stad Gent}
+
+TODO
+
+\subsection{Getty Vocabularies}
 
 TODO

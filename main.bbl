@@ -12,24 +12,24 @@ Auer, S., Bizer, C., Kobilarov, G., Lehmann, J., Cyganiak, R., and Ives, Z.
 Beckett, D. (2014).
 \newblock {RDF} 1.1 n-triples.
 \newblock {W3C} recommendation, W3C.
-\newblock https://www.w3.org/TR/2014/REC-n-triples-20140225/.
+\newblock \url{https://www.w3.org/TR/2014/REC-n-triples-20140225/}.
 
 \bibitem[Beckett et~al., 2014]{prudhommeaux2014turtle}
 Beckett, D., Berners-Lee, T., Prud'hommeaux, E., and Carothers, G. (2014).
 \newblock {RDF} 1.1 turtle.
 \newblock {W3C} recommendation, W3C.
-\newblock https://www.w3.org/TR/2014/REC-turtle-20140225/.
+\newblock \url{https://www.w3.org/TR/2014/REC-turtle-20140225/}.
 
 \bibitem[Berners-Lee, 2006]{berners2006linked}
 Berners-Lee, T. (2006).
 \newblock Linked data-design issues.
-\newblock {\em http://www.w3.org/DesignIssues/LinkedData.html}.
+\newblock {\em \url{http://www.w3.org/DesignIssues/LinkedData.html}}.
 
 \bibitem[Berners-Lee and Connolly, 2011]{berners2011notation3}
 Berners-Lee, T. and Connolly, D. (2011).
 \newblock Notation3 (n3): A readable rdf syntax.
 \newblock {W3C} team submission, W3C.
-\newblock http://www.w3.org/TeamSubmission/2011/SUBM-n3-20110328/.
+\newblock \url{http://www.w3.org/TeamSubmission/2011/SUBM-n3-20110328/}.
 
 \bibitem[Bizer et~al., 2011]{bizer2011linked}
 Bizer, C., Heath, T., and Berners-Lee, T. (2011).
@@ -41,6 +41,11 @@ Bizer, C., Heath, T., and Berners-Lee, T. (2011).
 Candan, K.~S., Liu, H., and Suvarna, R. (2001).
 \newblock Resource description framework: metadata and its applications.
 \newblock {\em Acm Sigkdd Explorations Newsletter}, 3(1):6--19.
+
+\bibitem[CoGhent, 2022]{floreverk2022ldes}
+CoGhent (2022).
+\newblock Linked data event streams.
+\newblock \url{https://coghent.github.io/apiendpoints.html}.
 
 \bibitem[Dongo and Chbeir, 2019]{dongo2019srdf}
 Dongo, I. and Chbeir, R. (2019).
@@ -54,7 +59,7 @@ Dongo, I. and Chbeir, R. (2019).
 Gandon, F., Schreiber, G., and Becket, D. (2014).
 \newblock {RDF} 1.1 {XML} syntax.
 \newblock {W3C} recommendation, W3C.
-\newblock https://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/.
+\newblock \url{https://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/}.
 
 \bibitem[Golbeck and Rothstein, 2008]{golbeck2008linking}
 Golbeck, J. and Rothstein, M. (2008).
@@ -66,6 +71,11 @@ Golbeck, J. and Rothstein, M. (2008).
 Jacksi, K. and Abass, S.~M. (2019).
 \newblock Development history of the world wide web.
 \newblock {\em Int. J. Sci. Technol. Res}, 8(9):75--79.
+
+\bibitem[MDN Web Docs, 2023]{mdn2023found302}
+MDN Web Docs (2023).
+\newblock 302 found.
+\newblock \url{https://developer.mozilla.org/en-US/docs/Web/HTTP/Status/302}.
 
 \bibitem[Miller, 1998]{miller1998introduction}
 Miller, E. (1998).
@@ -83,7 +93,7 @@ Sporny, M., Longley, D., Kellogg, G., Lanthaler, M., Champin, P.-A., and
   Lindström, N. (2020).
 \newblock {JSON}-ld {1.1}.
 \newblock {W3C} recommendation, W3C.
-\newblock https://www.w3.org/TR/2020/REC-json-ld11-20200716/.
+\newblock \url{https://www.w3.org/TR/2020/REC-json-ld11-20200716/}.
 
 \bibitem[Van~de Vyvere et~al., 2022]{van2022publishing}
 Van~de Vyvere, B., D’Huynslager, O.~V., Atauil, A., Segers, M., Van~Campe,

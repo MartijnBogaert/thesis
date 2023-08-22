@@ -16,7 +16,7 @@ TODO (see LateX comments for notes)
 %   title: '?o cidoc:P102_has_title ?title.'
 %   OR for properties needing more than one statement
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{js}
+    \begin{minted}[samepage,fontsize=\small]{js}
 objectname: [
     '?o cidoc:P41i_was_classified_by ?classified.',
     '?classified cidoc:P42_assigned ?assigned.',
@@ -30,7 +30,7 @@ objectname: [
 %
 % - Always add all prefixes at top of query:
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX adms:<http://www.w3.org/ns/adms#>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
@@ -50,7 +50,7 @@ PREFIX la:<https://linked.art/ns/terms/>
 % together with predicate, save prefix
 % E.g.:
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{js}
+    \begin{minted}[samepage,fontsize=\small]{js}
 objectname: [
     { prefix: 'cidoc', predicate: 'P41i_was_classified_by' },
     { prefix: 'cidoc', predicate: 'P42_assigned' },
@@ -65,7 +65,7 @@ objectname: [
 % - app needs to come up with variable names itself
 %   e.g.
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 # Objectname
 ?o cidoc:P41i_was_classified_by ?s1.
 ?s1 cidoc:P42_assigned ?s2.
@@ -76,7 +76,7 @@ objectname: [
 \end{listing}
 %   OR
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 # Objectname
 ?o
     cidoc:P41i_was_classified_by
@@ -98,7 +98,7 @@ objectname: [
 % Upside: keeping track of "bare" predicates one by one can help "clean up" query later on when start statements might overlap
 % E.g.:
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 # Place
 ?o cidoc:P108i_was_produced_by ?produced.
 ?produced cidoc:P7_took_place_at ?tookplace.
@@ -112,7 +112,7 @@ objectname: [
 \end{listing}
 % instead of
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 # Place
 ?o cidoc:P108i_was_produced_by ?produced.
 ?produced cidoc:P7_took_place_at ?tookplace.
@@ -144,7 +144,7 @@ objectname: [
 %
 % An example:
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{js}
+    \begin{minted}[samepage,fontsize=\small]{js}
 const properties = {
     title: [
         { prefix: 'cidoc', predicate: 'P102_has_title' }
@@ -175,7 +175,7 @@ const prefixes = {
 \end{listing}
 % results in (title has no object var name, description has, objectname hasn't -> property path sequence, assocation has both)
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
 
@@ -220,7 +220,7 @@ WHERE {
 
 % EXAMPLE with filter & optional
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{js}
+    \begin{minted}[samepage,fontsize=\small]{js}
 const properties = {
     title: {
         statements: [
@@ -241,7 +241,7 @@ const properties = {
 \end{listing}
 % results in (note filters and optional keys)
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 
 SELECT ?title ?note

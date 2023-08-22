@@ -101,7 +101,7 @@ What constitutes RDF exactly, should be clear by now, but the question of how to
 All the syntaxes to be discussed are instantiations of the RDF Model and Syntax Specification, providing concrete implementations. However, the first syntax stands apart from the rest as it primarily serves as a notation recommendation for humans to express RDF descriptions in a manner that is unambiguous yet simple. Unlike the other syntaxes, this particular one is not intended for machine consumption. Code Fragment~\ref{lst:human_rdf_syntax} demonstrates how the RDF description, as schematically depicted in Figure~\ref{fig:rdf_description}, can be represented using this human-centric syntax. In this representation, resources are enclosed in straight brackets, while property types are represented by arrows. Furthermore, the representation of values varies depending on their types. As denoted, resources are encapsulated within brackets. However, if the values are atomic in nature, they are simply enclosed in quotation marks. \citep{miller1998introduction}
 
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{text}
+    \begin{minted}[samepage,fontsize=\small]{text}
 [The Circus] ------name--------> "The Circus"
 [The Circus] ------painter-----> [Georges Seurat]
 [Georges Seurat] --name--------> "Georges Seurat"
@@ -119,7 +119,7 @@ The example from Code Fragment~\ref{lst:human_rdf_syntax} is easy to read, but a
     Code Fragment~\ref{lst:n_triples_syntax} depicts the representation of the RDF description using N-Triples. In this syntax, each line corresponds to a triple, wherein the subject, predicate, and object are delimited by spaces or tabs. The triple is terminated by a period and a new line character. \citep{seaborne2014rdf}
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage, fontsize=\footnotesize]{turtle}
+        \begin{minted}[samepage,fontsize=\footnotesize]{turtle}
 <http://example.org/The_Circus> <http://example.org/name> "The Circus" .
 <http://example.org/The_Circus> <http://example.org/painter> <http://example.org/Georges_Seurat> .
 <http://example.org/Georges_Seurat> <http://example.org/name> "Georges Seurat" .
@@ -129,17 +129,17 @@ The example from Code Fragment~\ref{lst:human_rdf_syntax} is easy to read, but a
         \label{lst:n_triples_syntax}
     \end{listing}
     
-    Furthermore, absolute URLs are employed to denote resources, while atomic values are enclosed within quotation marks. With that in mind, it is important to note that if a value itself contains a quotation mark, it must be properly escaped to ensure correct interpretation. \citep{seaborne2014rdf}
+    Furthermore, absolute URIs are employed to denote resources, while atomic values are enclosed within quotation marks. With that in mind, it is important to note that if a value itself contains a quotation mark, it must be properly escaped to ensure correct interpretation. \citep{seaborne2014rdf}
 
     \item \textbf{N3}\\
-    Parsing an RDF description in N-Triples syntax is relatively straightforward for computers, but it can be challenging for humans to comprehend at a glance. The use of absolute URLs in N-Triples can lead to visual clutter and hinder readability. To address this, the N3 syntax builds upon N-Triples by introducing the concept of relative URIs. \citep{seaborne2014rdf}
+    Parsing an RDF description in N-Triples syntax is relatively straightforward for computers, but it can be challenging for humans to comprehend at a glance. The use of absolute URIs in N-Triples can lead to visual clutter and hinder readability. To address this, the N3 syntax builds upon N-Triples by introducing the concept of relative URIs. \citep{seaborne2014rdf}
 
     In N3, it is possible to specify a base URI by including a \mintinline{text}{@base <URI>} directive at the beginning of the document. When a relative URI is encountered elsewhere in the document, the parser appends it to the specified base URI. This allows for a more concise representation of URIs. \citep{berners2011notation3}
 
     However, RDF descriptions may contain URIs with different base URIs, making a single base URI insufficient. To overcome this limitation, N3 allows the document to be preceded by one or more \mintinline{text}{@prefix prefix: <URI>} directives. These directives associate prefixes with URIs, and the parser appends any relative URI preceded by a prefix to the corresponding base URI associated with that prefix. This mechanism enables the use of multiple base URIs within the same document and enhances the flexibility and expressiveness of the N3 syntax. Code Fragment~\ref{lst:n3_turtle_syntax} illustrates the use of prefixes for the N3 syntax.  \citep{berners2011notation3}
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage]{turtle}
+        \begin{minted}[samepage,fontsize=\small]{turtle}
 @prefix ex: <http://example.org/> .
 @prefix dbp: <http://dbpedia.org/resource/> .
 
@@ -161,7 +161,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     RDF/XML is one of the earliest RDF syntaxes and remains widely used. To introduce this syntax, Code Fragment~\ref{lst:xml_syntax} serves as a guide.
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage]{xml}
+        \begin{minted}[samepage,fontsize=\small]{xml}
 <rdf:RDF xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
          xmlns:ex="http://example.org/"
          xmlns:dbp="http://dbpedia.org/resource/">
@@ -181,7 +181,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
 
     The RDF description in RDF/XML is enclosed within \mintinline{text}{rdf:RDF} elements, where necessary prefixes can also be defined. While an XML declaration like \mintinline{text}{<?xml version="1.0"?>} can precede the RDF/XML document, it is optional and omitted in Code Fragment~\ref{lst:xml_syntax} to focus primarily on the basics of RDF syntaxes. \citep{gandon2014xml}
 
-    Upon encountering the \mintinline{text}{rdf:RDF} tag, a parser recognizes that it should process an RDF description. In RDF/XML, such an RDF description is constructed using one or more \mintinline{text}{rdf:Description} elements. In fact, each \mintinline{text}{rdf:Description} element represents a subject, and its optional \mintinline{text}{rdf:about} attribute denotes the subject's URI. Consequently, the triples associated with the subject are enclosed within the corresponding \mintinline{text}{rdf:Description} tags. Predicates on the one hand, whether represented using a prefix or not, have their own elements. The representation of subjects, on the other hand, depends on their nature: for atomic values, they can simply be placed between opening and closing subject tags, while for resource subjects, their URLs are included as the value of an \mintinline{text}{rdf:resource} attribute within the subject tag. \citep{gandon2014xml}
+    Upon encountering the \mintinline{text}{rdf:RDF} tag, a parser recognizes that it should process an RDF description. In RDF/XML, such an RDF description is constructed using one or more \mintinline{text}{rdf:Description} elements. In fact, each \mintinline{text}{rdf:Description} element represents a subject, and its optional \mintinline{text}{rdf:about} attribute denotes the subject's URI. Consequently, the triples associated with the subject are enclosed within the corresponding \mintinline{text}{rdf:Description} tags. Predicates on the one hand, whether represented using a prefix or not, have their own elements. The representation of subjects, on the other hand, depends on their nature: for atomic values, they can simply be placed between opening and closing subject tags, while for resource subjects, their URIs are included as the value of an \mintinline{text}{rdf:resource} attribute within the subject tag. \citep{gandon2014xml}
 
     Once again, it is important to note that the Code Fragments used in this section provide only an introductory glimpse of the proposed syntaxes. They cover only a small portion of the potential scope of a syntax. Code Fragment~\ref{lst:xml_syntax}, in particular, demonstrates that RDF/XML syntax can obscure simplicity, especially when dealing with more extensive RDF descriptions. Consequently, RDF/XML is not commonly used for human-readable purposes but rather as a syntax primarily intended for machine consumption. \citep{dongo2019srdf}
 
@@ -193,7 +193,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     To start off, Code Fragment~\ref{lst:json_ld_nested_syntax} closely resembles the previous examples, using nesting to store all the data in a single JSON-LD document. However, some may question whether it is appropriate to make the \mintinline{text}{George_Seurat} resource a child of \mintinline{text}{The_Circus} resource, implying a hierarchical relationship that may not be relevant.
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage]{jsonld}
+        \begin{minted}[samepage,fontsize=\small]{jsonld}
 {
   "@context": {
     "ex": "http://example.org/",
@@ -215,7 +215,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     Subsequently, in Code Fragment~\ref{lst:json_ld_spread_syntax}, the data is split into two JSON-LD documents. Utilizing URIs, the documents can still refer to each other uniquely, without suggesting any hierarchical relationship between the resources.
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage, escapeinside=||]{jsonld}
+        \begin{minted}[samepage,fontsize=\small,escapeinside=||]{jsonld}
 |Document 1:|
 {
   "@context": {
@@ -246,7 +246,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     Ultimately, the choice of representation depends on the specific use case and the desired balance between simplicity and expressiveness. Each approach has its advantages and trade-offs, showcasing the flexibility of the JSON-LD syntax in accommodating different data representation needs.
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage]{jsonld}
+        \begin{minted}[samepage,fontsize=\small]{jsonld}
 {
   "@context": {
     "ex": "http://example.org/",
@@ -283,7 +283,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     W3C's JSON-LD Recommendation\footnote{\href{https://www.w3.org/TR/json-ld11/}{https://www.w3.org/TR/json-ld11/}} offers a valuable example of how the context is typically used, as illustrated in Code Fragment~\ref{lst:json_ld_context}. The provided context clearly indicates that when the key \mintinline{text}{name} appears in the data, it refers to \mintinline{text}{http://schema.org/name}. Similarly, for \mintinline{text}{image} and \mintinline{text}{homepage}, their respective values are \textit{expanded} into objects that hold additional information. The \mintinline{text}{@type} keyword is also used in the example to indicate the type of the final value. In Code Fragment~\ref{lst:json_ld_context}, it shows that the \mintinline{text}{image} and \mintinline{text}{homepage} keys are followed by an \mintinline{text}{@id}, representing unique resources. Moreover, JSON-LD supports various other types, and custom types can be defined to suit specific requirements. \citep{kellogg2020jsonld}
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage]{jsonld}
+        \begin{minted}[samepage,fontsize=\small]{jsonld}
 {
   "@context": {
     "name": "http://schema.org/name",
@@ -310,7 +310,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     To finish off this section on JSON-LD, it is interesting to note that when the JSON-LD document presented in Code Fragment~\ref{lst:json_ld_context} is \textit{expanded}, the data takes on its typical RDF form, adhering fully to the Linked Data principles. This expansion, as shown in Code Fragment~\ref{lst:json_ld_expanded}, reveals the underlying structure of the data and its connection to other resources. \citep{kellogg2020jsonld}
 
     \begin{listing}[htbp]
-        \begin{minted}[samepage]{jsonld}
+        \begin{minted}[samepage,fontsize=\small]{jsonld}
 [{
   "http://schema.org/name": [{"@value": "Manu Sporny"}],
   "http://schema.org/url": [{ "@id": "http://manu.sporny.org/" }],
@@ -347,62 +347,56 @@ TODO
 
 TODO
 
+\subsection{Example Queries}
+\label{sec:coghent_example_queries}
+
+TODO
+
 \begin{listing}[htbp]
-    \begin{minted}[samepage]{sparql}
+    \begin{minted}[fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX adms:<http://www.w3.org/ns/adms#>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
 PREFIX la:<https://linked.art/ns/terms/>
-
-SELECT ?title ?note ?image ?objectname ?objectnumber ?associatie ?creator ?plaats ?timespan ?techniek ?materiaal
-
+SELECT ?title ?note ?image ?objectname ?objectnumber ?associatie
+       ?creator ?plaats ?timespan ?techniek ?materiaal
 WHERE {
     # Title
     ?o cidoc:P102_has_title ?title.
-
     # Description
     ?o cidoc:P3_has_note ?note.
-
     # Image
     ?o cidoc:P129i_is_subject_of ?image.
-
     # Objectname
     ?o cidoc:P41i_was_classified_by ?classified.
     ?classified cidoc:P42_assigned ?assigned.
     ?assigned skos:prefLabel ?objectname.
-
     # Association
     ?o cidoc:P128_carries ?carries.
     ?carries cidoc:P129_is_about ?about.
     ?about cidoc:P2_has_type ?type.
     ?type skos:prefLabel ?associatie.
-
     # Objectnumber
     ?o adms:identifier ?identifier.
     ?identifier skos:notation ?objectnumber.
-
     # Creator
     ?o cidoc:P108i_was_produced_by ?production.
     ?production cidoc:P14_carried_out_by ?producer.
     ?producer la:equivalent ?equivalent.
     ?equivalent rdfs:label ?creator.
-
     # Place
     ?o cidoc:P108i_was_produced_by ?produced.
     ?produced cidoc:P7_took_place_at ?tookplace.
     ?tookplace la:equivalent ?plaatsequivalent.
     ?plaatsequivalent skos:prefLabel ?plaats.
-
     # Date
     ?o cidoc:P108i_was_produced_by ?produced.
     ?produced cidoc:P4_has_time-span ?timespan.
-
     # Technique
     ?o cidoc:P108i_was_produced_by ?produced.
     ?produced cidoc:P32_used_general_technique ?technique.
     ?technique cidoc:P2_has_type ?hastype.
     ?hastype skos:prefLabel ?techniek.
-
     # Material
     ?o cidoc:P45_consists_of ?consists.
     ?consists cidoc:P2_has_type ?materiaaltype.
