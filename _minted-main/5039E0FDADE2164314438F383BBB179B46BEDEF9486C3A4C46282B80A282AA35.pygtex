@@ -3,27 +3,17 @@
 \PYG{k}{PREFIX} \PYG{n+nn}{adms}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.w3.org/ns/adms\PYGZsh{}\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.w3.org/2004/02/skos/core\PYGZsh{}\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{la}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}https://linked.art/ns/terms/\PYGZgt{}}
-\PYG{k}{SELECT} \PYG{n+nv}{?title} \PYG{n+nv}{?note} \PYG{n+nv}{?image} \PYG{n+nv}{?objectname} \PYG{n+nv}{?objectnumber} \PYG{n+nv}{?associatie}
-       \PYG{n+nv}{?creator} \PYG{n+nv}{?plaats} \PYG{n+nv}{?timespan} \PYG{n+nv}{?techniek} \PYG{n+nv}{?materiaal}
+\PYG{k}{SELECT} \PYG{n+nv}{?title} \PYG{n+nv}{?note} \PYG{n+nv}{?associatie} \PYG{n+nv}{?creator} \PYG{n+nv}{?plaats} \PYG{n+nv}{?techniek} \PYG{n+nv}{?materiaal}
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
     \PYG{c}{\PYGZsh{} Title}
     \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P102\PYGZus{}has\PYGZus{}title} \PYG{n+nv}{?title}\PYG{p}{.}
     \PYG{c}{\PYGZsh{} Description}
     \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P3\PYGZus{}has\PYGZus{}note} \PYG{n+nv}{?note}\PYG{p}{.}
-    \PYG{c}{\PYGZsh{} Image}
-    \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P129i\PYGZus{}is\PYGZus{}subject\PYGZus{}of} \PYG{n+nv}{?image}\PYG{p}{.}
-    \PYG{c}{\PYGZsh{} Objectname}
-    \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by} \PYG{n+nv}{?classified}\PYG{p}{.}
-    \PYG{n+nv}{?classified} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P42\PYGZus{}assigned} \PYG{n+nv}{?assigned}\PYG{p}{.}
-    \PYG{n+nv}{?assigned} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?objectname}\PYG{p}{.}
     \PYG{c}{\PYGZsh{} Association}
     \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P128\PYGZus{}carries} \PYG{n+nv}{?carries}\PYG{p}{.}
     \PYG{n+nv}{?carries} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P129\PYGZus{}is\PYGZus{}about} \PYG{n+nv}{?about}\PYG{p}{.}
     \PYG{n+nv}{?about} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P2\PYGZus{}has\PYGZus{}type} \PYG{n+nv}{?type}\PYG{p}{.}
     \PYG{n+nv}{?type} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?associatie}\PYG{p}{.}
-    \PYG{c}{\PYGZsh{} Objectnumber}
-    \PYG{n+nv}{?o} \PYG{n+nn}{adms}\PYG{p}{:}\PYG{n+nt}{identifier} \PYG{n+nv}{?identifier}\PYG{p}{.}
-    \PYG{n+nv}{?identifier} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{notation} \PYG{n+nv}{?objectnumber}\PYG{p}{.}
     \PYG{c}{\PYGZsh{} Creator}
     \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P108i\PYGZus{}was\PYGZus{}produced\PYGZus{}by} \PYG{n+nv}{?production}\PYG{p}{.}
     \PYG{n+nv}{?production} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P14\PYGZus{}carried\PYGZus{}out\PYGZus{}by} \PYG{n+nv}{?producer}\PYG{p}{.}
@@ -34,9 +24,6 @@
     \PYG{n+nv}{?produced} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P7\PYGZus{}took\PYGZus{}place\PYGZus{}at} \PYG{n+nv}{?tookplace}\PYG{p}{.}
     \PYG{n+nv}{?tookplace} \PYG{n+nn}{la}\PYG{p}{:}\PYG{n+nt}{equivalent} \PYG{n+nv}{?plaatsequivalent}\PYG{p}{.}
     \PYG{n+nv}{?plaatsequivalent} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?plaats}\PYG{p}{.}
-    \PYG{c}{\PYGZsh{} Date}
-    \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P108i\PYGZus{}was\PYGZus{}produced\PYGZus{}by} \PYG{n+nv}{?produced}\PYG{p}{.}
-    \PYG{n+nv}{?produced} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P4\PYGZus{}has\PYGZus{}time\PYGZhy{}span} \PYG{n+nv}{?timespan}\PYG{p}{.}
     \PYG{c}{\PYGZsh{} Technique}
     \PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P108i\PYGZus{}was\PYGZus{}produced\PYGZus{}by} \PYG{n+nv}{?produced}\PYG{p}{.}
     \PYG{n+nv}{?produced} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P32\PYGZus{}used\PYGZus{}general\PYGZus{}technique} \PYG{n+nv}{?technique}\PYG{p}{.}

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  24 AUG 2023 14:16
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  24 AUG 2023 14:32
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1674,15 +1674,21 @@ File: abstract.pdf Graphic file (type pdf)
 LaTeX Info: Redefining \rmfamily on input line 2.
 LaTeX Info: Redefining \sffamily on input line 2.
 LaTeX Info: Redefining \ttfamily on input line 2.
+
+Underfull \vbox (badness 2990) has occurred while \output is active []
+
  [8
 
 
-])
+]
+Underfull \vbox (badness 4467) has occurred while \output is active []
+
+ [9])
 \tf@toc=\write10
 \openout10 = `main.toc'.
 
- [9]
-(./main.lof
+
+[10] (./main.lof
 LaTeX Info: Redefining \rmfamily on input line 4.
 LaTeX Info: Redefining \sffamily on input line 4.
 LaTeX Info: Redefining \ttfamily on input line 4.
@@ -1855,7 +1861,7 @@ LaTeX Info: Redefining \ttfamily on input line 64.
 \tf@lof=\write11
 \openout11 = `main.lof'.
 
- [10] (./main.lot
+ [11] (./main.lot
 LaTeX Info: Redefining \rmfamily on input line 4.
 LaTeX Info: Redefining \sffamily on input line 4.
 LaTeX Info: Redefining \ttfamily on input line 4.
@@ -2057,17 +2063,17 @@ LaTeX Info: Redefining \ttfamily on input line 70.
 \tf@lot=\write12
 \openout12 = `main.lot'.
 
- [11]
+ [12]
 \openout2 = `chapters/5_list_of_acronyms.aux'.
 
  (./chapters/5_list_of_acronyms.tex
 No file main.acr.
-) [12
+) [13
 
 ] (./main.lol
 Underfull \vbox (badness 2600) has occurred while \output is active []
 
- [13
+ [14
 
 
 ]
@@ -2130,7 +2136,9 @@ func-
 \tf@lol=\write13
 \openout13 = `main.lol'.
 
- [14]
+ [15] [16
+
+]
 \openout2 = `chapters/6_introduction.aux'.
 
  (./chapters/6_introduction.tex
@@ -2143,7 +2151,6 @@ LaTeX Font Warning: Font shape `TU/pbk/b/n' undefined
 (Font)              using `TU/lmr/m/n' instead on input line 1.
 
 ) [1
-
 
 
 ]
@@ -2383,16 +2390,16 @@ F.pygtex)
 
 (./_minted-main/4EC6B02C21ED48001C4F46AE692FF52B7D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Underfull \vbox (badness 10000) has occurred while \output is active []
+Underfull \vbox (badness 1152) has occurred while \output is active []
 
  [15]
 \openout3 = `main.pyg'.
 
 
-(./_minted-main/2868A07EA6A3C5E382063036040389EA46BEDEF9486C3A4C46282B80A282AA3
+(./_minted-main/5039E0FDADE2164314438F383BBB179B46BEDEF9486C3A4C46282B80A282AA3
 5.pygtex)
 
-LaTeX Warning: Float too large for page by 240.72365pt on input line 408.
+LaTeX Warning: Float too large for page by 6.72365pt on input line 417.
 
 ) [16] [17]
 \openout2 = `chapters/8_coghent_link_traversal.aux'.
@@ -3480,17 +3487,17 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 1AB5F40C46BBA502533C9299070546C5;7683.
+(rerunfilecheck)             Checksum: 8D3AFF1F4CAAF0A84F821E31CE67E991;8474.
 runsystem(rm main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 40914 strings out of 475890
- 919932 string characters out of 5780263
+ 40916 strings out of 475890
+ 919958 string characters out of 5780263
  1942875 words of memory out of 5000000
- 60622 multiletter control sequences out of 15000+600000
+ 60624 multiletter control sequences out of 15000+600000
  564742 words of font info for 94 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,1001s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (77 pages, 1418248 bytes).
+Output written on main.xdv (79 pages, 1423924 bytes).
