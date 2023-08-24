@@ -13,7 +13,6 @@ To better understand the origins of the idea behind Linked Data, it is important
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{images/no_linked_data.jpg}
-    \captionsetup{justification=centering}
 	\caption{Representation of a web of documents without unambiguous indications of what the documents and the links between them represent}
 	\label{fig:no_linked_data}
 \end{figure}
@@ -23,7 +22,6 @@ Simply put, data coming from different sources can be labeled as Linked Data as 
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{images/linked_data.jpg}
-    \captionsetup{justification=centering}
 	\caption{Representation of a web of documents composed according to the spirit of Linked Data}
 	\label{fig:linked_data}
 \end{figure}
@@ -47,7 +45,7 @@ To clarify the concept of Linked Data, \citet{berners2006linked} put forth four 
     
 \end{enumerate}
 
-In conclusion, Linked Data plays a crucial role in giving meaning to the Web by enabling the interconnection and integration of diverse data sources. By adhering to the principles of unique URIs, dereferencing, linking, and using standardized formats, Linked Data fosters a more structured and interconnected web of knowledge. Examples such as DBpedia\footnote{\href{https://www.dbpedia.org}{https://www.dbpedia.org}}, which provides a structured representation of Wikipedia data, and Friend of a Friend (FOAF), which allows for the description of people and their relationships, illustrate how publishing data as Linked Data benefits from enhanced data discoverability, interlinking with other datasets, and enabling novel applications and insights. Local initiatives like Collections of Ghent (CoGhent\footnote{\href{https://www.collections.gent}{https://www.collections.gent}}), which digitizes art collections from cultural houses in Ghent and will be further discussed in Section~\ref{sec:coghent}, similarly demonstrate the potential of Linked Data for local organizations in contributing to the broader web of knowledge. \citep{auer2007dbpedia} \citep{golbeck2008linking} \citep{van2022publishing}
+In conclusion, Linked Data plays a crucial role in giving meaning to the Web by enabling the interconnection and integration of diverse data sources. By adhering to the principles of unique URIs, dereferencing, linking, and using standardized formats, Linked Data fosters a more structured and interconnected web of knowledge. Examples such as DBpedia\footnote{\url{https://www.dbpedia.org}}, which provides a structured representation of Wikipedia data, and Friend of a Friend (FOAF), which allows for the description of people and their relationships, illustrate how publishing data as Linked Data benefits from enhanced data discoverability, interlinking with other datasets, and enabling novel applications and insights. Local initiatives like Collections of Ghent (CoGhent\footnote{\url{https://www.collections.gent}}), which digitizes art collections from cultural houses in Ghent and will be further discussed in Section~\ref{sec:coghent}, similarly demonstrate the potential of Linked Data for local organizations in contributing to the broader web of knowledge. \citep{auer2007dbpedia} \citep{golbeck2008linking} \citep{van2022publishing}
 
 \subsection{Resource Description Framework}
 \label{subsec:rdf}
@@ -85,7 +83,6 @@ While triples convey a clear and distinct piece of knowledge, a collection of tr
 \begin{figure}[htbp]
     \centering
 	\includegraphics[width=\textwidth]{images/rdf_description.jpg}
-    \captionsetup{justification=centering}
 	\caption{Representation of an RDF description}
     \caption*{Circles represent resources, arrows represent property types and values are situated at the end of arrows}
 	\label{fig:rdf_description}
@@ -186,7 +183,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
     Once again, it is important to note that the Code Fragments used in this section provide only an introductory glimpse of the proposed syntaxes. They cover only a small portion of the potential scope of a syntax. Code Fragment~\ref{lst:xml_syntax}, in particular, demonstrates that RDF/XML syntax can obscure simplicity, especially when dealing with more extensive RDF descriptions. Consequently, RDF/XML is not commonly used for human-readable purposes but rather as a syntax primarily intended for machine consumption. \citep{dongo2019srdf}
 
     \item \textbf{JSON-LD}\\
-    The final RDF syntax introduced is called JSON-LD. Similar to RDF/XML, JSON-LD builds upon an existing syntax for representing data on the web. However, JSON-LD representations are generally more human-readable. As most resources and examples in the following text will be presented in JSON-LD, a slightly more comprehensive overview of this syntax is provided compared to the previous ones. Nevertheless, what follows is not an exhaustive listing of all the intricacies of the syntax. Instead, it aims to offer readers a concise introduction to JSON-LD without prior knowledge, making the rest of the text more easily comprehensible. For those seeking more in-depth information about JSON-LD, it is recommended to consult other sources\footnote{The \href{https://www.w3.org/TR/json-ld11/}{W3C JSON-LD 1.1 Recommendation} provides very in-depth information about the JSON-LD syntax.}.
+    The final RDF syntax introduced is called JSON-LD. Similar to RDF/XML, JSON-LD builds upon an existing syntax for representing data on the web. However, JSON-LD representations are generally more human-readable. As most resources and examples in the following text will be presented in JSON-LD, a slightly more comprehensive overview of this syntax is provided compared to the previous ones. Nevertheless, what follows is not an exhaustive listing of all the intricacies of the syntax. Instead, it aims to offer readers a concise introduction to JSON-LD without prior knowledge, making the rest of the text more easily comprehensible. For those seeking more in-depth information about JSON-LD, it is recommended to consult other sources\footnote{The W3C JSON-LD 1.1 Recommendation provides very in-depth information about the JSON-LD syntax: \url{https://www.w3.org/TR/json-ld11/}.}.
 
     It is evident that the same data can be represented in various ways, and this applies to RDF data as well. While the visual representation of an RDF description, as depicted in Figure~\ref{fig:rdf_description}, is relatively straightforward, converting it into a fully textual format poses certain choices to be made. After all, there are numerous possibilities regarding the exact data representation. In the introduction of previous syntaxes, a specific representation was chosen each time. However, in this section, three different approaches for representing the same set of data using the JSON-LD syntax are presented.
 
@@ -280,7 +277,7 @@ ex:Georges_Seurat ex:birthplace dbp:France .
 
     Secondly, the \mintinline{text}{@context} keyword plays a crucial role in JSON-LD. It introduces specifics that can be taken for granted in the actual data, reducing the need for repetitive information and cleaning up the actual JSON. While Code Fragments~\ref{lst:json_ld_nested_syntax}, \ref{lst:json_ld_spread_syntax}, and \ref{lst:json_ld_graph_syntax} use the context in a straightforward way by introducing prefixes, in practice, it can do more than that. Essentially, the context maps terms to URIs. These terms can be freely chosen to enhance human readability. \citep{kellogg2020jsonld}
 
-    W3C's JSON-LD Recommendation\footnote{\href{https://www.w3.org/TR/json-ld11/}{https://www.w3.org/TR/json-ld11/}} offers a valuable example of how the context is typically used, as illustrated in Code Fragment~\ref{lst:json_ld_context}. The provided context clearly indicates that when the key \mintinline{text}{name} appears in the data, it refers to \mintinline{text}{http://schema.org/name}. Similarly, for \mintinline{text}{image} and \mintinline{text}{homepage}, their respective values are \textit{expanded} into objects that hold additional information. The \mintinline{text}{@type} keyword is also used in the example to indicate the type of the final value. In Code Fragment~\ref{lst:json_ld_context}, it shows that the \mintinline{text}{image} and \mintinline{text}{homepage} keys are followed by an \mintinline{text}{@id}, representing unique resources. Moreover, JSON-LD supports various other types, and custom types can be defined to suit specific requirements. \citep{kellogg2020jsonld}
+    W3C's JSON-LD Recommendation\footnote{\url{https://www.w3.org/TR/json-ld11/}} offers a valuable example of how the context is typically used, as illustrated in Code Fragment~\ref{lst:json_ld_context}. The provided context clearly indicates that when the key \mintinline{text}{name} appears in the data, it refers to \mintinline{text}{http://schema.org/name}. Similarly, for \mintinline{text}{image} and \mintinline{text}{homepage}, their respective values are \textit{expanded} into objects that hold additional information. The \mintinline{text}{@type} keyword is also used in the example to indicate the type of the final value. In Code Fragment~\ref{lst:json_ld_context}, it shows that the \mintinline{text}{image} and \mintinline{text}{homepage} keys are followed by an \mintinline{text}{@id}, representing unique resources. Moreover, JSON-LD supports various other types, and custom types can be defined to suit specific requirements. \citep{kellogg2020jsonld}
 
     \begin{listing}[htbp]
         \begin{minted}[samepage,fontsize=\small]{jsonld}

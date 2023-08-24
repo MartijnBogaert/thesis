@@ -42,8 +42,12 @@
 \usepackage{float}
 \usepackage{caption}
 \usepackage{subcaption}
+\captionsetup{justification=centering}
 \usepackage[toc,page]{appendix}
 \usepackage{fontspec}
+\usepackage{pifont}
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
 
 % Allow Japanese characters
 \usepackage{xeCJK}
@@ -190,7 +194,7 @@
 \pagestyle{fancy} % Use header
 \include{chapters/6_introduction}
 \include{chapters/7_related_work}
-\include{chapters/8_coghent_query_builder}
+\include{chapters/8_coghent_link_traversal}
 \include{chapters/9_tools_query_building}
 \include{chapters/10_handling_query_results}
 \include{chapters/11_conclusion}
