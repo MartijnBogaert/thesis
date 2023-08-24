@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+[...]  INFO: Requesting http://vocab.getty.edu/aat/300037772
+       \PYGZob{} ... , method: \PYGZsq{}GET\PYGZsq{}, actor: \PYGZsq{}urn:comunica:default:http/actors\PYGZsh{}fetch\PYGZsq{} \PYGZcb{}
+[...]  ERROR: Missing context link header for media type application/json
+       on http://vocab.getty.edu/aat/300037772
+       \PYGZob{} actor: \PYGZsq{}urn:comunica:default:dereference\PYGZhy{}rdf/actors\PYGZsh{}parse\PYGZsq{} \PYGZcb{}
+[...]  INFO: Identified as file source: http://vocab.getty.edu/aat/300037772
+       \PYGZob{} actor: \PYGZsq{}urn:comunica:default:rdf\PYGZhy{}resolve\PYGZhy{}hypermedia/actors\PYGZsh{}none\PYGZsq{} \PYGZcb{}
+\end{Verbatim}

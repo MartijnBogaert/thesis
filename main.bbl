@@ -1,5 +1,11 @@
 \begin{thebibliography}{}
 
+\bibitem[Art \& Architecture Thesaurus, 2023]{getty2023aat}
+Art \& Architecture Thesaurus (2023).
+\newblock About the aat.
+\newblock
+  \url{https://www.getty.edu/research/tools/vocabularies/aat/about.html}.
+
 \bibitem[Auer et~al., 2007]{auer2007dbpedia}
 Auer, S., Bizer, C., Kobilarov, G., Lehmann, J., Cyganiak, R., and Ives, Z.
   (2007).
@@ -55,11 +61,27 @@ Dongo, I. and Chbeir, R. (2019).
   Conferences}}, 28th International Conference on COOPERATIVE INFORMATION
   SYSTEMS, pages 246--264, Rhodes, Greece. {Springer International Publishing}.
 
+\bibitem[Fielding and Reschke, 2014]{fielding2014http}
+Fielding, R.~T. and Reschke, J. (2014).
+\newblock {Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content}.
+\newblock RFC 7231.
+
 \bibitem[Gandon et~al., 2014]{gandon2014xml}
 Gandon, F., Schreiber, G., and Becket, D. (2014).
 \newblock {RDF} 1.1 {XML} syntax.
 \newblock {W3C} recommendation, W3C.
 \newblock \url{https://www.w3.org/TR/2014/REC-rdf-syntax-grammar-20140225/}.
+
+\bibitem[Getty, 2023]{getty2023lod}
+Getty (2023).
+\newblock Getty vocabularies and linked open data (lod).
+\newblock
+  \url{https://www.getty.edu/research/tools/vocabularies/Linked_Data_Getty_Vocabularies.pdf}.
+
+\bibitem[Getty Vocabularies, 2023]{gettyvocabularies}
+Getty Vocabularies (2023).
+\newblock Getty vocabularies.
+\newblock \url{https://www.getty.edu/research/tools/vocabularies/index.html}.
 
 \bibitem[Golbeck and Rothstein, 2008]{golbeck2008linking}
 Golbeck, J. and Rothstein, M. (2008).
@@ -95,6 +117,12 @@ Sporny, M., Longley, D., Kellogg, G., Lanthaler, M., Champin, P.-A., and
 \newblock {W3C} recommendation, W3C.
 \newblock \url{https://www.w3.org/TR/2020/REC-json-ld11-20200716/}.
 
+\bibitem[Taelman et~al., 2018]{taelman2018comunica}
+Taelman, R., Van~Herwegen, J., Vander~Sande, M., and Verborgh, R. (2018).
+\newblock Comunica: a modular sparql query engine for the web.
+\newblock In {\em Proceedings of the 17th International Semantic Web
+  Conference}.
+
 \bibitem[Van~de Vyvere et~al., 2022]{van2022publishing}
 Van~de Vyvere, B., D’Huynslager, O.~V., Atauil, A., Segers, M., Van~Campe,
   L., Vandekeybus, N., Teugels, S., Saenko, A., Pauwels, P.-J., and Colpaert,
@@ -104,5 +132,15 @@ Van~de Vyvere, B., D’Huynslager, O.~V., Atauil, A., Segers, M., Van~Campe,
 \newblock In {\em Metadata and Semantic Research: 15th International
   Conference, MTSR 2021, Virtual Event, November 29--December 3, 2021, Revised
   Selected Papers}, pages 357--369. Springer.
+
+\bibitem[van Veen, 2019]{vanveen2019wikidata}
+van Veen, T. (2019).
+\newblock Wikidata: From “an” identifier to “the” identifier.
+\newblock {\em Information Technology and Libraries}, 38:72--81.
+
+\bibitem[Wikidata, 2023]{wikidata2023data}
+Wikidata (2023).
+\newblock Wikidata:data access.
+\newblock \url{https://www.wikidata.org/wiki/Wikidata:Data_access}.
 
 \end{thebibliography}

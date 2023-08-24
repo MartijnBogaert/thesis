@@ -30,21 +30,22 @@
 \contentsline {subsection}{\numberline {3.2.5}Traversing LDES Pages}{31}{subsection.3.2.5}%
 \contentsline {subsection}{\numberline {3.2.6}Conclusion}{31}{subsection.3.2.6}%
 \contentsline {section}{\numberline {3.3}Links to Follow}{32}{section*.37}%
-\contentsline {subsection}{\numberline {3.3.1}IIIF Manifest}{32}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Wikidata}{32}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Stad Gent}{32}{subsection.3.3.3}%
-\contentsline {subsection}{\numberline {3.3.4}Getty Vocabularies}{33}{subsection.3.3.4}%
-\contentsline {section}{\numberline {3.4}Conclusion}{33}{section*.38}%
-\contentsline {chapter}{\numberline {4}Tools for Query Building}{34}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Building Queries from Predicate Sequences}{34}{section*.39}%
-\contentsline {section}{\numberline {4.2}A New Query Builder}{39}{section*.51}%
-\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{39}{section*.52}%
-\contentsline {chapter}{\numberline {5}Handling Query Results}{40}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Visualizing Query Results}{40}{section*.53}%
-\contentsline {section}{\numberline {5.2}Saving Query Results}{40}{section*.54}%
-\contentsline {chapter}{Conclusion}{41}{chapter*.55}%
-\contentsline {section}{Ethical and social reflection}{41}{section*.57}%
-\contentsline {chapter}{References}{42}{chapter*.58}%
-\contentsline {chapter}{Appendices}{44}{section*.59}%
-\contentsline {section}{Appendix A}{45}{section*.60}%
-\contentsline {section}{Appendix B}{46}{section*.61}%
+\contentsline {subsection}{\numberline {3.3.1}IIIF Manifest}{33}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Wikidata}{36}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Stad Gent}{37}{subsection.3.3.3}%
+\contentsline {subsection}{\numberline {3.3.4}Getty Vocabularies}{41}{subsection.3.3.4}%
+\contentsline {subsection}{\numberline {3.3.5}Conclusion}{47}{subsection.3.3.5}%
+\contentsline {section}{\numberline {3.4}Conclusion}{50}{section*.57}%
+\contentsline {chapter}{\numberline {4}Tools for Query Building}{51}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Building Queries from Predicate Sequences}{51}{section*.58}%
+\contentsline {section}{\numberline {4.2}A New Query Builder}{56}{section*.70}%
+\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{56}{section*.71}%
+\contentsline {chapter}{\numberline {5}Handling Query Results}{57}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Visualizing Query Results}{57}{section*.72}%
+\contentsline {section}{\numberline {5.2}Saving Query Results}{57}{section*.73}%
+\contentsline {chapter}{Conclusion}{58}{chapter*.74}%
+\contentsline {section}{Ethical and social reflection}{58}{section*.76}%
+\contentsline {chapter}{References}{59}{chapter*.77}%
+\contentsline {chapter}{Appendices}{61}{section*.78}%
+\contentsline {section}{Appendix A}{62}{section*.79}%
+\contentsline {section}{Appendix B}{63}{section*.80}%

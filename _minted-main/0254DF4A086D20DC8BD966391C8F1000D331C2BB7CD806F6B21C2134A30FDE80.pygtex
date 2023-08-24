@@ -1,0 +1,22 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{p}{\PYGZob{}}
+\PYG{+w}{  }\PYG{n+nd}{\PYGZdq{}@context\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}https://linkedsoftwaredependencies.org/bundles/npm/@comunica/}
+\PYG{l+s+s2}{        runner/\PYGZca{}2.0.0/components/context.jsonld\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{l+s+s2}{\PYGZdq{}https://linkedsoftwaredependencies.org/bundles/npm/@comunica/}
+\PYG{l+s+s2}{        actor\PYGZhy{}rdf\PYGZhy{}resolve\PYGZhy{}hypermedia\PYGZhy{}links\PYGZhy{}getty\PYGZhy{}jsonld\PYGZhy{}extension/\PYGZca{}1.0.0/components/context.jsonld\PYGZdq{}}
+\PYG{+w}{  }\PYG{p}{],}
+\PYG{+w}{  }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}urn:comunica:default:Runner\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{  }\PYG{n+nd}{\PYGZdq{}@type\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}Runner\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{  }\PYG{n+nt}{\PYGZdq{}actors\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{p}{[}
+\PYG{+w}{    }\PYG{p}{\PYGZob{}}
+\PYG{+w}{      }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}urn:comunica:default:rdf\PYGZhy{}resolve\PYGZhy{}hypermedia\PYGZhy{}links/actors\PYGZsh{}getty\PYGZhy{}jsonld\PYGZhy{}extension\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nd}{\PYGZdq{}@type\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}ActorRdfResolveHypermediaLinksGettyJsonldExtension\PYGZdq{}}\PYG{p}{,}
+\PYG{+w}{      }\PYG{n+nt}{\PYGZdq{}beforeActors\PYGZdq{}}\PYG{p}{:}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}urn:comunica:default:rdf\PYGZhy{}resolve\PYGZhy{}hypermedia\PYGZhy{}links/actors\PYGZsh{}traverse\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
+\PYG{+w}{      }\PYG{n+nt}{\PYGZdq{}mediatorRdfResolveHypermediaLinks\PYGZdq{}}\PYG{p}{:}
+\PYG{+w}{        }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nd}{\PYGZdq{}@id\PYGZdq{}}\PYG{p}{:}\PYG{+w}{ }\PYG{l+s+s2}{\PYGZdq{}urn:comunica:default:rdf\PYGZhy{}resolve\PYGZhy{}hypermedia\PYGZhy{}links/mediators\PYGZsh{}main\PYGZdq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{    }\PYG{p}{\PYGZcb{}}
+\PYG{+w}{  }\PYG{p}{]}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{SELECT} \PYG{n+nv}{?humanMadeObject} \PYG{n+nv}{?image}
+\PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
+    \PYG{n+nv}{?humanMadeObject} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{hasManifest} \PYG{n+nv}{?manifest} \PYG{p}{.}
+    \PYG{n+nv}{?manifest} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstSequence} \PYG{n+nv}{?sequence} \PYG{p}{.}
+    \PYG{n+nv}{?sequence} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstCanvas} \PYG{n+nv}{?canvas} \PYG{p}{.}
+    \PYG{n+nv}{?canvas} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstImageAnnotation} \PYG{n+nv}{?annotation} \PYG{p}{.}
+    \PYG{n+nv}{?annotation} \PYG{n+nn}{iiif}\PYG{p}{:}\PYG{n+nt}{hasBody} \PYG{n+nv}{?image} \PYG{p}{.}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

@@ -1,0 +1,878 @@
+\chapter{CoGhent Data and Link Traversal}
+\label{chap:coghent_link_traversal}
+
+The primary focus of this research is the development of tools for constructing queries that target specific properties of CoGhent Human-Made Objects. These queries can either be confined to data within the CoGhent LDESs or extend beyond them by employing Link Traversal to follow links and traverse the corresponding documents. This approach facilitates the acquisition of new insights into the CoGhent data by not only enhancing the understanding of specific Human-Made Objects but also enabling their comparison in novel ways.
+
+In the subsequent sections of this research, Comunica's link traversal capabilities will be utilized, as its modularity allows for the creation of link traversal engines tailored to the structure of the CoGhent data and the specific needs of this research. However, it is important to note that link traversal, despite its potential, remains an active area of research and can be configured in various ways.
+
+This chapter therefore aims to explore the use of link traversal for discovering properties of Human-Made Objects, starting from the CoGhent LDESs. The chapter begins by providing an overview of the available data sources that can serve as starting points for the link traversal process. It then delves into the development of a link traversal engine optimized for the objectives outlined above. Finally, the chapter examines the most pertinent and intriguing types of resources to which the CoGhent Human-Made Objects link. These resources will be crucial for achieving the goal of broadening the knowledge of the CoGhent data.
+
+\section{CoGhent Data Sources}
+\label{sec:coghent_data_sources}
+
+CoGhent provides a set of LDESs for each participating institution. These LDESs are accessible through specific endpoints, as listed in Table~\ref{tab:ldes_endpoints}
+
+\begin{table}[htbp]
+    \centering
+    \caption{CoGhent LDES endpoints as published by \citet{floreverk2022ldes}}
+    \label{tab:ldes_endpoints}
+    \begin{tabular}{ll}
+        \toprule
+        \multicolumn{1}{c}{Publishing organisation} & \multicolumn{1}{c}{Endpoint URI} \\
+        \midrule
+        Design Museum Gent (DMG) & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/dmg/objecten} \\
+        Huis van Alijn (HVA) & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/hva/objecten} \\
+        Industriemuseum & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/industriemuseum/objecten} \\
+        STAM & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/stam/objecten} \\
+        Archief Gent & \url{https://apidg.gent.be/opendata/adlib2eventstream/v1/archiefgent/objecten} \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{URI Redirection}
+
+When accessing any of the URIs listed in Table~\ref{tab:ldes_endpoints}, it is resolved to the same URI but with an additional query parameter \linebreak\mintinline{text}{generatedAtTime}. For example, accessing the LDES from Industriemuseum results in the original URI being extended with \mintinline{text}{?generatedAtTime=2023-08-17T00:07:32.016Z}\footnote{Since the query parameter's value is time-dependent, this specific value serves only as an example of how it is structured.}.
+
+This behavior is confirmed by running the following command:
+\begin{center}
+    {\small \mintinline{bash}{curl -i "https://apidg.gent.be/opendata/adlib2eventstream/v1/industriemuseum/objecten"}}
+\end{center}
+This returns an HTTP \mintinline{text}{302 Found} response code and a \mintinline{text}{Location} header with the extended URI, indicating a redirect to that link. Eventually, when a client (e.g. a browser or Comunica) sends a \mintinline{text}{GET} request to the updated link, the server returns the last (most recent) page of the requested LDES in JSON-LD format. \citep{mdn2023found302}
+
+\subsection{Non-deterministic results}
+
+When configuring a query engine, any or multiple of the CoGhent endpoints can be chosen as data sources, depending on the specific data of interest. Naturally, due to the nature of LDESs, the same query should never be assumed to yield the same results across multiple executions. However, even when running the same query multiple times in a row with the certainty that the LDES has not updated yet, the results will still differ in terms of content and order. This variability is attributed to the nature of LTQP and Comunica's implementation of it. After all, results are influenced by the order in which links are pushed to the link queue, which in turn is influenced by the time it takes for the corresponding HTTP requests to get resolved.
+
+This phenomenon is demonstrated by running the query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}\footnote{The query's specifics are discussed in Section~\ref{subsec:links_to_follow_manifest}.} twice, using Design Museum Gent's LDES as data source. Tables~\ref{tab:results_query_first_run} and~\ref{tab:results_query_second_run} show, for both executions respectively, each result's IIIF Manifest URI, as well as the order in which the results were returned. Comparing both outputs clearly proves the results from the two executions differ in both content and order.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+PREFIX iiif: <http://iiif.io/api/presentation/2#>
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
+PREFIX w3-exif: <http://www.w3.org/2003/12/exif/ns#>
+PREFIX w3-oa: <http://www.w3.org/ns/oa#>
+SELECT ?manifest ?height ?image
+WHERE {
+  # Manifest URI
+  ?human_made_object cidoc:P129i_is_subject_of ?manifest.
+  # Image height
+  ?manifest iiif:hasSequences/rdf:first/iiif:hasCanvases/rdf:first/w3-exif:height ?height.
+  # Image URI
+  ?canvas iiif:hasImageAnnotations/rdf:first/w3-oa:hasBody ?image.
+}
+LIMIT 10
+    \end{minted}
+    \caption{SPARQL query fetching ten Human-Made Object's IIIF Manifest URIs, image heights and image file URIs}
+    \label{lst:sparql_manifest_height_image}
+\end{listing}
+
+\begin{table}[htbp]
+    \centering
+    \caption{(Part of) results after \textbf{first} execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}}
+    \label{tab:results_query_first_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3086\_3-5 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1992-0068 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3130 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1990-0051\_0-5 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3054 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3124 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0284 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0296 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0305 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0281\_21-21 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{(Part of) results after \textbf{second} execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}}
+    \label{tab:results_query_second_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3075 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0305 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3054 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1563 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1987-0447 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:1987-1127\_1-2 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0271 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0284 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2018-0296 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:2990\_0-4 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+For similar reasons, the order in which CoGhent endpoint URIs are given to the engine as data sources does not necessarily imply that one endpoint's data has priority over the other. This is illustrated by running the same query (see Code Fragment~\ref{lst:sparql_manifest_height_image}) with the Design Museum Gent LDES first and the Huis Van Alijn LDES second, and then reversing the order. The results from both executions, as shown in Tables~\ref{tab:results_query_third_run} and~\ref{tab:results_query_fourth_run} respectively, once again show variations in content and order, yet most importantly do not seem to show any notable correlation to the order in which the endpoints were given to the engine.
+
+\begin{table}[htbp]
+    \centering
+    \caption{(Part of) results after execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image} with Design Museum Gent (\textbf{DMG}) LDES endpoint as \textbf{first} data source and Huis Van Alijn (\textbf{HVA}) LDES endpoint as \textbf{second} data source}
+    \label{tab:results_query_third_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-015 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2015-024-001 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:3223 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:3086\_3-5 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:1563 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-001 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:1987-1127\_2-2 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-002 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:1987-0447 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-003 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{(Part of) results after execution of query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image} with Huis Van Alijn (\textbf{HVA}) LDES endpoint as \textbf{first} data source and Design Museum Gent (\textbf{DMG}) LDES endpoint as \textbf{second} datasource}
+    \label{tab:results_query_fourth_run}
+    \begin{tabular}{rl}
+        \toprule
+         & \multicolumn{1}{c}{IIIF Manifest URI} \\
+        \midrule
+        1 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-002 \\
+        2 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-001 \\
+        3 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2014-031-003 \\
+        4 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2009-018-568 \\
+        5 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2009-018-568 \\
+        6 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2015-024-004 \\
+        7 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:2018-0261 \\
+        8 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:2990\_4-4 \\
+        9 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{dmg}:2018-0260 \\
+        10 & https://api.collectie.gent/iiif/presentation/v2/manifest/\textbf{hva}:2015-024-001 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\subsection{Duplicate Human-Made Objects}
+
+It is also important to note that, since updates to an LDES object are performed by adding a new version of the object to the LDES, it is possible to receive multiple results for the same Human-Made Object. As discussed in Secion~\ref{sec:coghent_example_queries}, a potential workaround would be to use a combination of \mintinline{text}{distinct} and \mintinline{text}{order by} clauses in the query itself, to only retrieve the newest versions. However, since ordering can only occur when all results are in, this approach prevents them from appearing in a \textit{streaming} manner. A more efficient solution, therefore, is to let the application that initiated the query, keep track of Human-Made Object URIs while the results are coming in. That way, when the application encounters duplicate Human-Made Objects, it can decide to only retain the latest version's results. Since implementing such a solution is considered trivial, the issue will not be discussed further in this research.
+
+\subsection{Conclusion}
+
+In conclusion, the CoGhent LDES endpoints work perfectly well to initiate the Link Traversal-based Querying process from. Each institution having a separate LDES is an added bonus, as this gives users the flexibility to choose which institutions' data to query. However, it is essential to be aware that the results and order of results are not predictable due to the nature of LDESs as well as Comunica's LTQP implementation. Additionally, Human-Made Objects are spread over multiple pages in the LDES, which needs to be taken into consideration when building the Comunica link traversal engine configuration.
+
+\section{Comunica Link Traversal Engine Configuration}
+\label{sec:comunica_link_traversal_engine_configuration}
+
+As discussed in Section~\ref{sec:comunica}, the Comunica engine offers a wide range of configurability for link traversal. Numerous link traversal-specific actors have been developed. Some of those have already matured, while others are still in active development. In this section, some of these actors will be considered for configuring a Comunica link traversal engine that meets the requirements of this research, as well as performs up to a standard that is acceptable for real-world use. The resulting configuration should ultimately determine the engine used throughout the rest of this research.
+
+\subsection{Base Configuration}
+
+The Comunica Link Traversal repository\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal}} already provides several predefined configurations\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/engines/config-query-sparql-link-traversal/config}} that are \textit{out of the box} available to Comunica users to kick-start with LTQP. A common feature of these configurations is the initial import of \linebreak\mintinline{text}{config-base.json}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/blob/master/engines/config-query-sparql-link-traversal/config/config-base.json}}. This configuration file imports all actors and mediators necessary for the basic functionality of a Comunica Link Traversal engine, such as HTTP fetching, query operations, and RDF parsing. In other words, such a base configuration is essential to having a working link traversal engine. However, since this research does not focus on these basic functionalities, the intricacies of setting up a base configuration will not be discussed further. Rather, as is the case with the predefined configurations, the configuration specific to this research will also start with importing the \mintinline{text}{config-base.json} file.
+
+\subsection{Basic Link Extractors}
+
+The most important type of actors that should be considered when setting op a link traversal engine, are arguably the link extractors. When a new RDF document is encountered during the link traversal process, these actors determine which links from that document should be added to the link queue. In other words, they are the ones deciding which resources should be queried.
+
+The most basic link extractor is the \textit{All Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-all}}. This actor essentially implements the \textit{cAll} criterion, as discussed in Section~\ref{sec:ltqp}. Simply put, it adds all links it encounters to the link queue. However, this approach is not suitable for the purposes of this research, as it may lead to traversing too many documents that will most certainly not aid in resolving the query at hand, in turn leading to impractical execution times.
+
+As already discussed, this research focuses on queries that fetch data specific to Human-Made Objects. This means that the specific paths to follow - starting from a Human-Made Object and ending in the object of interest - are known beforehand. In other words, the queries already specify these \textit{sequences of predicates}, allowing for a more targeted approach. Therefore, another interesting link extractor to consider, is the \textit{Quad Pattern Query Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-quad-pattern-query}}. Essentially, this actor is an implementation of the \textit{cMatch} criterion that was discussed in Section~\ref{sec:ltqp}. It adds only those links to the link queue that are part of quads that match at least one quad pattern in the query. Given the knowledge of the starting subject - Human-Made objects - and the specific sequence of predicates to follow, this actor should better \textit{guide} the engine in the right direction, leading to faster results. However, it is possible for certain documents to, by change, contain quads that do not lead to the data the query was set up for, still leading to \textit{wrong} documents being visited.
+
+\subsection{Extracting Links based on Predicates}
+
+Having in mind that sequences of predicates are already known beforehand, the most promising link extractor is the \textit{Predicates Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-predicates}}. This type of link extractor was not discussed before, but its workings are straightforward. Essentially, for every quad in a document, the actor only considers objects. Apart from the object naturally needing to be a URI, the only links that are added to the link queue are those objects' links that have a predicate matching one of the regexes set in the actor's configuration. In other words, the sequences of predicates that define the queries considered in this research, can literally serve as the regexes this actor uses to evaluate predicates. Additionally, the \textit{rules} can even be tightened by obliging every quad's subject to match the URI of the document currently being processed. This extra requirement further narrows down the selection of links to follow, potentially speeding up the querying process even further.
+
+To test this approach, a Comunica link traversal query engine is built using the configuration as depicted in Code Fragment~\ref{lst:config_predicates_actor}, in turn tasked with resolving the query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image}. Once again, the data source is set to the Design Museum Gent LDES endpoint. As can be seen in Code Fragment~\ref{lst:config_predicates_actor}, the configuration's second import is a custom configuration file. This file is displayed in Code Fragment~\ref{lst:actor_config_regexes_subject_true} and not only tasks the engine being built to use the Predicates Extract Links Actor, but also instructs this link actor to only consider object links whose predicates match the query's predicates and whose subjects match the current document's URI. The keys that specify these settings are respectively called \mintinline{text}{predicateRegexes} and \mintinline{text}{checkSubject}.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{json-ld}
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        config-query-sparql/^2.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        config-query-sparql-link-traversal/^0.0.0/components/context.jsonld"
+  ],
+  "import": [
+    "ccqslt:config/config-base.json",
+    "./actors/extract-links-predicates-custom.json"
+  ]
+}
+    \end{minted}
+    \caption{Custom link traversal engine configuration using Predicates Extract Links Actor}
+    \label{lst:config_predicates_actor}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{json-ld}
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        runner/^2.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        actor-extract-links-predicates/^0.0.0/components/context.jsonld"
+  ],
+  "@id": "urn:comunica:default:Runner",
+  "@type": "Runner",
+  "actors": [
+    {
+      "@id": "urn:comunica:default:extract-links/actors#predicates-common",
+      "@type": "ActorExtractLinksPredicates",
+      "checkSubject": true,
+      "predicateRegexes": [
+        "http://www.cidoc-crm.org/cidoc-crm/P129i_is_subject_of",
+        "http://iiif.io/api/presentation/2#hasSequences",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+        "http://iiif.io/api/presentation/2#hasCanvases",
+        "http://www.w3.org/2003/12/exif/ns#height",
+        "http://iiif.io/api/presentation/2#hasImageAnnotations",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+        "http://www.w3.org/ns/oa#hasBody"
+      ]
+    }
+  ]
+}
+    \end{minted}
+    \caption{Comunica Predicates Extract Links Actor configuration with predicate regexes set to predicates from query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image} and subject checking \textbf{enabled}}
+    \label{lst:actor_config_regexes_subject_true}
+\end{listing}
+
+However, after building the engine and instructing it to resolve the query, no results are returned. To uncover the reason for this failure, the logs\footnote{Logging can be enabled as explained here: \url{https://comunica.dev/docs/query/advanced/logging/}.} outputted by the engine during execution and displayed in Code Fragment~\ref{lst:logs}, can be consulted. From these logs, it can be inferred that the engine initially fetches the provided data source, in this case, the Design Museum Gent LDES. Then, it retrieves the documents referenced in the context of the LDES in order to expand the LDES. Finally, once this expansion is completed successfully, the LDES is marked as \textit{identified}. As for the rest of the logs, there are no significant actions taking place. In other words, no other documents are identified, let alone requested. From this, it can be deduced that no links are being added to the link queue while traversing the LDES. This suggests that the configuration of the Predicates Extract Links Actor needs to be reviewed.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{text}
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             dmg/objecten
+             { ... , method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+...
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/cultureel-erfgoed-object-ap.jsonld
+             { ..., method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/persoon-basis.jsonld
+             { ..., method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/cultureel-erfgoed-event-ap.jsonld
+             { ..., method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/organisatie-basis.jsonld
+             { ..., method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/generiek-basis.jsonld
+             { ..., method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  INFO: Requesting
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             context/dossier.jsonld
+             { ..., method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  INFO: Identified as file source:
+             https://apidg.gent.be/opendata/adlib2eventstream/v1/
+             dmg/objecten?generatedAtTime=2023-08-12T00:01:27.217Z
+             { actor: 'urn:comunica:default:rdf-resolve-hypermedia/actors#none' }
+...
+    \end{minted}
+    \caption{(Cleaned up) logs outputted during execution of engine configured by files displayed in Code Fragments~\ref{lst:config_predicates_actor} and~\ref{lst:actor_config_regexes_subject_true}}
+    \label{lst:logs}
+\end{listing}
+
+Through debugging, it can be determined that only two quads pass the test comparing their subject URIs to the URI of the current document, in this case the LDES. These quads in question are both TREE-related quads - as mentioned in Section~\ref{subsec:ldes}, LDESs are built on the TREE specification. It comes as no surprise that these quads fail the subsequent test that compares predicates with the provided regexes. However, the fact that only these two quads pass the first test, and every other quad fails, highlights why the configuration of the Predicates Extract Links Actor, as shown in Code Fragment~\ref{lst:actor_config_regexes_subject_true}, does not work for the query presented in Code Fragment \ref{lst:sparql_manifest_height_image}: since the \textit{starting point} of the query is expected to be a Human-Made Object subject - the first predicate \mintinline{text}{cidoc:P129i_is_subject_of} achieves this as only Human-Made Object subjects have this predicate in the LDES - these subjects will never match the URI of the LDES. As a result, the Predicates Extract Links Actor will disregard these quads.
+
+One possible solution is to modify the query by providing the LDES page itself as the \textit{starting point} and extending the sequence of predicates to \textit{ bridge the gap} between the LDES root node and the Human-Made Objects. However, as part of the aim of this research is to assist people without a technical background in constructing and better comprehending queries, making the queries unnecessarily long and complex is not desirable. Consequently, the decision is made to set the \mintinline{text}{checkSubject} key in the configuration of the Predicates Extract Links Actor to \mintinline{text}{false}. This ultimately leads to the configuration presented in Code Fragment~\ref{lst:actor_config_regexes_subject_false}.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{json-ld}
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        runner/^2.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        actor-extract-links-predicates/^0.0.0/components/context.jsonld"
+  ],
+  "@id": "urn:comunica:default:Runner",
+  "@type": "Runner",
+  "actors": [
+    {
+      "@id": "urn:comunica:default:extract-links/actors#predicates-common",
+      "@type": "ActorExtractLinksPredicates",
+      "checkSubject": false,
+      "predicateRegexes": [
+        "http://www.cidoc-crm.org/cidoc-crm/P129i_is_subject_of",
+        "http://iiif.io/api/presentation/2#hasSequences",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+        "http://iiif.io/api/presentation/2#hasCanvases",
+        "http://www.w3.org/2003/12/exif/ns#height",
+        "http://iiif.io/api/presentation/2#hasImageAnnotations",
+        "http://www.w3.org/1999/02/22-rdf-syntax-ns#first",
+        "http://www.w3.org/ns/oa#hasBody"
+      ]
+    }
+  ]
+}
+    \end{minted}
+    \caption{Comunica Predicates Extract Links Actor configuration with predicate regexes set to predicates from query displayed in Code Fragment~\ref{lst:sparql_manifest_height_image} and subject checking \textbf{disabled}}
+    \label{lst:actor_config_regexes_subject_false}
+\end{listing}
+
+\subsection{Comparing Link Extractors}
+
+In an attempt to compare the discussed link extractors not only in terms of functionality but also in terms of performance, a small experiment is conducted. Similar to before, the query shown in Code Fragment~\ref{lst:sparql_manifest_height_image} is used, with the Design Museum Gent LDES serving as the data source. The first engine utilizes the All Extract Links Actor, the second one employs the Predicates Extract Links Actor, and the third utilizes the Predicates Extract Links Actor in the configuration outlined in Code Fragment~\ref{lst:actor_config_regexes_subject_false}. Consequently, the final engine configurations corresponded to the existing \textit{Follow All}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/blob/master/engines/config-query-sparql-link-traversal/config/config-follow-all.json}} and \textit{Follow Match Query}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/blob/master/engines/config-query-sparql-link-traversal/config/config-follow-match-query.json}} configurations present in the Comunica Link Traversal GitHub repository, along with the custom configuration as illustrated in Code Fragment~\ref{lst:config_predicates_actor}. To ensure reliability, each engine executes the query consecutively three times, with the engine's complete HTTP cache being invalidated after each run. The outcomes of the experiment are presented in Table~\ref{tab:results_engines}.
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results from experiment comparing different Comunica link traversal engines}
+    \label{tab:results_engines}
+    \begin{tabular}{lrr}
+        \toprule
+        \multicolumn{1}{c}{Engine} & \multicolumn{1}{c}{Total time (s)} & \multicolumn{1}{c}{Average time single execution (s)} \\
+        \midrule
+        Follow All & Runtime error & Runtime error \\
+        Follow Match Query & 66.08 & 22.03 \\
+        Custom (using configuration displayed in Code Fragment \ref{lst:actor_config_regexes_subject_false}) & 54.34 & 18.11 \\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The results immediately indicate that the Follow All engine struggles to execute the query successfully. It is important to note that the success rate is subject to a variety of factors, encompassing both client and server circumstances, such as the machine's specifications and the state of the internet connection. However, in this specific instance, the runtime error that emerged following unsuccessful link traversal was attributed to an excessive number of listeners assigned to a TLS socket. This situation may be associated with an overflow of HTTP requests. The combination of this issue with the absence of any valid results even after a considerable time span underscores that, for the objectives of this research, the Follow All engine, without additional configuration or the integration of supplementary actors, is unsuitable.
+
+Fortunately, both the Follow Match Query and Custom engines were able to successfully execute their tasks. It is noteworthy, however, that the average times to resolve the query differ by only a few seconds. As expected, the custom engine performs better, but the marginal time saved initially might not seem significant compared to the drawback of having to adjust its configuration for each query. Nevertheless, it is reasonable to expect that the custom engine's advantage will become more pronounced when handling queries that target data distributed across multiple documents and situated at deeper levels. Moreover, it is entirely feasible to develop a user-friendly application that constructs the necessary configuration based on the specific query before executing the engine. This way, the configuration complexity can be abstracted from the end-users, providing a smoother user experience while harnessing the benefits of the custom engine's efficiency.
+
+\subsection{Traversing LDES Pages}
+
+Despite the custom engine's capacity to retrieve highly targeted data, its present form only accounts for a fraction of the available dataset. This limitation arises from the fact that an LDES comprises multiple pages, technically TREE nodes, necessitating both forward and backward \textit{browsing} to encompass the entirety of the dataset. However, the predicates leading to the objects providing access to these other TREE nodes are presently absent from the regex array in the configuration of the Predicates Extract Links Actor.
+
+While incorporating these predicates is straightforward, an even more effective approach involves introducing a second link extractor to the custom engine configuration. The \textit{Extract Links Tree Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-extract-tree}} possesses the capability to introduce links to the preceding and succeeding LDES \textit{pages} – as identified by the \textit{greater than} and \textit{less than} relationships as defined within the TREE specification – into the link queue. This modest addition to the configuration profoundly enhances the capabilities of the resultant engine.
+
+The revised configuration, as presented in Code Fragment~\ref{lst:config_predicates_actor_tree}, not only facilitates finely targeted searches for the requested data but also encompasses the complete dataset of the specified CoGhent institution(s) by leveraging the Extract Links Tree Actor.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{json-ld}
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        config-query-sparql/^2.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        config-query-sparql-link-traversal/^0.0.0/components/context.jsonld"
+  ],
+  "import": [
+    "ccqslt:config/config-base.json",
+    "./actors/extract-links-predicates-custom.json",
+    "ccqslt:config/extract-links/actors/tree.json"
+  ]
+}
+    \end{minted}
+    \caption{Custom link traversal engine configuration using Predicates Extract Links Actor and Extract Links Tree Actor}
+    \label{lst:config_predicates_actor_tree}
+\end{listing}
+
+\subsection{Conclusion}
+
+In summary, an engine constructed using the Follow Match Query configuration, which utilizes the Quad Pattern Query Extract Links Actor, effectively addresses specific query requirements without necessitating additional actor configuration. However, for queries demanding more extensive traversal across documents or encompassing data distributed across multiple documents, a tailored configuration that integrates both the Predicates Extract Links Actor and the Extract Links Tree Actor can significantly enhance performance. 
+
+It is important to acknowledge that this approach does require a specific configuration outlining the predicates for each query. Nevertheless, this configuration complexity can be effectively abstracted from end-users through the development of tools that manage the technical intricacies behind the scenes. This approach ultimately strikes a balance between query performance optimization and user accessibility, aligning with the overarching goals of the research.
+
+\section{Links to Follow}
+\label{sec:links_to_follow}
+
+Now that the data sources and engine to use have been determined, the focus can shift to creating queries. The exact data that these queries should retrieve is a choice left to the end-user. Chapter~\ref{chap:tools_query_building} delves deeper into the development of tools that can aid end-users in this process. However, before delving into that, this section first provides a closer look at various types of resources directly referenced from the CoGhent LDESs. These resources have the potential to generate interesting knowledge.
+
+The types of resources discussed are as follows:
+\begin{itemize}
+    \item CoGhent IIIF Manifests
+    \item Wikidata
+    \item Stad Gent (City of Ghent) data
+    \item Getty Vocabularies
+\end{itemize}
+
+Unfortunately, some of these resources reveal certain technical limitations. These limitations are therefore also discussed, along with potential workarounds.
+
+\subsection{IIIF Manifest}
+\label{subsec:links_to_follow_manifest}
+
+As discussed in Section~\ref{sec:coghent}, each Human-Made Object within the CoGhent data links to a unique IIIF Manifest. An example of a link to such a CoGhent IIIF Manifest is \url{https://api.collectie.gent/iiif/presentation/v2/manifest/dmg:3091}. While the CoGhent LDESs contain descriptive data on Human-Made Objects, these CoGhent IIIF manifests specifically emphasize technical metadata for each Human-Made Object's digital \textit{copy}. Typically, a CoGhent IIIF Manifest encompasses a single sequence, which in turn contains a single canvas, which further encapsulates an individual image.
+
+The significance of image data in the cultural context of this research cannot be overstated. Or as the adage goes: \textit{A picture is worth a thousand words}. In the realm of cultural heritage and art, images often convey intricate details, historical contexts, and artistic nuances that might be challenging to articulate through words alone.
+
+Given the decision to employ the custom engine as discussed in Section~\ref{sec:comunica_link_traversal_engine_configuration}, the queries are required to trace a sequence of predicates, initiating from Human-Made Objects and culminating in the desired object(s). However, the depth at which the valuable image data is nested within the manifest necessitates extensive predicate sequences, making the query notably lengthy. Due to this complexity, it might be tempting to gravitate towards the less stringent Follow Match engine, allowing queries to not necessarily contain long uninterrupted sequences of predicates. However, this approach can yield results erroneously associating Human-Made Objects with unrelated manifests.
+
+To illustrate this hurdle, three hypothetical RDF documents are presented. They are hypothetical and are displayed in Turtle syntax in Code Fragments~\ref{lst:turtle_hypothetical_hmo}, \ref{lst:turtle_hypothetical_first_manifest} and~\ref{lst:turtle_hypothetical_second_manifest}. The first one depicts quads linking Human-Made Objects to their IIIF Manifests, and the other two respectively depict these two manifest. It must be noted that these examples in no way follow any of the schemas puth forth by CoGhent and IIIF. Notably, the IIIF Manifest examples deviate from the actual IIIF schema by eliminating the utilization of arrays. Instead, the examples assume a simplified scenario in which each manifest encompasses only one sequence, one canvas, and one image annotation.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{turtle}
+ex:human_made_object1 ex:hasManifest ex:manifest1 .
+ex:human_made_object2 ex:hasManifest ex:manifest2 .
+    \end{minted}
+    \caption{Turtle file representing hypothetical Human-Made Objects (does not follow CoGhent schema)}
+    \label{lst:turtle_hypothetical_hmo}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{turtle}
+ex:manifest1 ex:firstSequence ex:sequence1 .
+ex:sequence1 ex:firstCanvas ex:canvas1 .
+ex:canvas1 ex:firstImageAnnotation ex:annotation1 .
+ex:annotation1 iiif:hasBody ex:image1 .
+    \end{minted}
+    \caption{Turtle file representing \textbf{first} hypothetical IIIF Manifest (does not follow IIIF schema)}
+    \label{lst:turtle_hypothetical_first_manifest}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{turtle}
+ex:manifest2 ex:firstSequence ex:sequence2 .
+ex:sequence2 ex:firstCanvas ex:canvas2 .
+ex:canvas2 ex:firstImageAnnotation ex:annotation2 .
+ex:annotation2 iiif:hasBody ex:image2 .
+    \end{minted}
+    \caption{Turtle file representing \textbf{second} hypothetical IIIF Manifest (does not follow IIIF schema)}
+    \label{lst:turtle_hypothetical_second_manifest}
+\end{listing}
+
+Naturally, the document containing the Human-Made Objects is designated as the initiation point for the link traversal process. If, and when, the chosen link traversal engine reaches the manifest links within this document and appends them to the link queue, the related manifest documents will subsequently be recognized and amalgamated with the previously identified document encompassing the Human-Made Objects. Code Fragment~\ref{lst:turtle_hypothetical_combination} presents the potential appearance of this amalgamation of documents.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{turtle}
+# Human-Made Objects
+ex:human_made_object1 ex:hasManifest ex:manifest1 .
+ex:human_made_object2 ex:hasManifest ex:manifest2 .
+
+# Manifest 1
+ex:manifest1 ex:firstSequence ex:sequence1 .
+ex:sequence1 ex:firstCanvas ex:canvas1 .
+ex:canvas1 ex:firstImageAnnotation ex:annotation1 .
+ex:annotation1 iiif:hasBody ex:image1 .
+
+# Manifest 2
+ex:manifest2 ex:firstSequence ex:sequence2 .
+ex:sequence2 ex:firstCanvas ex:canvas2 .
+ex:canvas2 ex:firstImageAnnotation ex:annotation2 .
+ex:annotation2 iiif:hasBody ex:image2 .
+    \end{minted}
+    \caption{Turtle file representing combination of hypothetical Human-Made Objects and IIIF Manifests}
+    \label{lst:turtle_hypothetical_combination}
+\end{listing}
+
+Subsequently, two queries are introduced: a \textit{long} query that meticulously delineates the path from a Human-Made Object to its image, as portrayed in Code Fragment~\ref{lst:long_query_hmo_image}, and a \textit{short} query that seeks to streamline this process by eliminating the intermediary quad patterns, as displayed in Code Fragment~\ref{lst:short_query_hmo_image}. While these queries might appear, at first glance, to target the same data, the outcomes they yield are different. The outcomes of the \textit{long} query are detailed in Table~\ref{tab:results_long_query}, whereas the outcomes of the \textit{short} query are outlined in Table~\ref{tab:results_short_query}.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+SELECT ?humanMadeObject ?image
+WHERE {
+    ?humanMadeObject ex:hasManifest ?manifest .
+    ?manifest ex:firstSequence ?sequence .
+    ?sequence ex:firstCanvas ?canvas .
+    ?canvas ex:firstImageAnnotation ?annotation .
+    ?annotation iiif:hasBody ?image .
+}
+    \end{minted}
+    \caption{\textbf{Long} query fetching Human-Made Object and image}
+    \label{lst:long_query_hmo_image}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+SELECT ?humanMadeObject ?image
+WHERE {
+    ?humanMadeObject ex:hasManifest ?manifest .
+    ?annotation iiif:hasBody ?image .
+}
+    \end{minted}
+    \caption{\textbf{Short} query fetching Human-Made Object and image}
+    \label{lst:short_query_hmo_image}
+\end{listing}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of \textbf{long} query displayed in Code Fragment~\ref{lst:long_query_hmo_image} and RDF document displayed in Code Fragment~\ref{lst:turtle_hypothetical_combination}}
+    \label{tab:results_long_query}
+    \begin{tabular}{ll}
+        \toprule
+        \multicolumn{1}{c}{?humanMadeObject} & \multicolumn{1}{c}{?image} \\
+        \midrule
+        ex:human\_made\_object1 & ex:image1\\
+        ex:human\_made\_object2 & ex:image2\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+\begin{table}[htbp]
+    \centering
+    \caption{Results of \textbf{short} query displayed in Code Fragment~\ref{lst:short_query_hmo_image} and RDF document displayed in Code Fragment~\ref{lst:turtle_hypothetical_combination}}
+    \label{tab:results_short_query}
+    \begin{tabular}{ll}
+        \toprule
+        \multicolumn{1}{c}{?humanMadeObject} & \multicolumn{1}{c}{?image} \\
+        \midrule
+        ex:human\_made\_object1 & ex:image1\\
+        ex:human\_made\_object1 & ex:image2\\
+        ex:human\_made\_object2 & ex:image1\\
+        ex:human\_made\_object2 & ex:image2\\
+        \bottomrule
+    \end{tabular}
+\end{table}
+
+The inadequacy of the \textit{short} query becomes apparent as it erroneously associates all conceivable Human-Made Objects with all potential images, unlike the accurate outcomes of the \textit{long} query. Revisiting the amalgamation of documents presented in Code Fragment~\ref{lst:turtle_hypothetical_combination} and reevaluating the two queries provides insight into the root cause of the \textit{short} query's shortfall. Specifically, the \textit{short} query neglects to establish a linkage between specific images and their corresponding Human-Made Objects. Conversely, the \textit{long} query adeptly maintains this linkage by distinctly defining a \textit{path} connecting Human-Made Objects to their associated images. Consequently, irrespective of the selected engine, queries should consistently formulate a well-defined trajectory from Human-Made Objects leading to the targeted objects.
+
+Emphasizing the evident, this observation's relevance goes beyond queries exclusively targeting data within IIIF Manifests. Instead, this principle holds applicability across all types of queries and data sources that will continue to be explored within the scope of this research.
+
+Guided by the aforementioned deliberations, one can construct working \textit{document-overarching} queries - this time operating on real-world data - aimed at surveying the Human-Made Objects' IIIF Manifest data. For instance, Code Fragment~\ref{lst:sparql_manifest_height_image} that was introduced at the beginning of this chapter, displays a query designed to extract the manifest URIs of ten specific Human-Made Objects, along with the corresponding height values and URIs leading to the associated image files within these manifests. It is noteworthy that the potential \textit{drawback} stemming from extended queries due to lengthy predicate sequences is somewhat mitigated through the utilization of property path sequences.
+
+\subsection{Wikidata}
+
+Wikidata is a major player when it comes to RDF data. In simplified terms, Wikidata encompasses Wikipedia's key data points, but it presents them as structured Linked Data, adhering to RDF principles. Given that CoGhent's Human-Made Objects frequently reference Wikidata resources, this significantly opens the door to a wealth of additional knowledge. \citep{vanveen2019wikidata}
+
+While Wikidata as an organization seems to encourage users to primarily use their SPARQL endpoint, the data can also be retrieved in separate RDF documents. Furthermore, Wikidata operates a website\footnote{\url{https://www.wikidata.org/wiki/Wikidata:Main_Page}} that enables very user-friendly and visual browsing through the data. However, here comes Wikidata's major pitfall: the resource and predicate URIs Wikidata uses for its SPARQL endpoint and website differ from the URIs the organization employs for its actual RDF data. In other words, to access the RDF documents, one needs to use URIs that Wikidata does not openly advertise. \citep{wikidata2023data}
+
+At first glance, this might seem to pose an issue for the link traversal process. After all, just like Wikidata advertises, the CoGhent data references the \textit{standard} Wikidata URIs, not the RDF-specific ones. Fortunately, this does not disrupt the link traversal process, as these \textit{standard} URIs are automatically resolved to their RDF-specific counterparts through content negotiation. For instance, an HTTP request asking for RDF data to the resource 
+\begin{center}
+    \mintinline{text}{http://www.wikidata.org/entity/Q42}
+\end{center}
+is automatically redirected to
+\begin{center}
+    \mintinline{text}{https://www.wikidata.org/wiki/Special:EntityData/Q42},
+\end{center}
+and a similar request to the predicate
+\begin{center}
+    \mintinline{text}{https://www.wikidata.org/wiki/Property:P17}
+\end{center}
+is automatically redirected to
+\begin{center}
+    \mintinline{text}{https://www.wikidata.org/wiki/Special:EntityData/P17}.
+\end{center}
+
+However, caution must be exercised when using Wikidata URIs in queries themselves. The link traversal engine being used is unaware of Wikidata's approach and thus will not be able to map quad patterns with \textit{standard} Wikidata URIs in the query to quads with the RDF-specific URIs that appear in a fetched Wikidata RDF document. In other words, it is up to the user to \textit{translate} the advertised Wikidata URIs into their RDF-specific counterparts. The application that controls the relevant link traversal engine could however also assist with this task.
+
+Given these findings, queries can also be formulated to retrieve specific Wikidata information from Human-Made Objects. For instance, Code Fragment~\ref{lst:sparql_wikidata_country} presents such a query. Specifically, the query seeks to find the country where the cultural institution that possesses the particular Human-Made Object is located. Note that the Wikidata predicate URI indeed follows the same format as stored in the Wikidata RDF documents themselves.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX wiki-prop:<http://www.wikidata.org/prop/direct/>
+SELECT ?human_made_object ?country
+WHERE {
+  ?human_made_object cidoc:P50_has_current_keeper/wiki-prop:P17 ?country.
+}
+LIMIT 10
+    \end{minted}
+    \caption{SPARQL query fetching ten Human-Made Object's institute's countries}
+    \label{lst:sparql_wikidata_country}
+\end{listing}
+
+\subsection{Stad Gent}
+\label{subsec:stad_gent}
+
+The most common types of links in the CoGhent LDESs are arguably Stad Gent links. Stad Gent, which translates to \textit{City of Ghent} in English, indeed also publishes a significant amount of its own data. This data often pertains to specific aspects of the city and might not be found in other thesauri. Since the city is inherently connected to CoGhent, its resources are certainly worth discussing.
+
+Unfortunately, the Stad Gent links that provide context to the Human-Made Objects do not directly resolve to RDF documents. To illustrate this, two HTTP requests are executed, each targeting different Stad Gent URIs. Since these URIs might return various types of data depending on the request, the Accept value in the request header is explicitly set to "application/ld+json" each time.
+
+Firstly, when running the command
+\begin{flushleft}
+    {\small \mintinline{bash}{curl -H "accept:application/ld+json"}}
+    {\small \mintinline{bash}{     -iv "https://stad.gent/id/mensgemaaktobject/dmg/530005252/2023-08-12T00:01:27.217Z"}},
+\end{flushleft}
+the server responds with an HTTP \mintinline{text}{406 Not Acceptable} response status along with the message \linebreak\textit{https://stad.gent/id/mensgemaaktobject/dmg/530005252/2023-08-12T00:01:27.217Z is not available in the requested format}.
+However, if the word \mintinline{text}{id} in the request URI is changed to \mintinline{text}{data}, the server responds successfully.
+
+Secondly, running the command
+\begin{flushleft}
+    {\small \mintinline{bash}{curl -H "accept:application/ld+json"}}
+    {\small \mintinline{bash}{     -iv "https://stad.gent/id/blank_node/bccb2bda-7563-4e94-82a4-ba8e9559d679"}}
+\end{flushleft}
+results in an HTTP \mintinline{text}{404 Not Found} response status along with the message \linebreak\textit{no linked data representation of https://stad.gent/id/blank\_node/bccb2bda-7563-4e94-82a4-ba8e9559d679 was found}. Fortunately, this issue can again be fixed by replacing \mintinline{text}{id} in the request URI with \mintinline{text}{data}.
+
+While the server's treatment of distinct categories of Stad Gent URIs might not be immediately apparent, a single solution can be uniformly applied: substituting \mintinline{text}{id} with \mintinline{text}{data}. However, due to the CoGhent LDESs often referencing the types of CoGhent URIs that do not yield RDF data, the Comunica link traversal engine, attempting to request these URIs, will inevitably encounter the aforementioned error responses as well. Hence, the engine necessitates the capability to dynamically update any Stad Gent link that contains the string \mintinline{text}{id} before adding it to the link queue.
+
+To achieve this, a new Comunica actor is built\footnote{Tutorial on building custom Comunica actor: \url{https://comunica.dev/docs/modify/getting_started/contribute_actor/}}. This actor is coined \linebreak\mintinline{text}{ActorRdfResolveHypermediaLinksStadGentReplaceId}\footnote{Implementation: \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/comunica-feature-link-traversal/blob/feature/change-gettyvocab-stadgent-links/packages/actor-rdf-resolve-hypermedia-links-stad-gent-replace-id/lib/ActorRdfResolveHypermediaLinksStadGentReplaceId.ts}} and extends the \linebreak\mintinline{text}{ActorRdfResolveHypermediaLinks} actor. The latter provides the new actor with access to the links that are being considered for addition to the link queue. Code Fragment~\ref{lst:actor_stad_gent_run} presents the \mintinline{text}{run} function of the new actor. Initially, the available links are iterated over, and using a regex, it is determined whether they match the pattern of a Stad Gent link containing an \mintinline{text}{id} path. Any link that meets this criteria is then modified by replacing the old path with a \mintinline{text}{data} path. At the end of the function, all the links, including the modified ones, are passed back to the bus allowing any subsequent actor to continue to work with them.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{js}
+public async run(action: IActionRdfResolveHypermediaLinks):
+    Promise<IActorRdfResolveHypermediaLinksOutput> {
+  const stadGentUriRegex = /^https?:\/\/stad\.gent\/id\/.+$/u;
+  const links = action.metadata.traverse.map((link: { url: string }) => {
+    if (this.stadGentUriRegex.test(link.url)) {
+      const oldUrl = link.url;
+      const newUrl = oldUrl.replace('/id/', '/data/');
+      link.url = newUrl;
+      this.logInfo(action.context, `Updated ${oldUrl} to ${newUrl}`);
+    }
+    return link;
+  });
+  // Update metadata in action
+  const context = action.context.set(KEY_CONTEXT_REPLACED, true);
+  const subAction = { ...action, context, metadata: { ...action.metadata, traverse: links }};
+  // Forward updated metadata to next actor
+  return this.mediatorRdfResolveHypermediaLinks.mediate(subAction);
+}
+    \end{minted}
+    \caption{Implementation of \mintinline{text}{ActorRdfResolveHypermediaLinksStadGentReplaceId}'s \mintinline{text}{run} function}
+    \label{lst:actor_stad_gent_run}
+\end{listing}
+
+However, the actor also needs a way to indicate when its action has already been performed. If this is not done, the actor will be queried repeatedly, causing the engine to get stuck in an infinite loop. For this reason, just before concluding the \mintinline{text}{run} function, a key specific to the current action is set to \mintinline{text}{true}. This \mintinline{text}{KEY_CONTEXT_REPLACED} key then indicates during the actor's testing that the actor has already completed its task and should not be re-executed. The \mintinline{text}{test} function responsible for this behavior is depicted in Code Fragment~\ref{lst:actor_stad_gent_test}.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{js}
+public async test(action: IActionRdfResolveHypermediaLinks): Promise<IActorTest> {
+  if (action.context.get(KEY_CONTEXT_REPLACED)) {
+    throw new Error('Already checked for Stad Gent links');
+  }
+  return true;
+}
+    \end{minted}
+    \caption{Implementation of \mintinline{text}{ActorRdfResolveHypermediaLinksStadGentReplaceId}'s \mintinline{text}{test} function}
+    \label{lst:actor_stad_gent_test}
+\end{listing}
+
+After implementing the actor, it is given its own actor configuration, which is then imported into the custom engine configuration. This small addition ultimately enables an engine using it to involve Stad Gent resources in responding to a query. Or at least, that is the theory. In practice, however, Stad Gent documents are still not being identified. The reason for this is straightforward but unfortunate.
+
+The Comunica engine executes its HTTP requests with a much broader \mintinline{text}{Accept} statement in the header compared to the one used in the manual \mintinline{text}{curl} tests from before. Code Fragment~\ref{lst:accept_header_comunica} shows exactly what this \mintinline{text}{Accept} statement looks like. And while RFC 7231\footnote{\url{https://datatracker.ietf.org/doc/html/rfc7231}} prescribes that \mintinline{text}{Content-Type}s with higher quality values, denoted by \mintinline{text}{q}, indicate that they are preferred over lower ones, the Stad Gent server seems to ignore this and selects \mintinline{text}{text/html} as the \mintinline{text}{Content-Type}. Of course, this is not RDF data, meaning the Comunica engine cannot process it further. \citep{fielding2014http}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{text}
+accept: 'application/n-quads,application/trig;q=0.95,application/ld+json;q=0.9,
+         application/n-triples;q=0.8,text/turtle;q=0.6,application/rdf+xml;q=0.5,
+         application/json;q=0.45,text/n3;q=0.35,application/xml;q=0.3,
+         image/svg+xml;q=0.3,text/xml;q=0.3,text/html;q=0.2,
+         application/xhtml+xml;q=0.18,text/shaclc;q=0.1,text/shaclc-ext;q=0.05’
+    \end{minted}
+    \caption{\mintinline{text}{Accept} header for HTTP requests made by Comunica engine}
+    \label{lst:accept_header_comunica}
+\end{listing}
+
+Making changes to the Comunica engine to remove \mintinline{text}{text/html} as an option is not feasible because it could negatively affect its overall functionality. Moreover, the issue clearly comes from the Stad Gent server's side. A simple adjustment on their end could potentially resolve the issue. But until that happens, the Stad Gent data, unfortunately, cannot be considered suitable for link traversal.
+
+\subsection{Getty Vocabularies}
+
+The last type of links found in the CoGhent LDESs are links to resources from Getty Vocabularies. On their official website, these resources are described as follows:
+\begin{flushright}
+    \textit{Getty Vocabularies are structured resources for the visual arts domain, including art, architecture, decorative arts, other cultural works, archival materials, visual surrogates, and art conservation. Compliant with international standards for structured and controlled vocabularies, they provide authoritative information for catalogers, researchers, and data providers.}
+    \linebreak\citep{gettyvocabularies}
+\end{flushright}
+
+In fact, The Getty Vocabularies encompass different thesauri. However, the one directly used by the CoGhent data, is called the \textit{Art \& Architecture Thesaurus}. Once again, the Getty Vocabularies website explains what this Thesaurus can be useful for:
+\begin{flushright}
+    \textit{The AAT includes generic terms, and associated dates, relationships, and other information about concepts related to or required to catalog, discover, and retrieve information about art, architecture, and other visual cultural heritage, including related disciplines dealing with visual works, such as archaeology and conservation, where the works are of the type collected by art museums and repositories for visual cultural heritage, or that are architecture.}
+    \linebreak\citep{getty2023aat}
+\end{flushright}
+
+It is clear that the Getty Vocabularies data, in combination with link traversal, can facilitate interesting and novel discoveries regarding Human-Made Objects. However, much like the previous resource providers, obtaining Getty Vocabularies data is not without its challenges. This is illustrated by the following quad pattern:
+\begin{flushleft}
+    \mintinline{text}{?human_made_object}
+    \mintinline{text}{  cidoc:P41i_was_classified_by/cidoc:P42_assigned/<http://purl.org/dc/terms/created>}
+    \mintinline{text}{      ?created .}
+\end{flushleft}
+When attempting to execute a query with this quad pattern in the \mintinline{text}{WHERE} clause, no results are returned. To identify the issue, the first step is to retrieve only the URIs to the Getty Vocabularies documents. Note that due to the consequent truncation of the property path sequence, the query no longer needs to traverse to documents outside the CoGhent LDESs, therefore allowing a standard SPARQL engine to be used. Subsequently, one of the obtained URIs (e.g., \url{http://vocab.getty.edu/aat/300037772}) can be set as the data source for an engine with a simple task: retrieving the predicates and objects of those quads where the set data source is the subject. Consequently, this query yields the same situation as before: no results are retrieved.
+
+When examining the query logs, as shown in Code Fragment~\ref{lst:logs_getty}, one thing stands out. One of the logs mentions a \textit{missing context link header} and indicates the involvement of a document of type \mintinline{text}{application/json}. It is indeed rather surprising to see the Getty Vocabularies server return a JSON file. After all, \citet{getty2023lod} clearly states that \textit{Data is delivered to a requesting agent through a standard triple serialization using HTTP RDF/XML, Notation-3 (N3), Turtle, N-Triples, RDFa, JSON, \textbf{JSON-LD}}. This indicates that the server should be capable of offering JSON-LD documents, which in turn seems to indicate that the Getty Vocabularies server is not configured correctly either. After all, as illustrated in Code Fragment~\ref{lst:accept_header_comunica}, the Comunica engine clearly indicates it prefers JSON-LD documents over JSON documents.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{text}
+[...]  INFO: Requesting http://vocab.getty.edu/aat/300037772
+       { ... , method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+[...]  ERROR: Missing context link header for media type application/json
+       on http://vocab.getty.edu/aat/300037772
+       { actor: 'urn:comunica:default:dereference-rdf/actors#parse' }
+[...]  INFO: Identified as file source: http://vocab.getty.edu/aat/300037772
+       { actor: 'urn:comunica:default:rdf-resolve-hypermedia/actors#none' }
+    \end{minted}
+    \caption{(Cleaned up) logs outputted during execution of engine with data source set to Getty Vocabulary resource}
+    \label{lst:logs_getty}
+\end{listing}
+
+However, it would be reasonable to assume that Comunica can handle JSON documents as long as they are valid RDF. To confirm this, the following command is executed:
+\begin{flushleft}
+    \mintinline{bash}{curl -H "accept:application/ld+json" -iv "http://vocab.getty.edu/aat/300037772"}
+\end{flushleft}
+As observed before, the server returns a document with \mintinline{text}{Content-Type} of \mintinline{text}{application/json}. Yet, at first glance, this document appears to be a valid RDF document. This is confirmed by an RDF validator\footnote{\url{https://www.w3.org/RDF/Validator/}}. In addition, Getty Vocabularies resource documents can also be retrieved by appending one of the supported extensions to the \textit{bare} resource URI. With that in mind, a final comparison can be made between the already obtained JSON content and the content that \url{http://vocab.getty.edu/aat/300037772.jsonld} leads to. This proves that both documents match word for word. The only difference lies in some special characters in one document being represented by their Unicode escape sequences, while in the other they appear in their literal form.
+
+Nevertheless, whether the returned data has a \mintinline{text}{Content-Type} of \mintinline{text}{application/ld+json} or \mintinline{text}{application/json} should ideally not make a significant difference. After all, they both yield valid RDF content. However, to understand why the Comunica engine still seems to struggle with the JSON documents from the Getty Vocabularies server, a deeper dive into the log of the RDF Parse Actor mentioning \textit{Missing context link header} is necessary.
+
+To gain a better understanding of the engine's behavior, an examination of the tests\footnote{\url{https://github.com/comunica/comunica/blob/master/packages/actor-rdf-parse-jsonld/test/ActorRdfParseJsonLd-test.ts}} within the \mintinline{text}{ActorRdfParseJsonLd} actor is conducted. Even without delving into the implementation details, the \textit{titles} of two tests offer insights. One test asserts that the actor \textit{should run for a JSON doc with a context link header}, while the other asserts that the actor \textit{should error on a JSON doc without a context link header}. The log in question aligns with what the latter test examines. Put simply, the Getty Vocabularies server provides its JSON content without a \textit{context link header}, whereas the RDF Parse Actor expects such a header to be present. \citep{taelman2018comunica}
+
+This prompts two important questions: what is a \textit{context link header}, and is the Comunica engine perhaps too strict? The answers can be found in W3's documentation\footnote{\url{https://www.w3.org/TR/json-ld/\#interpreting-json-as-json-ld}}. Firstly, a context link header is a \mintinline{text}{Link} statement that can be included in the HTTP response header when returning JSON. This statement contains a URI that points to a JSON-LD context, enabling the JSON data to be interpreted as RDF data. Secondly, it can be confidently stated that Comunica rightfully expects a JSON response to be accompanied by such a context link header. Apart from using an \textit{Alternate Document Location}, this is the only way to send JSON-LD syntax as JSON content. In other words, the behavior of the Comunica engine aligns perfectly with prescribed standards, while the behavior of the Getty Vocabularies server does not. \citep{kellogg2020jsonld}
+
+The Getty Vocabularies server's shortcomings lie in two aspects. Firstly, when the server receives a request explicitly asking for JSON-LD content, it should respond with JSON-LD content, especially considering that it indeed has such content available. Secondly, when the server receives a request specifically asking for JSON content, it should refrain from returning JSON with an \mintinline{text}{@context} property and instead provide a context link header in the response. This adherence to established conventions is essential for seamless interoperability between servers and clients in the RDF ecosystem.
+
+Fortunately, there is still a way to salvage the Getty Vocabularies data without discarding it. As briefly mentioned before, there exists an alternative approach to explicitly instruct the Getty Vocabularies server to provide JSON-LD content. This involves adding a \mintinline{text}{.json-ld} extension to the URI in the request. However, to ensure clarity about the server's response behavior and to avoid any further unexpected outcomes, a small experiment is conducted. The experiment delves into two key aspects. First, it evaluates the effect of appending the \mintinline{text}{.json-ld} extension to the request URI on the returned content's \mintinline{text}{Content-Type}. Second, it investigates the potential influence of setting the \mintinline{text}{Accept} header to \mintinline{text}{application/ld+json} on the previous outcome. Finally, to ensure the findings are robust and not dependent on specific parameters like the queried Getty Vocabularies thesaurus or the type of resource (whether a \textit{concept} or a \textit{term}), the experiment is performed six times. Table~\ref{tab:results_experiment_content_types_getty} provides details about the queried URIs, the status of each request's \mintinline{text}{Accept} header, whether the \mintinline{text}{.json-ld} extension is used, and the \mintinline{text}{Content-Type} of the corresponding HTTP responses. The different abbreviations that appear in the \textit{Thesaurus} column are \textit{AAT}, \textit{ULAN} and \textit{TGN}, and respectively stand for \textit{Art \& Architecture Thesaurus}, \textit{Union List of Artist Names} and \textit{Getty Thesaurus of Geographic Names}. Moreover, the six URIs defining the table's results, are \url{http://vocab.getty.edu/aat/300043071}, \url{http://vocab.getty.edu/ulan/500115588}, \url{http://vocab.getty.edu/tgn/1000070}, \url{http://vocab.getty.edu/aat/term/1000043071-en}, \url{https://vocab.getty.edu/ulan/term/1500088448-en} and \url{https://vocab.getty.edu/tgn/term/26679-en}, respectively.
+
+\begin{table}[htbp]
+    \centering
+    \begin{tabular}{ccccl}
+        \toprule
+        \multicolumn{1}{c}{Thesaurus} & \multicolumn{1}{c}{Type} & \multicolumn{1}{c}{JSON-LD extension} & \multicolumn{1}{c}{JSON-LD \mintinline{text}{Accept} header} & \multicolumn{1}{c}{\mintinline{text}{Content-Type}} \\
+        \midrule
+        AAT & Concept & \xmark & \xmark & \mintinline{text}{text/html} \\
+         & & \xmark & \cmark & \mintinline{text}{application/json} \\
+         & & \cmark & \xmark & \mintinline{text}{application/json} \\
+         & & \cmark & \cmark & \mintinline{text}{application/ld+json} \\
+        \hline
+        ULAN & Concept & \xmark & \xmark & \mintinline{text}{text/html} \\
+         & & \xmark & \cmark & \mintinline{text}{application/json} \\
+         & & \cmark & \xmark & \mintinline{text}{application/json} \\
+         & & \cmark & \cmark & \mintinline{text}{application/ld+json} \\
+        \hline
+        TGN & Concept & \xmark & \xmark & \mintinline{text}{text/html} \\
+         & & \xmark & \cmark & \mintinline{text}{application/json} \\
+         & & \cmark & \xmark & \mintinline{text}{application/json} \\
+         & & \cmark & \cmark & \mintinline{text}{application/ld+json} \\
+        \hline
+        AAT & Term & \xmark & \xmark & \mintinline{text}{text/html} \\
+         & & \xmark & \cmark & \mintinline{text}{application/ld+json} \\
+         & & \cmark & \xmark & \mintinline{text}{404 Not Found} \\
+         & & \cmark & \cmark & \mintinline{text}{application/ld+json} \\
+        \hline
+        ULAN & Term & \xmark & \xmark & \mintinline{text}{text/html} \\
+         & & \xmark & \cmark & \mintinline{text}{application/ld+json} \\
+         & & \cmark & \xmark & \mintinline{text}{404 Not Found} \\
+         & & \cmark & \cmark & \mintinline{text}{application/ld+json} \\
+        \hline
+        TGN & Term & \xmark & \xmark & \mintinline{text}{text/html} \\
+         & & \xmark & \cmark & \mintinline{text}{application/ld+json} \\
+         & & \cmark & \xmark & \mintinline{text}{404 Not Found} \\
+         & & \cmark & \cmark & \mintinline{text}{application/ld+json} \\
+        \bottomrule
+    \end{tabular}
+    \caption{Results from experiment examining \mintinline{text}{Content-Type}s of Getty Vocabularies server's HTTP responses}
+    \label{tab:results_experiment_content_types_getty}
+\end{table}
+
+The results of the experiment show that the different thesauri are treated in the same way. Still, requests to \textit{Concept} URIs and \textit{Term} URIs appear to be handled differently by the Getty Vocabularies server. However, there is one particular combination that consistently returns \mintinline{text}{application/ld+json} content for every type of URI. This occurs when a request is sent that includes both a URI with the \mintinline{text}{.json-ld} extension and requests \mintinline{text}{application/ld+json} in the \mintinline{text}{Accept} header. Nevertheless, as mentioned several times, the Comunica engine makes HTTP requests with a much more extensive \mintinline{text}{Accept} header. Fortunately, for the Getty Vocabularies server, this doesn't matter. As long as a \mintinline{text}{.json-ld} extension is used, the server returns actual JSON-LD data.
+
+While all these findings are indeed interesting, they don't immediately solve the issue with a Comunica engine not being able to request actual JSON-LD data. For this reason, just as in Section~\ref{subsec:stad_gent}, a new actor\footnote{\url{https://github.com/thesis-Martijn-Bogaert-2022-2023/comunica-feature-link-traversal/blob/feature/change-gettyvocab-stadgent-links/packages/actor-rdf-resolve-hypermedia-links-getty-jsonld-extension/lib/ActorRdfResolveHypermediaLinksGettyJsonldExtension.ts}} is constructed that extends the \mintinline{text}{ActorRdfResolveHypermediaLinks} actor. Similarly to before, all available links are iterated through for potential adjustments. The implementation of the \mintinline{text}{run} function is shown in Code Fragment\ref{lst:actor_getty_run}, illustrating how the actor not only checks whether a link matches the template of a Getty Vocabularies resource URI, but also whether it doesn't already have an extension. If the link successfully passes both tests, it is eventually appended with a \mintinline{text}{.json-ld} extension. The \mintinline{text}{test} function, as shown in Code Fragment~\ref{lst:actor_getty_test}, functions similarly to previously, checking whether the actor has already been executed.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{js}
+public async run(action: IActionRdfResolveHypermediaLinks):
+    Promise<IActorRdfResolveHypermediaLinksOutput> {
+  const gettyUriRegex = /^https?:\/\/vocab\.getty\.edu\/.+$/u;
+  const extensions = [ '.json', '.jsonld', '.rdf', '.n3', '.ttl', '.nt' ];
+  const links = action.metadata.traverse.map((link: { url: string }) => {
+    if (this.gettyUriRegex.test(link.url)) {
+      const hasExtension = this.extensions.some(ext => link.url.endsWith(ext));
+      if (!hasExtension) {
+        const oldUrl = link.url;
+        const newUrl = `${oldUrl}.jsonld`;
+        link.url = newUrl;
+        this.logInfo(action.context, `Updated ${oldUrl} to ${newUrl}`);
+      }
+    }
+    return link;
+  });
+  // Update metadata in action
+  const context = action.context.set(KEY_CONTEXT_EXTENDED, true);
+  const subAction = { ...action, context, metadata: { ...action.metadata, traverse: links }};
+  // Forward updated metadata to next actor
+  return this.mediatorRdfResolveHypermediaLinks.mediate(subAction);
+}
+    \end{minted}
+    \caption{Implementation of \mintinline{text}{ActorRdfResolveHypermediaLinksGettyJsonldExtension}'s \mintinline{text}{run} function}
+    \label{lst:actor_getty_run}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{js}
+public async test(action: IActionRdfResolveHypermediaLinks): Promise<IActorTest> {
+  if (action.context.get(KEY_CONTEXT_EXTENDED)) {
+    throw new Error('Already checked for Getty links');
+  }
+  return true;
+}
+    \end{minted}
+    \caption{Implementation of \mintinline{text}{ActorRdfResolveHypermediaLinksGettyJsonldExtension}'s \mintinline{text}{test} function}
+    \label{lst:actor_getty_test}
+\end{listing}
+
+To make this new actor operational, a dedicated configuration file is provided. This configuration file is then integrated into the custom engine configuration. Code Fragment~\ref{lst:actor_config_getty} illustrates the configuration for the new actor, while Code Fragment~\ref{lst:config_final} showcases the final configuration for the custom engine. This final configuration ultimately enables Comunica to build a link traversal engine that can not only precisely follow a query's predicate sequences and other LDES \textit{pages} but also successfully incorporate Getty Vocabularies data into the query. This enhanced engine facilitates the execution of queries like the one proposed in Code Fragment~\ref{lst:sparql_hmo_types_german}. Notably, this query capitalizes on one of the most intriguing aspects of the Getty Vocabularies data: its extensive multilingual coverage. By integrating this data, the scope of the CoGhent dataset is significantly expanded, encompassing a diverse array of languages beyond just Dutch.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{json-ld}
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        runner/^2.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        actor-rdf-resolve-hypermedia-links-getty-jsonld-extension/^1.0.0/components/context.jsonld"
+  ],
+  "@id": "urn:comunica:default:Runner",
+  "@type": "Runner",
+  "actors": [
+    {
+      "@id": "urn:comunica:default:rdf-resolve-hypermedia-links/actors#getty-jsonld-extension",
+      "@type": "ActorRdfResolveHypermediaLinksGettyJsonldExtension",
+      "beforeActors":
+        { "@id": "urn:comunica:default:rdf-resolve-hypermedia-links/actors#traverse" },
+      "mediatorRdfResolveHypermediaLinks":
+        { "@id": "urn:comunica:default:rdf-resolve-hypermedia-links/mediators#main" }
+    }
+  ]
+}
+    \end{minted}
+    \caption{Extend Getty Links Actor configuration}
+    \label{lst:actor_config_getty}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{json-ld}
+{
+  "@context": [
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        config-query-sparql/^2.0.0/components/context.jsonld",
+    "https://linkedsoftwaredependencies.org/bundles/npm/@comunica/
+        config-query-sparql-link-traversal/^0.0.0/components/context.jsonld"
+  ],
+  "import": [
+    "ccqslt:config/config-base.json",
+    "./actors/extract-links-predicates-custom.json",
+    "ccqslt:config/extract-links/actors/tree.json",
+    "./actors/rdf-resolve-hypermedia-links-traverse-extend-getty-links.json"
+  ]
+}
+    \end{minted}
+    \caption{Final custom link traversal engine configuration}
+    \label{lst:config_final}
+\end{listing}
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX skos-xl:<http://www.w3.org/2008/05/skos-xl#>
+PREFIX getty:<http://vocab.getty.edu/ontology#>
+SELECT *
+WHERE {
+  ?human_made_object cidoc:P41i_was_classified_by ?classifier.
+  ?classifier cidoc:P42_assigned ?assignation.
+  ?assignation skos-xl:prefLabel ?prefLabel.
+  ?prefLabel getty:term ?thing.
+  FILTER(LANG(?thing) = "de")
+}
+LIMIT 10
+    \end{minted}
+    \caption{SPARQL query fetching Human-Made Object's types in German}
+    \label{lst:sparql_hmo_types_german}
+\end{listing}
+
+\subsection{Conclusion}
+
+In this section, the four types of resources that arguably appear most frequently in the CoGhent LDESs were introduced and discussed. The challenges of accessing these resources through link traversal vary from type to type.
+
+Firstly, the default link traversal functionality of Comunica has no problem reaching data within each Human-Made Object's IIIF Manifest. However, it is important to note that queries interrogating manifests, should explicitly navigate the complete (long) path from Human-Made Object to the object(s) of interest.
+
+Next, accessing Wikidata resources also poses no issue for Comunica's default link traversal functionality. However, queries involving Wikidata URIs must match the RDF-specific URIs, not the \textit{regular} ones advertised by Wikidata.
+
+As for Stad Gent data, the responsibility lies with the Stad Gent server administrators. They need to adjust their server implementation to adhere to the prevailing standards so that Stad Gent resources can be successfully retrieved and parsed by a link traversal engine. At the time of publishing this research, this wasn't the case, making it impossible to involve the Stad Gent data in the link traversal process.
+
+Lastly, the Getty Vocabularies server implementation also needs adjustment to conform to the established standards. However, to still enable a Comunica link traversal engine to query Getty Vocabularies documents, a temporary workaround can be used. This involves using a custom actor that explicitly requests valid JSON-LD content from the Getty Vocabularies server.
+
+\section{Conclusion}
+\label{sec:coghent_link_traversal_conclusion}
+
+TODO

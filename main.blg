@@ -9,51 +9,51 @@ A level-1 auxiliary file: chapters/4_extended_abstract.aux
 A level-1 auxiliary file: chapters/5_list_of_acronyms.aux
 A level-1 auxiliary file: chapters/6_introduction.aux
 A level-1 auxiliary file: chapters/7_related_work.aux
-A level-1 auxiliary file: chapters/8_coghent_query_builder.aux
+A level-1 auxiliary file: chapters/8_coghent_link_traversal.aux
 A level-1 auxiliary file: chapters/9_tools_query_building.aux
 A level-1 auxiliary file: chapters/10_handling_query_results.aux
 A level-1 auxiliary file: chapters/11_conclusion.aux
 A level-1 auxiliary file: chapters/12_bibliography.aux
 A level-1 auxiliary file: chapters/13_appendices.aux
 Database file #1: references.bib
-You've used 17 entries,
+You've used 24 entries,
             1935 wiz_defined-function locations,
-            592 strings with 7621 characters,
-and the built_in function-call counts, 6900 in all, are:
-= -- 706
-> -- 276
-< -- 14
-+ -- 96
-- -- 94
-* -- 529
-:= -- 1182
-add.period$ -- 60
-call.type$ -- 17
-change.case$ -- 138
-chr.to.int$ -- 17
-cite$ -- 17
-duplicate$ -- 281
-empty$ -- 466
-format.name$ -- 117
-if$ -- 1393
+            628 strings with 8690 characters,
+and the built_in function-call counts, 8735 in all, are:
+= -- 900
+> -- 319
+< -- 16
++ -- 110
+- -- 108
+* -- 663
+:= -- 1503
+add.period$ -- 81
+call.type$ -- 24
+change.case$ -- 184
+chr.to.int$ -- 24
+cite$ -- 24
+duplicate$ -- 363
+empty$ -- 609
+format.name$ -- 136
+if$ -- 1758
 int.to.chr$ -- 1
 int.to.str$ -- 0
-missing$ -- 11
-newline$ -- 93
-num.names$ -- 45
-pop$ -- 117
+missing$ -- 13
+newline$ -- 128
+num.names$ -- 54
+pop$ -- 146
 preamble$ -- 1
-purify$ -- 134
+purify$ -- 180
 quote$ -- 0
-skip$ -- 224
+skip$ -- 284
 stack$ -- 0
-substring$ -- 421
-swap$ -- 58
+substring$ -- 520
+swap$ -- 60
 text.length$ -- 6
 text.prefix$ -- 0
 top$ -- 0
-type$ -- 100
+type$ -- 142
 warning$ -- 0
-while$ -- 50
+while$ -- 57
 width$ -- 0
-write$ -- 236
+write$ -- 321

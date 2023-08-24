@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{manifest2} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstSequence} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{sequence2} \PYG{p}{.}
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{sequence2} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstCanvas} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{canvas2} \PYG{p}{.}
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{canvas2} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstImageAnnotation} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{annotation2} \PYG{p}{.}
+\PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{annotation2} \PYG{n+nn}{iiif}\PYG{p}{:}\PYG{n+nt}{hasBody} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{image2} \PYG{p}{.}
+\end{Verbatim}

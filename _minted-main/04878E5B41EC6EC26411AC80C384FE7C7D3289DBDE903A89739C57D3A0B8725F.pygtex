@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+accept: \PYGZsq{}application/n\PYGZhy{}quads,application/trig;q=0.95,application/ld+json;q=0.9,
+         application/n\PYGZhy{}triples;q=0.8,text/turtle;q=0.6,application/rdf+xml;q=0.5,
+         application/json;q=0.45,text/n3;q=0.35,application/xml;q=0.3,
+         image/svg+xml;q=0.3,text/xml;q=0.3,text/html;q=0.2,
+         application/xhtml+xml;q=0.18,text/shaclc;q=0.1,text/shaclc\PYGZhy{}ext;q=0.05’
+\end{Verbatim}
