@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  24 AUG 2023 14:32
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  24 AUG 2023 15:23
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -3274,7 +3274,7 @@ F.pygtex) [46]
 
 
 (./_minted-main/E2BE94113399CD7A51E2DF2C0E5092FD46BEDEF9486C3A4C46282B80A282AA3
-5.pygtex)) [47] [48] [49] [50]
+5.pygtex) [47] [48] [49]) [50]
 \openout2 = `chapters/9_tools_query_building.aux'.
 
  (./chapters/9_tools_query_building.tex
@@ -3500,4 +3500,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,1001s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (79 pages, 1423924 bytes).
+Output written on main.xdv (79 pages, 1444856 bytes).
