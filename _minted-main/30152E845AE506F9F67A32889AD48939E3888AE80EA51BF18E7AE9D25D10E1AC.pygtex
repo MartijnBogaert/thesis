@@ -1,6 +1,6 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{n+nx}{objectname}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{[}
-\PYG{+w}{    }\PYG{l+s+s1}{\PYGZsq{}?o cidoc:P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by ?classified.\PYGZsq{}}\PYG{p}{,}
+\PYG{+w}{    }\PYG{l+s+s1}{\PYGZsq{}?s cidoc:P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by ?classified.\PYGZsq{}}\PYG{p}{,}
 \PYG{+w}{    }\PYG{l+s+s1}{\PYGZsq{}?classified cidoc:P42\PYGZus{}assigned ?assigned.\PYGZsq{}}\PYG{p}{,}
 \PYG{+w}{    }\PYG{l+s+s1}{\PYGZsq{}?assigned skos:prefLabel ?objectname.\PYGZsq{}}\PYG{p}{,}
 \PYG{p}{]}

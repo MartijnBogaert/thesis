@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  24 AUG 2023 15:23
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  25 AUG 2023 14:17
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1681,14 +1681,11 @@ Underfull \vbox (badness 2990) has occurred while \output is active []
 
 
 ]
-Underfull \vbox (badness 4467) has occurred while \output is active []
-
- [9])
+[9])
 \tf@toc=\write10
 \openout10 = `main.toc'.
 
-
-[10] (./main.lof
+ [10] (./main.lof
 LaTeX Info: Redefining \rmfamily on input line 4.
 LaTeX Info: Redefining \sffamily on input line 4.
 LaTeX Info: Redefining \ttfamily on input line 4.
@@ -2399,7 +2396,7 @@ Underfull \vbox (badness 1152) has occurred while \output is active []
 (./_minted-main/5039E0FDADE2164314438F383BBB179B46BEDEF9486C3A4C46282B80A282AA3
 5.pygtex)
 
-LaTeX Warning: Float too large for page by 6.72365pt on input line 417.
+LaTeX Warning: Float too large for page by 6.72365pt on input line 418.
 
 ) [16] [17]
 \openout2 = `chapters/8_coghent_link_traversal.aux'.
@@ -3279,10 +3276,16 @@ F.pygtex) [46]
 
  (./chapters/9_tools_query_building.tex
 Chapter 4.
+[51
+
+
+
+
+]
 \openout3 = `main.pyg'.
 
 
-(./_minted-main/B0D82470DAE4A13700C3B364EF116155E3888AE80EA51BF18E7AE9D25D10E1A
+(./_minted-main/30152E845AE506F9F67A32889AD48939E3888AE80EA51BF18E7AE9D25D10E1A
 C.pygtex)
 \openout3 = `main.pyg'.
 
@@ -3293,16 +3296,16 @@ C.pygtex)
 
 
 (./_minted-main/34D74E97187660B1A7EAAFF819EC4A4EE3888AE80EA51BF18E7AE9D25D10E1A
-C.pygtex)
+C.pygtex) [52]
 \openout3 = `main.pyg'.
 
 
-(./_minted-main/E3B4CF201FE8325E2CEA5E5FE9CCAFDA46BEDEF9486C3A4C46282B80A282AA3
+(./_minted-main/5B2C3080995D6980C97B86B25545135C46BEDEF9486C3A4C46282B80A282AA3
 5.pygtex)
 \openout3 = `main.pyg'.
 
 
-(./_minted-main/AA197F8B6AB4B891FF95E5C806EEA52246BEDEF9486C3A4C46282B80A282AA3
+(./_minted-main/CA244416D0B8EB91965BB50FC248479746BEDEF9486C3A4C46282B80A282AA3
 5.pygtex)
 \openout3 = `main.pyg'.
 
@@ -3333,29 +3336,24 @@ C.pygtex)
 
 
 (./_minted-main/47442EFC4B0594B6235400BB4DE7031046BEDEF9486C3A4C46282B80A282AA3
-5.pygtex))
+5.pygtex) [53]
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [51
-
-
-
-
-]
-[52] [53] [54] [55] [56]
+ [54]
+[55] [56] [57]) [58]
 \openout2 = `chapters/10_handling_query_results.aux'.
 
  (./chapters/10_handling_query_results.tex
 Chapter 5.
-) [57
+[59
 
 
 
 
-]
+]) [60]
 \openout2 = `chapters/11_conclusion.aux'.
 
- (./chapters/11_conclusion.tex) [58
+ (./chapters/11_conclusion.tex) [61
 
 
 
@@ -3364,7 +3362,7 @@ Chapter 5.
 \openout2 = `chapters/12_bibliography.aux'.
 
  (./chapters/12_bibliography.tex
-(./main.bbl [59
+(./main.bbl [62
 
 
 
@@ -3374,16 +3372,16 @@ Chapter 5.
 LaTeX Font Warning: Font shape `TU/IPAMincho(0)/m/it' undefined
 (Font)              using `TU/IPAMincho(0)/m/n' instead on input line 105.
 
-)) [60]
+)) [63]
 \openout2 = `chapters/13_appendices.aux'.
 
- (./chapters/13_appendices.tex [61
+ (./chapters/13_appendices.tex [64
 
 
 
 
 
-] [62]) [63]
+] [65]) [66]
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -3487,17 +3485,17 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 8D3AFF1F4CAAF0A84F821E31CE67E991;8474.
+(rerunfilecheck)             Checksum: 23F980AFB061639DE2691620C8B84D15;11631.
 runsystem(rm main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 40916 strings out of 475890
- 919958 string characters out of 5780263
+ 40922 strings out of 475890
+ 920053 string characters out of 5780263
  1942875 words of memory out of 5000000
- 60624 multiletter control sequences out of 15000+600000
+ 60630 multiletter control sequences out of 15000+600000
  564742 words of font info for 94 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,1001s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (79 pages, 1444856 bytes).
+Output written on main.xdv (82 pages, 1526004 bytes).

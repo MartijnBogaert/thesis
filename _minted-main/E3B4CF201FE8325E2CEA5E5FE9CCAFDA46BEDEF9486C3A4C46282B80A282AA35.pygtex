@@ -1,6 +1,0 @@
-\begin{Verbatim}[commandchars=\\\{\}]
-\PYG{c}{\PYGZsh{} Objectname}
-\PYG{n+nv}{?o} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by} \PYG{n+nv}{?s1}\PYG{p}{.}
-\PYG{n+nv}{?s1} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P42\PYGZus{}assigned} \PYG{n+nv}{?s2}\PYG{p}{.}
-\PYG{n+nv}{?s2} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?s3}\PYG{p}{.}
-\end{Verbatim}

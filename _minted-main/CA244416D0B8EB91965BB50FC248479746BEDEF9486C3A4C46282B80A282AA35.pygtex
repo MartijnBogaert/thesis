@@ -1,0 +1,12 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c}{\PYGZsh{} Objectname}
+\PYG{n+nv}{?s}
+    \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by}
+        \PYG{n+nv}{?s\PYGZus{}cidoc\PYGZus{}P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by}\PYG{p}{.}
+\PYG{n+nv}{?s\PYGZus{}cidoc\PYGZus{}P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by}
+    \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P42\PYGZus{}assigned}
+        \PYG{n+nv}{?s\PYGZus{}cidoc\PYGZus{}P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by\PYGZus{}cidoc\PYGZus{}P42\PYGZus{}assigned}\PYG{p}{.}
+\PYG{n+nv}{?s\PYGZus{}cidoc\PYGZus{}P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by\PYGZus{}cidoc\PYGZus{}P42\PYGZus{}assigned}
+    \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel}
+        \PYG{n+nv}{?s\PYGZus{}cidoc\PYGZus{}P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by\PYGZus{}cidoc\PYGZus{}P42\PYGZus{}assigned\PYGZus{}skos\PYGZus{}prefLabel}\PYG{p}{.}
+\end{Verbatim}

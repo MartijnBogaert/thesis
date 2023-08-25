@@ -1,13 +1,22 @@
 \chapter{Tools for Query Building}
 \label{chap:tools_query_building}
 
-TODO
+Discovering digital art collections encompasses a wide array of possibilities, each with its unique interpretations and implementations. This research, however, primarily centers on the facilitation aspect of this discovery process. The CoGhent collections undoubtedly harbor a treasure trove of potentially captivating insights, yet professionals and art enthusiasts can only unlock these treasures if they can formulate the right SPARQL queries. This task is far from simple, particularly when considering that these individuals might lack the technical proficiency required to construct such queries. Consequently, this chapter introduces and partially develops two conceptual web applications designed to significantly alleviate the technical complexities of query formulation for users.
+
+The first application draws inspiration from the existing CoGhent Query Builder proposed in Section~\ref{subsec:coghent_query_builder}. The fundamental concept remains unchanged: users are presented with a list of properties, and based on their selections, the application constructs a query with the necessary triple patterns to retrieve the desired data. However, the \textit{enhanced} iteration of this application takes two further strides. Firstly, it introduces modularity by ensuring that the properties and their corresponding triple patterns are not hard-coded into the application. Instead, they are provided as sequences of predicates through JSON files. Secondly, the application supports the generation of \textit{cross-dataset queries} that can be effectively resolved through a link traversal engine, as elaborated in Chapter~\ref{chap:coghent_link_traversal}.
+
+The second application targets users with a slightly more advanced understanding of RDF. It empowers them to explore the predicate sequences of properties of interest themselves. This exploration journey begins with an RDF resource provided by the user. From this initial \textit{root} resource, users can progressively construct a tree comprising of predicates and objects. Based on users' choices, the application executes queries to fetch the predicates and objects associated with an already-present resource in the tree. As users gain a deeper understanding of the data accessible through the given root resource, they can select specific objects within the tree. The application then deduces the predicate sequences leading from the root resource to these chosen objects and subsequently generates a corresponding query. Crucially, since this query solely relies on predicate sequences, it empowers users to perform a generalized inquiry on their entire dataset(s), not just the resource specified at the beginning of the process.
+
+Both of these applications are briefly introduced in Sections~\ref{sec:new_query_builder} and~\ref{sec:discovering_predicate_sequences}, respectively, by discussing their main features and most essential implementation details. For the complete implementations, readers are referred to their respective GitHub repositories: \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/sparql-query-builder-ui} and \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/rdf-predicates-explorer}. However, prior to this, Section~\ref{sec:building_queries_predicate_sequences} first covers the fundamental functionality shared by both web applications. As to avoid repeating code and to ensure separation of concerns, this functionality lives on its own and is incorporated into the other two applications by importing its implementation as a package. The detailed implementation of this essential tool can be found in the following GitHub repository: \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/sparql-query-builder}.
 
 \section{Building Queries from Predicate Sequences}
 \label{sec:building_queries_predicate_sequences}
 
-TODO (see LateX comments for notes)
+TODO
 
+\subsection{Arrays of Triple Patterns}
+
+TODO
 
 % Easiest way to rebuild existing app:
 %
@@ -18,7 +27,7 @@ TODO (see LateX comments for notes)
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{js}
 objectname: [
-    '?o cidoc:P41i_was_classified_by ?classified.',
+    '?s cidoc:P41i_was_classified_by ?classified.',
     '?classified cidoc:P42_assigned ?assigned.',
     '?assigned skos:prefLabel ?objectname.',
 ]
@@ -42,7 +51,9 @@ PREFIX la:<https://linked.art/ns/terms/>
 %
 % Downsides: WHERE clause statements very much hardcoded + hardcoded prefixes not good for modularity app
 
+\subsection{Arrays of Predicates}
 
+TODO
 
 % Other idea:
 %
@@ -67,9 +78,9 @@ objectname: [
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 # Objectname
-?o cidoc:P41i_was_classified_by ?s1.
-?s1 cidoc:P42_assigned ?s2.
-?s2 skos:prefLabel ?s3.
+?s cidoc:P41i_was_classified_by ?var1.
+?var1 cidoc:P42_assigned ?var2.
+?var2 skos:prefLabel ?o3.
     \end{minted}
     \caption{WHERE clause statements with object variable names constructed using numbers}
     \label{lst:where_statements_objects_numbers}
@@ -78,15 +89,15 @@ objectname: [
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 # Objectname
-?o
+?s
     cidoc:P41i_was_classified_by
-        ?o_cidoc_P41i_was_classified_by.
-?o_cidoc_P41i_was_classified_by
+        ?s_cidoc_P41i_was_classified_by.
+?s_cidoc_P41i_was_classified_by
     cidoc:P42_assigned
-        ?o_cidoc_P41i_was_classified_by_cidoc_P42_assigned.
-?o_cidoc_P41i_was_classified_by_cidoc_P42_assigned
+        ?s_cidoc_P41i_was_classified_by_cidoc_P42_assigned.
+?s_cidoc_P41i_was_classified_by_cidoc_P42_assigned
     skos:prefLabel
-        ?o_cidoc_P41i_was_classified_by_cidoc_P42_assigned_skos_prefLabel.
+        ?s_cidoc_P41i_was_classified_by_cidoc_P42_assigned_skos_prefLabel.
     \end{minted}
     \caption{WHERE clause statements with object variable names constructed from preceding statements}
     \label{lst:where_statements_objects_long}
@@ -128,7 +139,9 @@ objectname: [
 % Might make a difference in length of query when more statements overlap, but when the query is run, Comunica will "clean things up" for us, so doesn't have influence on data retrieval (TODO: check if true)
 % To keep queries readable & app not too complicated -> let's not worry about such "feature"
 
+\subsection{User-Defined Variable Names and Property Path Sequences}
 
+TODO
 
 % Compromise:
 %
@@ -202,7 +215,9 @@ WHERE {
     \label{lst:query_generated_edge_cases}
 \end{listing}
 
+\subsection{Filtered and Optional Properties}
 
+TODO
 
 % FILTER
 % possible to create extra dict with property names as keys and filter details as values and feed to app
@@ -263,25 +278,53 @@ WHERE {
     \label{lst:query_generated_filters_optionals}
 \end{listing}
 
-% FROM
-%const datasets = [
-%	'http://stad.gent/ldes/hva',
-%	'http://stad.gent/ldes/dmg',
-%	'http://stad.gent/ldes/archief',
-%	'http://stad.gent/ldes/stam',
-%	'http://stad.gent/ldes/industriemuseum',
-%];
+\subsection{Limit and Offset}
+
+TODO
 
 % LIMIT and OFFSET
 % according to coghent documentation "the SparQL endpoint limits results to 1.000 lines." (https://coghent.github.io/basicqueries.html), but Cominica gives more by default: 10.000 -> what's up with this (TODO: ask)
 % in app, just feed to query building function as arguments
+
 
 \section{A New Query Builder}
 \label{sec:new_query_builder}
 
 TODO
 
+\subsection{Modularity}
+
+TODO
+
+\subsection{Performing Queries}
+
+TODO
+
 \section{Discovering Predicate Sequences}
 \label{sec:discovering_predicate_sequences}
+
+TODO
+
+\subsection{Starting Resource}
+
+TODO
+
+\subsection{Tree Data Structure and Visualization}
+
+TODO
+
+\subsection{Tree Expansion}
+
+TODO
+
+\subsection{Predicate Sequences Selection}
+
+TODO
+
+\subsection{Performing Queries}
+
+TODO
+
+\section{Conclusion}
 
 TODO
