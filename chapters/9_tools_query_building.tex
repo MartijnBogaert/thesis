@@ -308,7 +308,7 @@ Specifically, the query-building, or in fact \mintinline{text}{buildQuery}\footn
 
 \end{enumerate}
 
-\section{A New Query Builder}
+\section{A Modular Query Builder}
 \label{sec:new_query_builder}
 
 The application introduced in this section closely mirrors the functionality of the original CoGhent Query Builder. However, due to its reliance on the query-building function as outlined in Section~\ref{sec:building_queries_predicate_sequences}, the resultant queries possess the potential to target a broad spectrum of datasets beyond just CoGhent's.
@@ -341,29 +341,63 @@ While many of these UI elements are also present in the original CoGhent Query B
 \section{Discovering Predicate Sequences}
 \label{sec:discovering_predicate_sequences}
 
-TODO
+The previous tool, while making query construction very accessible for absolute beginners, does have a clear drawback: the queries that can be created depend on the already available \textit{properties}. In other words, users rely on the work of others. To cater to users who are a bit more adventurous and want access to the \textit{theoretically} complete list of properties without requiring them to have prior knowledge of the schema of the data source they're querying, an additional tool is introduced in this section.
+
+This application allows users to gain a better understanding of how the data in their dataset is structured before selecting properties of interest. This is achieved by letting users provide a specific resource URI that should indicate the kind of predicates and objects that can be reached by starting from essentially any such resource. In other words, this \textit{starting} resource serves as a blueprint for the schema of all its \textit{colleague} resources. For instance, consider the CoGhent LDESs; they encompass a plethora of Human-Made Objects. If a user wants to query the CoGhent LDESs but has no idea about the kind of data that Human-Made Objects grant access to, they can provide the URI of any Human-Made Object as the starting point for the application. The application then allows the user to freely explore all branches and sub-branches departing from this resource. Armed with that knowledge, the user can subsequently select specific data points that sound interesting to them. The query builder application from Section~\ref{sec:building_queries_predicate_sequences} can then generate a query from the corresponding \textit{predicate paths}, which can be executed across the entire CoGhent LDESs, using all available Human-Made Objects as starting points.
+
+It must be acknowledged, however, that the system of solely relying on the user to specify the starting resource's URI goes somewhat against the goal of \textit{user-friendliness}. After all, to get this URI, the user is essentially expected to have queried their dataset before - at least partially. While not implemented in the code provided with the research, several ways can be brought into place to alleviate this issue. For instance, the application could potentially ask the user to initially only provide access to their dataset. From that dataset, the application could then extract the resource URIs itself - one per \textit{type} - and let the user choose on of them as the starting point. Additionally, a very simple search system could even be integrated to help the user find an even more \textit{thought out} starting point.
 
 The actual implementation can be found in the following GitHub repository:
 \begin{center}
     \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/rdf-predicates-explorer}.
 \end{center}
 
-\subsection{Starting Resource}
-
-TODO
-
 \subsection{Tree Data Structure and Visualization}
 
-TODO
+As illustrated by Figure~\ref{fig:linked_data}, a web of Linked Data can typically be represented using a graph. In this representation, nodes represent resources or atomic values, and edges represent predicates. For the development of the application central to this section, relying on a graph structure is therefore a good option. However, in the interest of clarity for users and to avoid unnecessarily complicating the development process of the application, the choice is made to avoid working with cycles. In other words, the discovery of new predicates and resources is supported by a tree structure. After all, opting for a tree data structure not only enhances the visualization aspect of the application but also aids in storing the data.
+
+Developing a tree data structure itself is no insurmountable task. However, developing a tree's visualization aspect is less straightforward. Therefore, existing systems are leveraged. Given that the application is a Node.js application, there are numerous libraries that can be considered. For instance, a very popular choice for any kind of data visualization is \textit{D3.js}\footnote{\url{https://www.npmjs.com/package/d3}}. However, while this library offers a lot of possibilities, achieving a user-friendly tree interface still requires substantial implementation work. Therefore, a better approach would be to seek out libraries specifically focused on tree visualization. One such library is \textit{visjs-network}\footnote{\url{https://www.npmjs.com/package/visjs-network}}\footnote{The \textit{visjs-network} library is a fork of the now depricated \textit{vis.js} library}. This library does indeed make it remarkably simple to provide nodes and edges with custom data and neatly visualize the entire tree, including pan and zoom functionality. However, during its use within the context of this research, it became evident that this package still presents challenges regarding visualization customization. After all, there needs to be enough space in the nodes and at the edges to accommodate the corresponding resource and predicate URIs. A more fitting alternative is therefore \textit{cytoscape.js}\footnote{\url{https://www.npmjs.com/package/cytoscape}}. This library too makes tree data management exceedingly simple, but it also allows for a fairly straightforward arrangement of the tree's design so that even custom data can be made legible.
+
+Figure~\ref{fig:rdf_explorer} displays a screenshot of the application, illustrating the final tree design.
+
+\begin{figure}[htbp]
+    \centering
+	\includegraphics[width=\textwidth]{images/rdf_explorer.png}
+	\caption{Screenshot of RDF Predicates Explorer}
+	\label{fig:rdf_explorer}
+\end{figure}
 
 \subsection{Tree Expansion}
 
-TODO
+Another advantage to using \textit{cytoscape.js} is the ease with which event listeners for node clicks can be added. This is necessary as users need to interact with nodes. For instance, if a node represents a resource, not an atomic value, users should be able to \textit{expand} it. This involves retrieving the predicate and object for every triple pattern in which the resource is the subject. Consequently, for each such predicate-object pair found, a corresponding edge-node pair is added to the resource node. This system allows users to build a tree of predicates and resources, providing insights into the part of the web of Linked Data that the starting resource grants access to.
+
+Naturally, behind this \textit{expanding} operation lies a SPARQL query. That query is not at all complicated, as exemplified by Code Fragment~\ref{lst:function_query_subject}. Here, the function that returns the necessary query for a given resource URI is presented. To execute the query, the application uses Comunica's standard SPARQL engine\footnote{\url{https://github.com/comunica/comunica/tree/master/engines/query-sparql}}, rather than a link traversal engine. The latter isn't necessary for this type of query, as there is no need for a link traversal engine that might needlessly search for potentially \textit{followable} links and carries some overhead anyways. Furthermore, the used query engine naturally requires a datasource. Logically, the resource URI should suffice for this. At least, that is the theory. Because in practice and as attested to in Section~\ref{sec:links_to_follow}, certain resource URIs – for various reasons – do not always lead directly to a \textit{queryable} document. For instance, Getty Vocabularies URIs only return correct JSON-LD content when a \mintinline{text}{.json-ld} extension is appended to them. Therefore, to also enable users to expand these \textit{affected} resources, the application provides the possibility to modify the datasource before executing the query from Code Fragment~\ref{lst:function_query_subject}. As a bonus, this also enables users to specify a SPARQL endpoint as the datasource, potentially speeding up querying.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{javascript}
+function buildQuery(subjectResource) {
+    return `
+        SELECT ?p ?o
+        WHERE {
+            <${subjectResource}> ?p ?o.
+        }
+    `;
+}
+    \end{minted}
+    \caption{Function returning a SPARQL query for completing a resource subject's triple pattern}
+    \label{lst:function_query_subject}
+\end{listing}
 
 \subsection{Predicate Sequences Selection}
 
-TODO
+The purpose of the application central to this section is, of course, to compose queries. To achieve this, this application also utilizes the query builder application discussed in Section~\ref{sec:building_queries_predicate_sequences}. The query builder function of the latter expects several parameters, with the most important being the \mintinline{text}{properties} parameter. In other words, for each type of property the user wants to include in their query, at least the corresponding \textit{predicate sequence}, and optionally some filter details and an \mintinline{text}{optional} value, must be provided. Compiling all of this into a valid \mintinline{text}{properties} dictionary is a trivial task for the application. However, to understand the user's preferences, the necessary UI elements need to be provided. Code Fragment~\ref{fig:rdf_explorer} already provides a visual indication of those.
+
+Specifically, the application presents an input form when a node is clicked. Initially, it only offers the option to enter a property name. The intention is for this to briefly describe the type of data obtained by following the predicate sequence to the node in question – whether a resource or an atomic value. Subsequently, once the property name is provided, the user can add the property to the query. This step presents them with a few additional yet optional fields. Specifically, the user can provide a string filter – the label of the node in question is automatically offered as an option – choose a language, and designate the property as required or optional. Each node included as a property in the query is highlighted in the tree.
+
+Consequently, when the user is satisfied with their choices, they can press the \textit{Generate Query} button. Upon this signal, the application first collects all properties with their respective details into a dictionary, structured according to the rules defined in Section~\ref{subsec:building_queries_predicate_sequences_overview}. For each chosen node, this also requires the various predicates leading from the starting resource to that node. Fortunately, \textit{cytoscape.js} can help with this too. After all, for each node, it offers the \mintinline{text}{predecessors()}\footnote{\url{https://js.cytoscape.org/\#nodes.predecessors}} function. This leaves the application only with filtering each selected node's predecessors for just edges – predicates – and reversing their order. Eventually, once the complete \mintinline{text}{predicates} dictionary is determined, the application passes it to the query-building function, which ultimately presents the generated query to the user. As an added bonus, the application can even convert the dictionary to a JSON file, allowing it to be used as a \textit{module} in the application discussed in Section~\ref{sec:new_query_builder}.
 
 \section{Conclusion}
 
-TODO
+The applications presented in Sections~\ref{sec:new_query_builder} and~\ref{sec:discovering_predicate_sequences} are primarily user-centric. The application in Section~\ref{sec:new_query_builder}, for instance, serves as a great starting point for absolute beginners to get a high-level idea of certain datasets, as well as how the selection of specific properties, accompanied by questions, translates into the construction of a SPARQL query. However, the drawback is that users rely on existing \textit{modules} tailored to specific datasets. Without these modules, the application has no use. This is why the application discussed in Section~\ref{sec:discovering_predicate_sequences} was developed. It allows users to select properties based on the branches and sub-branches of a specific resource in their dataset. However, this application expects a bit more technical understanding from users. Not only do users need to provide the URI of the starting resource themselves, \textit{expanding} the tree can also be a somewhat tedious process.
+
+Certainly, both applications have their distinct strengths and weaknesses. However, the key functionality of both, which is query building, is performed by a separate application. This application provides a query-building function that enables developers to build various user-centric applications \textit{around} it. The only prerequisite is to provide the function with the appropriate parameters. Once again, the specific details of these parameters are set out in Section~\ref{subsec:building_queries_predicate_sequences_overview}.
