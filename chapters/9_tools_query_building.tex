@@ -251,6 +251,7 @@ Code Fragments~\ref{lst:properties_filter_optionals} and~\ref{lst:query_generate
 Finally, the application is also capable of adding a \mintinline{text}{LIMIT} and/or \mintinline{text}{OFFSET} statement to the query. Their corresponding parameters, \mintinline{text}{limit} and \mintinline{text}{offset} can simply be passed as parameters to the query-building function. However, it is worth noting that, since this research largely focuses on LTQP, an offset might not be very meaningful for a link traversal engine. It is difficult to predict in advance which results will be returned, so scrolling through them using an offset might not provide much value. On the other hand, providing a limit is quite advantageous. Since link traversal can be slow and theoretically even infinite, a limit partly alleviates these issues by instructing the query engine to stop gathering links and results after a certain count.
 
 \subsection{Overview}
+\label{subsec:building_queries_predicate_sequences_overview}
 
 The application is clearly highly powerful when it comes to constructing simple queries, specifically queries that target specific data points. Creating input for the query-building function is less tedious than manually composing the corresponding query. Nevertheless, throughout the previous sections, numerous \textit{rules} have been presented, making it appropriate to summarize them. It is important, however, to understand that the use, and therefore the preparation of input for the query-building function, is not intended for the end user. On the contrary, the described application is designed to be incorporated by other applications that ultimately - and hopefully - provide the end user with a user-friendly user interface. In other words, the developers of these end applications are the ones who need to know how to properly provide the query-building function with the right parameters.
 
@@ -310,7 +311,11 @@ Specifically, the query-building, or in fact \mintinline{text}{buildQuery}\footn
 \section{A New Query Builder}
 \label{sec:new_query_builder}
 
-TODO
+The application introduced in this section closely mirrors the functionality of the original CoGhent Query Builder. However, due to its reliance on the query-building function as outlined in Section~\ref{sec:building_queries_predicate_sequences}, the resultant queries possess the potential to target a broad spectrum of datasets beyond just CoGhent's.
+
+There are two other substantial differences with the original CoGhent Query Builder as well. Firstly, the application's modularity is evident in the sense that the presented properties are not rigidly embedded within the application's codebase. Instead, they are dynamically retrieved from distinct JSON files. Secondly, the generated queries have the capacity to traverse beyond single documents, necessitating execution through a link traversal engine.
+
+Just like the query builder application introduced in Section~\ref{sec:building_queries_predicate_sequences}, this section too introduces a Node.js application. However, this one now boasts a user interface (UI). Nonetheless, the UI is so user-friendly and intuitive that these technical intricacies do not find coverage within this research. Simply put, users are initially presented with an overview of available \textit{modules}. They can then \textit{open} these modules and make selections from the displayed properties. With each modification of this selection, the application updates the corresponding query. It is worth noting that while the original CoGhent Query Builder generates its queries only when a button is clicked, this application aims to provide users with a better understanding of the query-building process by translating their actions into results in real-time.
 
 The actual implementation can be found in the following GitHub repository:
 \begin{center}
@@ -319,11 +324,19 @@ The actual implementation can be found in the following GitHub repository:
 
 \subsection{Modularity}
 
-TODO
+As announced, this application introduces a form of modularity by offering property selection based on independent JSON files. On the one hand, the application looks into the \mintinline{text}{config/} directory at the root of the project, and on the other, users can upload their own JSON files. The key property of such JSON files is, of course, its \mintinline{text}{properties} key. It aligns perfectly with the type of properties dictionary that needs to be passed to the query-building function from Section~\ref{sec:building_queries_predicate_sequences}. Its schema thus corresponds entirely to the schema outlined in Section~\ref{subsec:building_queries_predicate_sequences_overview}. When forwarding the data of the user-selected properties to the query-building function, the application subsequently merely needs to parse the selected JSON properties into JavaScript objects and aggregate them together in a JavaScript dictionary. This dictionary is then ready to be passed as the first parameter of the query-building function.
 
-\subsection{Performing Queries}
+In addition to the \mintinline{text}{properties} key, a JSON file can optionally include a \mintinline{text}{prefixes} key. This key specifies a dictionary that maps prefixes to their URIs. When the selected properties are passed to the query-building function, the application will check for any used prefixes in their \mintinline{text}{statements} arrays. Using this information, the application can retrieve the necessary prefix definitions from the \mintinline{text}{prefixes} JSON dictionary and pass them to the query-building function.
 
-TODO
+Modularity is a useful feature, but it's important to consider that the targeted \mintinline{text}{config/} directory can potentially contain a large number of JSON files. To prevent the application from performing too many and potentially unnecessary I/O operations on start-up, the application initially refrains from loading the contents of the JSON files. Instead, it reads all the JSON file names and uses them to provide users with an overview of the available \textit{modules}. Only when a user decides to \textit{expand} a module, the contents of the corresponding JSON file are loaded, and its properties are presented to the user as selectable \textit{blocks}.
+
+It must be acknowledged that working with these \textit{bare} JSON files does not entirely align with the spirit of Linked Data. The use of such independent resources could indeed prompt their publication in RDF format. However, since this part of the research mainly focuses on the query-building process, this functionality has not been developed. Nonetheless, if the need arises in the future, this is a direction that can certainly be investigated more extensively.
+
+\subsection{Signifying Intent with Questions}
+
+As a reminder, the UI of the application essentially displays a list of selectable properties. Each property is represented by a \textit{block} displaying the property's name and providing the option to select the property. What hasn't been mentioned yet is that these \textit{blocks} also provide filtering options. Specifically, a user can provide a string filter and select a language from the corresponding dropdown list.
+
+While many of these UI elements are also present in the original CoGhent Query Builder, this application introduces an additional component that could potentially make the query-building process more comprehensible and powerful for users. Namely, for each property in a JSON file, a \mintinline{text}{question} key can be included. This should give an indication of the kind of question that can be answered by selecting the respective property. Of course, these questions are not passed to the query-building function; they are only used to be displayed in each property \textit{block} and assist the user in constructing queries.
 
 \section{Discovering Predicate Sequences}
 \label{sec:discovering_predicate_sequences}
@@ -348,10 +361,6 @@ TODO
 TODO
 
 \subsection{Predicate Sequences Selection}
-
-TODO
-
-\subsection{Performing Queries}
 
 TODO
 

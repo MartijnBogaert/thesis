@@ -50,27 +50,26 @@
 \contentsline {subsection}{\numberline {4.1.5}Limit and Offset}{59}{subsection.4.1.5}%
 \contentsline {subsection}{\numberline {4.1.6}Overview}{60}{subsection.4.1.6}%
 \contentsline {section}{\numberline {4.2}A New Query Builder}{62}{section*.70}%
-\contentsline {subsection}{\numberline {4.2.1}Modularity}{62}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Performing Queries}{63}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{63}{section*.71}%
-\contentsline {subsection}{\numberline {4.3.1}Starting Resource}{63}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Tree Data Structure and Visualization}{63}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Tree Expansion}{63}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Predicate Sequences Selection}{63}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Performing Queries}{63}{subsection.4.3.5}%
-\contentsline {section}{\numberline {4.4}Conclusion}{63}{section*.72}%
-\contentsline {chapter}{\numberline {5}Handling Query Results}{64}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Visualizing Query Results}{64}{section*.73}%
-\contentsline {subsection}{\numberline {5.1.1}IIIF Viewers}{64}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Custom Viewer}{64}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Saving Query Results}{64}{section*.74}%
-\contentsline {subsection}{\numberline {5.2.1}SPARQL Query}{64}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}IIIF Manifest}{65}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Predicate Sequences}{65}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Conclusion}{65}{section*.75}%
-\contentsline {chapter}{Conclusion}{66}{chapter*.76}%
-\contentsline {section}{Ethical and social reflection}{66}{section*.78}%
-\contentsline {chapter}{References}{67}{chapter*.79}%
-\contentsline {chapter}{Appendices}{69}{section*.80}%
-\contentsline {section}{Appendix A}{70}{section*.81}%
-\contentsline {section}{Appendix B}{71}{section*.82}%
+\contentsline {subsection}{\numberline {4.2.1}Modularity}{63}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Signifying Intent with Questions}{64}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{64}{section*.71}%
+\contentsline {subsection}{\numberline {4.3.1}Starting Resource}{64}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Tree Data Structure and Visualization}{64}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Tree Expansion}{64}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Predicate Sequences Selection}{65}{subsection.4.3.4}%
+\contentsline {section}{\numberline {4.4}Conclusion}{65}{section*.72}%
+\contentsline {chapter}{\numberline {5}Handling Query Results}{66}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Visualizing Query Results}{66}{section*.73}%
+\contentsline {subsection}{\numberline {5.1.1}IIIF Viewers}{66}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Custom Viewer}{66}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Saving Query Results}{66}{section*.74}%
+\contentsline {subsection}{\numberline {5.2.1}SPARQL Query}{66}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}IIIF Manifest}{67}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Predicate Sequences}{67}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Conclusion}{67}{section*.75}%
+\contentsline {chapter}{Conclusion}{68}{chapter*.76}%
+\contentsline {section}{Ethical and social reflection}{68}{section*.78}%
+\contentsline {chapter}{References}{69}{chapter*.79}%
+\contentsline {chapter}{Appendices}{71}{section*.80}%
+\contentsline {section}{Appendix A}{72}{section*.81}%
+\contentsline {section}{Appendix B}{73}{section*.82}%
