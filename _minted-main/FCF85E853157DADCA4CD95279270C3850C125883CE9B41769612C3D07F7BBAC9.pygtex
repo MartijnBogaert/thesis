@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kd}{function}\PYG{+w}{ }\PYG{n+nx}{buildQuery}\PYG{p}{(}\PYG{n+nx}{subjectResource}\PYG{p}{)}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{l+s+sb}{`}
+\PYG{l+s+sb}{        SELECT ?p ?o}
+\PYG{l+s+sb}{        WHERE \PYGZob{}}
+\PYG{l+s+sb}{            \PYGZlt{}}\PYG{l+s+si}{\PYGZdl{}\PYGZob{}}\PYG{n+nx}{subjectResource}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+sb}{\PYGZgt{} ?p ?o.}
+\PYG{l+s+sb}{        \PYGZcb{}}
+\PYG{l+s+sb}{    `}\PYG{p}{;}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
