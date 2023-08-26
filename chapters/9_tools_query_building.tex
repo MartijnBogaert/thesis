@@ -12,18 +12,19 @@ Both of these applications are briefly introduced in Sections~\ref{sec:new_query
 \section{Building Queries from Predicate Sequences}
 \label{sec:building_queries_predicate_sequences}
 
-TODO
+To provide user-oriented applications with the capability to obtain the corresponding query based on an input of predicate sequences, this section introduces a Node.js application that accomplishes precisely that. The application does not have a user interface; it solely exports a function that performs the described functionality. This allows other Node.js applications to use the function by installing the application as a package.
+
+The actual implementation can be found in the following GitHub repository:
+\begin{center}
+    \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/sparql-query-builder}.
+\end{center}
 
 \subsection{Arrays of Triple Patterns}
 
-TODO
+The simplest but somewhat naive way to build queries in the application is by maintaining the necessary triple patterns for each \textit{property} they represent in a single string. Based on the properties selected by the user, the application can then place the corresponding strings one by one in the \mintinline{text}{WHERE} clause of a new query. However, starting from such completely hard-coded \textit{chunks} of triple patterns not at all meets the requirement of working with \textit{predicate sequences}, makes it difficult to \textit{clean up} the query, and is simply no elegant solution.
 
-% Easiest way to rebuild existing app:
-%
-% - Keep dict of properties (e.g. title, description ...) and their necessary statements for WHERE clause
-%   E.g.:
-%   title: '?o cidoc:P102_has_title ?title.'
-%   OR for properties needing more than one statement
+The next logical approach is to keep an array of strings for each property, with each string representing a single triple pattern. Code Fragment~\ref{lst:where_statements_array} provides an example of what such an array might look like. Note that the array itself effectively becomes the value of a key-value pair, the key being the property name. This allows to \textit{feed} the function responsible for the actual query building with a dictionary of such key-value pairs.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{js}
 objectname: [
@@ -32,12 +33,12 @@ objectname: [
     '?assigned skos:prefLabel ?objectname.',
 ]
     \end{minted}
-    \caption{WHERE clause statements to query for \textit{objectname} stored as elements in array}
+    \caption{WHERE clause statements to query for \textit{objectname} stored as elements in an array}
     \label{lst:where_statements_array}
 \end{listing}
-%   Above can also be saved as one single string
-%
-% - Always add all prefixes at top of query:
+
+An important and convenient feature of SPARQL is the ability to use prefixes. Code Fragment~\ref{lst:where_statements_array}, for instance, assumes that the provided triple patterns are already utilizing prefixes. Naturally, in this case, the application should construct a query that begins with the necessary \mintinline{text}{prefix} statements. The simplest, yet again naive, way to achieve this is by including the same set of \mintinline{text}{prefix} statements at the start of each query. Code Fragment~\ref{lst:prefix_statements_original} illustrates what this set of \mintinline{text}{prefix} statements might look like.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
@@ -45,21 +46,16 @@ PREFIX adms:<http://www.w3.org/ns/adms#>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
 PREFIX la:<https://linked.art/ns/terms/>
     \end{minted}
-    \caption{All possible PREFIX statements of original CoGhent Query Builder}
+    \caption{All possible PREFIX statements of the original CoGhent Query Builder}
     \label{lst:prefix_statements_original}
 \end{listing}
-%
-% Downsides: WHERE clause statements very much hardcoded + hardcoded prefixes not good for modularity app
+
+It hardly needs mentioning that the solutions described above come with several issues. First, breaking down the \textit{chunks} of triple patterns into separate array members still does not allow for a clean query generation process. Second, hard-coded prefixes hinder the modularity of the app. After all, only accepting triple statements with prefixes from such a limited predefined list is hardly user-friendly. Moreover, even if the app aims to accommodate as many types of prefixes as possible, the question arises: how extensive should that list - and thus each query - become?
 
 \subsection{Arrays of Predicates}
 
-TODO
+To address both of these shortcomings, an improved approach is proposed. It is important to realize that due to the nature of the queries being formulated in this research, only the predicate of each triple pattern is of real importance. The subjects and objects are consistently variables, and storing their names along with the predicate does not serve much purpose. Therefore, the elements in each property's array do not need to correspond directly to explicit triple patterns, but solely to predicates. This really brings the concept of \textit{predicate sequences} to the forefront. Additionally, to have a better understanding of which prefixes are potentially used, these can also be extracted from the predicate strings and stored separately. With these observations in mind, Code Fragment~\ref{lst:where_statements_array_predicates} introduces a new data structure. In it, each property to be included in the query, holds an array of objects. In turn, each of these objects includes a mandatory predicate field and, in case the latter is no URI, a prefix field as well.
 
-% Other idea:
-%
-% in fact, only predicates are important -> save only those
-% together with predicate, save prefix
-% E.g.:
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{js}
 objectname: [
@@ -68,24 +64,27 @@ objectname: [
     { prefix: 'skos', predicate: 'prefLabel' },
 ]
     \end{minted}
-    \caption{Prefixes and predicates for WHERE clause statements to query for \textit{objectname} stored as elements in array}
+    \caption{Prefixes and predicates for WHERE clause statements to query for \textit{objectname} stored as elements in an array}
     \label{lst:where_statements_array_predicates}
 \end{listing}
-%
-% Downsides:
-% - app needs to come up with variable names itself
-%   e.g.
+
+Immediately, it becomes apparent that using this new data structure is much more elegant than the initially proposed approach. However, the downside is that the query building function now has more work to do. Since variable names are no longer specified, the function needs to generate them. This can be approached in two ways.
+
+Firstly, the function could use a generic variable name like \mintinline{text}{var} and append an ever increasing number to it. The major drawback of this solution, though, is that generic variable names can make the query less readable. For instance, while Code Fragment~\ref{lst:where_statements_objects_numbers} required introducing \textit{only} four such variable names, it becomes evident that a larger number of them would make the final query less user-friendly.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 # Objectname
-?s cidoc:P41i_was_classified_by ?var1.
-?var1 cidoc:P42_assigned ?var2.
-?var2 skos:prefLabel ?o3.
+?var1 cidoc:P41i_was_classified_by ?var2.
+?var2 cidoc:P42_assigned ?var3.
+?var3 skos:prefLabel ?var4.
     \end{minted}
     \caption{WHERE clause statements with object variable names constructed using numbers}
     \label{lst:where_statements_objects_numbers}
 \end{listing}
-%   OR
+
+As a second approach, the function could use variable names determined by the preceding variable names and predicates. Code Fragment~\ref{lst:where_statements_objects_long} demonstrates that this type of variable naming indeed clearly indicates their purpose. However, in terms of user-friendliness, this approach scores even worse than the previous one. Queries quickly become overloaded with overly long variable names, rendering them barely understandable and certainly not readable.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 # Objectname
@@ -102,26 +101,9 @@ objectname: [
     \caption{WHERE clause statements with object variable names constructed from preceding statements}
     \label{lst:where_statements_objects_long}
 \end{listing}
-%   -> both very unreadable
-%   -> query builder not only to help build queries but also to help understand queries and data
-%   -> better to have readable variables (proposed by humans up front) OR use no variables (property path sequence)
-%
-% Upside: keeping track of "bare" predicates one by one can help "clean up" query later on when start statements might overlap
-% E.g.:
-\begin{listing}[htbp]
-    \begin{minted}[samepage,fontsize=\small]{sparql}
-# Place
-?o cidoc:P108i_was_produced_by ?produced.
-?produced cidoc:P7_took_place_at ?tookplace.
-?tookplace la:equivalent ?plaatsequivalent.
-?plaatsequivalent skos:prefLabel ?plaats.
-# Date
-?produced cidoc:P4_has_time-span ?timespan.
-    \end{minted}
-    \caption{WHERE clause statements without overlapping statements}
-    \label{lst:where_statements_no_overlapping}
-\end{listing}
-% instead of
+
+It is evident that none of the approaches mentioned above is the optimal solution. Therefore, in Section~\ref{subsec:variable_names_property_path_sequences}, things are being approached differently one last time. However, before proceeding, another dilemma needs to be addressed. Namely, when multiple properties are involved in a query, it is entirely possible that parts of their \textit{paths} toward their respective end objects, overlap. In other words, it is plausible that the query function needs to add the same triple pattern to the \mintinline{text}{WHERE} clause multiple times. Code Fragment~\ref{lst:where_statements_overlapping} illustrates what such a query might look like. Indeed, in principle, the second occurrence of the triple pattern \mintinline{text}{?o cidoc:P108i_was_produced_by ?produced} is redundant. After all, once a SPARQL engine reaches this triple pattern, it will utilize the existing bindings for the variables \mintinline{text}{?o} and \mintinline{text}{?produces}, rendering this triple pattern dispensable.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 # Place
@@ -136,26 +118,32 @@ objectname: [
     \caption{WHERE clause statements with overlapping statements}
     \label{lst:where_statements_overlapping}
 \end{listing}
-% Might make a difference in length of query when more statements overlap, but when the query is run, Comunica will "clean things up" for us, so doesn't have influence on data retrieval (TODO: check if true)
-% To keep queries readable & app not too complicated -> let's not worry about such "feature"
+
+Code Fragment~\ref{lst:where_statements_no_overlapping} depicts the same query as displayed in Code Fragment~\ref{lst:where_statements_overlapping}, but without duplicate triple patterns. Such a query is indeed more compact, but the query-building process becomes slightly more complicated. For instance, to keep track of the various predicates already used, along with their subject and object variables, the entered \textit{flat} predicates dictionary could be transformed into a tree structure, where branches represent unique predicates and nodes denote intermediary variable names. This approach would subsequently allow for building queries void of duplicate triple patterns. However, one might question whether it is worthwhile to implement such \textit{complex} logic. In fact, even though permitting duplicate triple patterns might potentially lengthen the resulting queries, it simultaneously contributes to more comprehensible and lucid queries. This is evidenced by the query in Code Fragment~\ref{lst:where_statements_overlapping}: it is readily apparent, both for the \textit{place} property and the \textit{data} property, which \textit{paths} must be traversed to retrieve their respective objects of interest. Bearing this in mind, this research prioritizes the creation of these \textit{clear} queries.
+
+\begin{listing}[htbp]
+    \begin{minted}[samepage,fontsize=\small]{sparql}
+# Place
+?o cidoc:P108i_was_produced_by ?produced.
+?produced cidoc:P7_took_place_at ?tookplace.
+?tookplace la:equivalent ?plaatsequivalent.
+?plaatsequivalent skos:prefLabel ?plaats.
+# Date
+?produced cidoc:P4_has_time-span ?timespan.
+    \end{minted}
+    \caption{WHERE clause statements without overlapping statements}
+    \label{lst:where_statements_no_overlapping}
+\end{listing}
 
 \subsection{User-Defined Variable Names and Property Path Sequences}
+\label{subsec:variable_names_property_path_sequences}
 
-TODO
+As discussed in the previous section, a way must be devised to handle the usage of variable names. Since this research aims to assist individuals without the necessary technical knowledge in comprehending too complex queries, two additional functionalities are introduced. These functionalities aim to both condense queries and make them more intelligible.
 
-% Compromise:
-%
-% app expects dict with properties (keys) and corresponding necessary statements (values)
-% as seen before, values are arrays containing objects
-% each object will be mapped to a triple (or will be part of property path sequence) in the WHERE clause, and:
-% - must have predicate ('predicate')
-% - may have prefix (for predicate) ('prefix')
-% - may have variable name for predicate's object ('object_variable_name')
-%   in case not present, construct property path sequence (no need for object variable names)
-%
-% dict with necessary prefixes mapped to uri's also fed to app
-%
-% An example:
+To fulfill the first objective, property path sequences are employed. These sequences essentially concatenate consecutive predicates, eliminating the need for variable names. To achieve the second objective, users are provided with the option to add an \mintinline{text}{object_variable_name} key to the triple pattern descriptions in the properties dictionary. For instance, when the query-building function encounters an \mintinline{text}{object_variable_name}, it will not concatenate the next predicate to the current one using a property path sequence. Instead, it will use the specified variable name for the object of the current triple pattern, as well as for the subject of the next one. Additionally, a \mintinline{text}{subject_variable_name} can also be included. However, to avoid clashes with potential \mintinline{text}{object_variable_name}s, this will only be respected for the first triple pattern description in an array. This should provide the capability to deviate the starting point of a sequence of triple patterns from the \textit{default} starting point.
+
+In principle, the functionality described above should suffice for building clear, albeit very simple queries. For that reason, before discussing a handful additional features in Sections~\ref{subsec:filter_optional_properties} and~\ref{subsec:limit_offset} Code Fragments~\ref{lst:properties_prefixes_query_build_function} and~\ref{lst:query_generated_edge_cases} are introduced. Code Fragment~\ref{lst:properties_prefixes_query_build_function} presents two dictionaries intended to be passed to the query-building function. The \mintinline{text}{properties} dictionary attempts to illustrate the concepts discussed earlier. Specifically, the dictionary outlines \textit{paths} to several objects of interest. For the \mintinline{text}{title} and \mintinline{text}{description} properties, only one predicate is needed each, while the \mintinline{text}{objectname} and \mintinline{text}{association} properties require three and four predicates, respectively. For each element in the property arrays, a \mintinline{text}{predicate} is provided; logically, this is the only mandatory named value. Additionally, prefixes are added where necessary. The query-building function will place these prefixes before their corresponding predicates. To ensure a functional query, however, it is assumed that the URIs representing the prefixes are provided separately to the query-building function. The latter will subsequently use them to create \mintinline{text}{PREFIX} statements at the beginning of the query. Moving on, no beginning array element is assigned a \mintinline{text}{subject_variable_name}, which should result in a query where each \textit{path} starts from the same subject variable. However, two \mintinline{text}{object_variable_name} specifications are provided. Their corresponding variable names should appear in the resulting query, essentially \textit{breaking} the regular property path sequences. Indeed, as depicted in Code Fragment~\ref{lst:query_generated_edge_cases}, the output of the query-building function matches the expectations perfectly.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{js}
 const properties = {
@@ -168,44 +156,35 @@ const properties = {
     objectname: [
         { prefix: 'cidoc', predicate: 'P41i_was_classified_by' },
         { prefix: 'cidoc', predicate: 'P42_assigned' },
-        { prefix: 'skos', predicate: 'prefLabel' },
+        { predicate: 'http://www.w3.org/2004/02/skos/core#prefLabel' },
     ],
     association: [
         { prefix: 'cidoc', predicate: 'P128_carries' },
         { prefix: 'cidoc', predicate: 'P129_is_about', object_variable_name: 'about' },
         { prefix: 'cidoc', predicate: 'P2_has_type' },
-        { prefix: 'skos', predicate: 'prefLabel' },
+        { predicate: 'http://www.w3.org/2004/02/skos/core#prefLabel' },
     ],
 };
-
-const prefixes = {
-    cidoc: 'http://www.cidoc-crm.org/cidoc-crm/',
-    skos: 'http://www.w3.org/2004/02/skos/core#',
-};
+const prefixes = { cidoc: 'http://www.cidoc-crm.org/cidoc-crm/', };
     \end{minted}
     \caption{Properties and prefixes ready to be consumed by query building function}
     \label{lst:properties_prefixes_query_build_function}
 \end{listing}
-% results in (title has no object var name, description has, objectname hasn't -> property path sequence, assocation has both)
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
-
 SELECT ?title ?note ?objectname ?association
-
 WHERE {
     # title
     ?human_made_object cidoc:P102_has_title ?title.
-    
     # description
     ?human_made_object cidoc:P3_has_note ?note.
-    
     # objectname
     ?human_made_object
         cidoc:P41i_was_classified_by/cidoc:P42_assigned/skos:prefLabel
             ?objectname.
-    
     # association
     ?human_made_object cidoc:P128_carries/cidoc:P129_is_about ?about.
     ?about cidoc:P2_has_type/skos:prefLabel ?association.
@@ -216,24 +195,12 @@ WHERE {
 \end{listing}
 
 \subsection{Filtered and Optional Properties}
+\label{subsec:filter_optional_properties}
 
-TODO
+As with the original CoGhent Query Builder, this application should provide the ability to filter and/or make properties optional. While, technically, a SPARQL query can have these specifications defined anywhere in its WHERE clause, in the orginal CoGhent Query Builder's and this application's case, these specifications are intended to be defined per \textit{property}. This only makes sense, as from the perspective of simplicity and consistency, both applications aim to abstract the complexities of query building to a large extent. Therefore, it might be inappropriate to provide users with the ability to manipulate the abstracted triple patterns at the beginning. Besides, once the query is generated, users can obviously still modify it as they wish.
 
-% FILTER
-% possible to create extra dict with property names as keys and filter details as values and feed to app
-% but having too many dicts becomes little chaotic
-% better to extend original propeties dict so it can house extra information (like filter details) apart from statements
-%
-% original app: only filter using string values
-% this version: make multiple types of filter possible
-% e.g. give string for string filtering (regex, case insensitive) + give language for language filtering
-% app functionality can easily be extended for more filter types
+To include the filtering functionality, one approach is to provide a new dictionary to the query-building function where property names can be listed along with their filter details. However, introducing a third dictionary might become a bit cluttered for developers. Therefore, an alternative approach is to incorporate the filter details into the existing \mintinline{text}{properties} array. For this, a slight modification to the data structure is needed. Code Fragment~\ref{lst:properties_filter_optionals} demonstrates what this entails. Specifically, the array containing predicate information is no longer the direct value of its predicate key. Instead, the value of the predicate key becomes a dictionary that has room for a \mintinline{text}{statements} key, which in turn houses the original array of statements.
 
-% OPTIONAL
-% extend original app functionality with optional properties
-% in properties dict: 'optional' (key) - boolean (value)
-
-% EXAMPLE with filter & optional
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{js}
 const properties = {
@@ -254,21 +221,19 @@ const properties = {
     \caption{Example of properties dictionary to illustrate use of filters and optionals}
     \label{lst:properties_filter_optionals}
 \end{listing}
-% results in (note filters and optional keys)
+
+Now that each property in the properties array can host various types of data, there is finally space for a \mintinline{text}{filters} key. This key specifies a new dictionary where multiple types of filters can be accommodated. In fact, unlike the original CoGhent Query Builder, this opens up the possibility of allowing different kinds of filters alongside a regex-based and case-insensitive \mintinline{text}{string} filter. Of course, this is provided that the query-building function knows how to handle them. At the time of publishing this research, an additional feature has been implemented which allows specifying a \mintinline{text}{language} filter value. Code Fragment~\ref{lst:query_generated_filters_optionals} presents the corresponding query based on the properties dictionary in Code Fragment~\ref{lst:properties_filter_optionals} and demonstrates how the language filter is reflected in the query.
+
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
-
 SELECT ?title ?note
-
 WHERE {
     # title
     ?human_made_object cidoc:P102_has_title ?title.
-    
     # description
     OPTIONAL {
         ?human_made_object cidoc:P3_has_note ?note.
-        
         FILTER(REGEX(?note, "luchter", "i"))
         FILTER(LANG(?note) = "nl")
     }
@@ -278,19 +243,79 @@ WHERE {
     \label{lst:query_generated_filters_optionals}
 \end{listing}
 
+Code Fragments~\ref{lst:properties_filter_optionals} and~\ref{lst:query_generated_filters_optionals} also illustrate how a property can be made optional. This can be achieved simply by adding the \mintinline{text}{optional} key to the property details and setting its value to \mintinline{text}{true}.
+
 \subsection{Limit and Offset}
+\label{subsec:limit_offset}
 
-TODO
+Finally, the application is also capable of adding a \mintinline{text}{LIMIT} and/or \mintinline{text}{OFFSET} statement to the query. Their corresponding parameters, \mintinline{text}{limit} and \mintinline{text}{offset} can simply be passed as parameters to the query-building function. However, it is worth noting that, since this research largely focuses on LTQP, an offset might not be very meaningful for a link traversal engine. It is difficult to predict in advance which results will be returned, so scrolling through them using an offset might not provide much value. On the other hand, providing a limit is quite advantageous. Since link traversal can be slow and theoretically even infinite, a limit partly alleviates these issues by instructing the query engine to stop gathering links and results after a certain count.
 
-% LIMIT and OFFSET
-% according to coghent documentation "the SparQL endpoint limits results to 1.000 lines." (https://coghent.github.io/basicqueries.html), but Cominica gives more by default: 10.000 -> what's up with this (TODO: ask)
-% in app, just feed to query building function as arguments
+\subsection{Overview}
 
+The application is clearly highly powerful when it comes to constructing simple queries, specifically queries that target specific data points. Creating input for the query-building function is less tedious than manually composing the corresponding query. Nevertheless, throughout the previous sections, numerous \textit{rules} have been presented, making it appropriate to summarize them. It is important, however, to understand that the use, and therefore the preparation of input for the query-building function, is not intended for the end user. On the contrary, the described application is designed to be incorporated by other applications that ultimately - and hopefully - provide the end user with a user-friendly user interface. In other words, the developers of these end applications are the ones who need to know how to properly provide the query-building function with the right parameters.
+
+Specifically, the query-building, or in fact \mintinline{text}{buildQuery}\footnote{\url{https://github.com/thesis-Martijn-Bogaert-2022-2023/sparql-query-builder/blob/main/index.js}} function can be provided with five parameters. The following overview discusses them in order:
+
+\begin{enumerate}
+    \item \textbf{properties} (required)\\
+    This should be a dictionary with each key indicating a property. In turn, each property specifies a dictionary containing the following named values:
+    \begin{itemize}
+        \item \textbf{statements} (required)\\
+        This should be an array containing one or more dictionary elements. The order of the elements decides the \textit{path} to follow. Each element contains the following named values:
+        \begin{itemize}
+            \item \textbf{predicate} (required)\\
+            Specifies the predicate as a string. This can be a full URI or only the end of one, thus expecting a prefix.
+                
+            \item \textbf{prefix} (optional)\\
+            Specifies the prefix as a string. Should only be used if the predicate expects a prefix.
+                
+            \item \textbf{subject\_variable\_name} (optional)\\
+            Explicitly sets the subject variable name of the corresponding triple pattern and will solely be handled upon in case it is part of an array's first element. In case an array's first element does not have this specified, the subject variable name will be set to \mintinline{text}{?o}.
+                
+            \item \textbf{object\_variable\_name} (optional)\\
+            Explicitly sets the object variable name of the corresponding triple pattern, as well as the subject variable name of the subsequent triple pattern. In case an array's last element does not have this specified, the object variable name will be set to the property key. In case an array's any other element does not have this specified, the current and subsequent predicates will be concatenated using a property path sequence.
+
+            \end{itemize}
+        
+        \item \textbf{filters} (optional)\\
+        This should be a dictionary containing the following names values:
+        \begin{itemize}
+            \item \textbf{string} (optional)\\
+            Specifies the string to filter this property's last triple pattern's object name on as a string.
+
+            \item \textbf{language} (optional)\\
+            Specifies the language to filter this property's last triple pattern's object name on as a string.
+            
+        \end{itemize}
+
+        \item \textbf{optional} (optional)\\
+        Specifies whether or not to make the retrieval of this property optional as a boolean.
+
+    \end{itemize}
+
+    \item \textbf{prefixes} (optional)\\
+    This should be a dictionary that specifies which \mintinline{text}{PREFIX} statements to add to the start of the query. Each key represents the prefix name, while each value represents the corresponding URI.
+
+    \item \textbf{datasets}\footnote{This functionality was not discussed since the various CoGhent LDESs already inherently partition the entire CoGhent dataset. Therefore, the use of \mintinline{text}{FROM} statements for the type of queries addressed in this research is not relevant.} (optional)\\
+    This should be an array of string elements. Each element specifies the URI of a specific graph to query against and will be mapped to the value of a \mintinline{text}{FROM} statement in the query
+
+    \item \textbf{limit} (optional)\\
+    This should be an integer and will be mapped to the query's \mintinline{text}{LIMIT} statement.
+
+    \item \textbf{offset} (optional)\\
+    This should be an integer and will be mapped to the query's \mintinline{text}{OFFSET} statement.
+
+\end{enumerate}
 
 \section{A New Query Builder}
 \label{sec:new_query_builder}
 
 TODO
+
+The actual implementation can be found in the following GitHub repository:
+\begin{center}
+    \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/sparql-query-builder-ui}.
+\end{center}
 
 \subsection{Modularity}
 
@@ -304,6 +329,11 @@ TODO
 \label{sec:discovering_predicate_sequences}
 
 TODO
+
+The actual implementation can be found in the following GitHub repository:
+\begin{center}
+    \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/rdf-predicates-explorer}.
+\end{center}
 
 \subsection{Starting Resource}
 
