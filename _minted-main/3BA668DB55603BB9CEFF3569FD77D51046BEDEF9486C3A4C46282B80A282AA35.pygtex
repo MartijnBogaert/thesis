@@ -1,21 +1,16 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k}{PREFIX} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.w3.org/2004/02/skos/core\PYGZsh{}\PYGZgt{}}
-
 \PYG{k}{SELECT} \PYG{n+nv}{?title} \PYG{n+nv}{?note} \PYG{n+nv}{?objectname} \PYG{n+nv}{?association}
-
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
     \PYG{c}{\PYGZsh{} title}
     \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P102\PYGZus{}has\PYGZus{}title} \PYG{n+nv}{?title}\PYG{p}{.}
-
     \PYG{c}{\PYGZsh{} description}
     \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P3\PYGZus{}has\PYGZus{}note} \PYG{n+nv}{?note}\PYG{p}{.}
-
     \PYG{c}{\PYGZsh{} objectname}
     \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object}
         \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by}\PYG{o}{/}\PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P42\PYGZus{}assigned}\PYG{o}{/}\PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel}
             \PYG{n+nv}{?objectname}\PYG{p}{.}
-
     \PYG{c}{\PYGZsh{} association}
     \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P128\PYGZus{}carries}\PYG{o}{/}\PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P129\PYGZus{}is\PYGZus{}about} \PYG{n+nv}{?about}\PYG{p}{.}
     \PYG{n+nv}{?about} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P2\PYGZus{}has\PYGZus{}type}\PYG{o}{/}\PYG{n+nn}{skos}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?association}\PYG{p}{.}

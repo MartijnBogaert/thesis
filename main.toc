@@ -45,31 +45,32 @@
 \contentsline {section}{\numberline {4.1}Building Queries from Predicate Sequences}{52}{section*.58}%
 \contentsline {subsection}{\numberline {4.1.1}Arrays of Triple Patterns}{52}{subsection.4.1.1}%
 \contentsline {subsection}{\numberline {4.1.2}Arrays of Predicates}{53}{subsection.4.1.2}%
-\contentsline {subsection}{\numberline {4.1.3}User-Defined Variable Names and Property Path Sequences}{53}{subsection.4.1.3}%
-\contentsline {subsection}{\numberline {4.1.4}Filtered and Optional Properties}{53}{subsection.4.1.4}%
-\contentsline {subsection}{\numberline {4.1.5}Limit and Offset}{54}{subsection.4.1.5}%
-\contentsline {section}{\numberline {4.2}A New Query Builder}{54}{section*.70}%
-\contentsline {subsection}{\numberline {4.2.1}Modularity}{54}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}Performing Queries}{58}{subsection.4.2.2}%
-\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{58}{section*.71}%
-\contentsline {subsection}{\numberline {4.3.1}Starting Resource}{58}{subsection.4.3.1}%
-\contentsline {subsection}{\numberline {4.3.2}Tree Data Structure and Visualization}{58}{subsection.4.3.2}%
-\contentsline {subsection}{\numberline {4.3.3}Tree Expansion}{58}{subsection.4.3.3}%
-\contentsline {subsection}{\numberline {4.3.4}Predicate Sequences Selection}{58}{subsection.4.3.4}%
-\contentsline {subsection}{\numberline {4.3.5}Performing Queries}{58}{subsection.4.3.5}%
-\contentsline {section}{\numberline {4.4}Conclusion}{58}{section*.72}%
-\contentsline {chapter}{\numberline {5}Handling Query Results}{59}{chapter.5}%
-\contentsline {section}{\numberline {5.1}Visualizing Query Results}{59}{section*.73}%
-\contentsline {subsection}{\numberline {5.1.1}IIIF Viewers}{59}{subsection.5.1.1}%
-\contentsline {subsection}{\numberline {5.1.2}Custom Viewer}{59}{subsection.5.1.2}%
-\contentsline {section}{\numberline {5.2}Saving Query Results}{59}{section*.74}%
-\contentsline {subsection}{\numberline {5.2.1}SPARQL Query}{59}{subsection.5.2.1}%
-\contentsline {subsection}{\numberline {5.2.2}IIIF Manifest}{60}{subsection.5.2.2}%
-\contentsline {subsection}{\numberline {5.2.3}Predicate Sequences}{60}{subsection.5.2.3}%
-\contentsline {section}{\numberline {5.3}Conclusion}{60}{section*.75}%
-\contentsline {chapter}{Conclusion}{61}{chapter*.76}%
-\contentsline {section}{Ethical and social reflection}{61}{section*.78}%
-\contentsline {chapter}{References}{62}{chapter*.79}%
-\contentsline {chapter}{Appendices}{64}{section*.80}%
-\contentsline {section}{Appendix A}{65}{section*.81}%
-\contentsline {section}{Appendix B}{66}{section*.82}%
+\contentsline {subsection}{\numberline {4.1.3}User-Defined Variable Names and Property Path Sequences}{56}{subsection.4.1.3}%
+\contentsline {subsection}{\numberline {4.1.4}Filtered and Optional Properties}{58}{subsection.4.1.4}%
+\contentsline {subsection}{\numberline {4.1.5}Limit and Offset}{59}{subsection.4.1.5}%
+\contentsline {subsection}{\numberline {4.1.6}Overview}{60}{subsection.4.1.6}%
+\contentsline {section}{\numberline {4.2}A New Query Builder}{62}{section*.70}%
+\contentsline {subsection}{\numberline {4.2.1}Modularity}{62}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}Performing Queries}{63}{subsection.4.2.2}%
+\contentsline {section}{\numberline {4.3}Discovering Predicate Sequences}{63}{section*.71}%
+\contentsline {subsection}{\numberline {4.3.1}Starting Resource}{63}{subsection.4.3.1}%
+\contentsline {subsection}{\numberline {4.3.2}Tree Data Structure and Visualization}{63}{subsection.4.3.2}%
+\contentsline {subsection}{\numberline {4.3.3}Tree Expansion}{63}{subsection.4.3.3}%
+\contentsline {subsection}{\numberline {4.3.4}Predicate Sequences Selection}{63}{subsection.4.3.4}%
+\contentsline {subsection}{\numberline {4.3.5}Performing Queries}{63}{subsection.4.3.5}%
+\contentsline {section}{\numberline {4.4}Conclusion}{63}{section*.72}%
+\contentsline {chapter}{\numberline {5}Handling Query Results}{64}{chapter.5}%
+\contentsline {section}{\numberline {5.1}Visualizing Query Results}{64}{section*.73}%
+\contentsline {subsection}{\numberline {5.1.1}IIIF Viewers}{64}{subsection.5.1.1}%
+\contentsline {subsection}{\numberline {5.1.2}Custom Viewer}{64}{subsection.5.1.2}%
+\contentsline {section}{\numberline {5.2}Saving Query Results}{64}{section*.74}%
+\contentsline {subsection}{\numberline {5.2.1}SPARQL Query}{64}{subsection.5.2.1}%
+\contentsline {subsection}{\numberline {5.2.2}IIIF Manifest}{65}{subsection.5.2.2}%
+\contentsline {subsection}{\numberline {5.2.3}Predicate Sequences}{65}{subsection.5.2.3}%
+\contentsline {section}{\numberline {5.3}Conclusion}{65}{section*.75}%
+\contentsline {chapter}{Conclusion}{66}{chapter*.76}%
+\contentsline {section}{Ethical and social reflection}{66}{section*.78}%
+\contentsline {chapter}{References}{67}{chapter*.79}%
+\contentsline {chapter}{Appendices}{69}{section*.80}%
+\contentsline {section}{Appendix A}{70}{section*.81}%
+\contentsline {section}{Appendix B}{71}{section*.82}%

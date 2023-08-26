@@ -34,15 +34,15 @@
 \contentsline {listing}{\numberline {3.21}{\ignorespaces Final custom link traversal engine configuration\relax }}{49}{listing.caption.55}%
 \contentsline {listing}{\numberline {3.22}{\ignorespaces SPARQL query fetching Human-Made Object's types in German\relax }}{49}{listing.caption.56}%
 \addvspace {10\p@ }
-\contentsline {listing}{\numberline {4.1}{\ignorespaces WHERE clause statements to query for \textit {objectname} stored as elements in array\relax }}{52}{listing.caption.59}%
-\contentsline {listing}{\numberline {4.2}{\ignorespaces All possible PREFIX statements of original CoGhent Query Builder\relax }}{52}{listing.caption.60}%
-\contentsline {listing}{\numberline {4.3}{\ignorespaces Prefixes and predicates for WHERE clause statements to query for \textit {objectname} stored as elements in array\relax }}{53}{listing.caption.61}%
-\contentsline {listing}{\numberline {4.4}{\ignorespaces WHERE clause statements with object variable names constructed using numbers\relax }}{53}{listing.caption.62}%
-\contentsline {listing}{\numberline {4.5}{\ignorespaces WHERE clause statements with object variable names constructed from preceding statements\relax }}{53}{listing.caption.63}%
-\contentsline {listing}{\numberline {4.6}{\ignorespaces WHERE clause statements without overlapping statements\relax }}{54}{listing.caption.64}%
-\contentsline {listing}{\numberline {4.7}{\ignorespaces WHERE clause statements with overlapping statements\relax }}{54}{listing.caption.65}%
-\contentsline {listing}{\numberline {4.8}{\ignorespaces Properties and prefixes ready to be consumed by query building function\relax }}{55}{listing.caption.66}%
-\contentsline {listing}{\numberline {4.9}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_prefixes_query_build_function}\relax }}{56}{listing.caption.67}%
-\contentsline {listing}{\numberline {4.10}{\ignorespaces Example of properties dictionary to illustrate use of filters and optionals\relax }}{57}{listing.caption.68}%
-\contentsline {listing}{\numberline {4.11}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_filter_optionals}\relax }}{57}{listing.caption.69}%
+\contentsline {listing}{\numberline {4.1}{\ignorespaces WHERE clause statements to query for \textit {objectname} stored as elements in an array\relax }}{53}{listing.caption.59}%
+\contentsline {listing}{\numberline {4.2}{\ignorespaces All possible PREFIX statements of the original CoGhent Query Builder\relax }}{53}{listing.caption.60}%
+\contentsline {listing}{\numberline {4.3}{\ignorespaces Prefixes and predicates for WHERE clause statements to query for \textit {objectname} stored as elements in an array\relax }}{54}{listing.caption.61}%
+\contentsline {listing}{\numberline {4.4}{\ignorespaces WHERE clause statements with object variable names constructed using numbers\relax }}{54}{listing.caption.62}%
+\contentsline {listing}{\numberline {4.5}{\ignorespaces WHERE clause statements with object variable names constructed from preceding statements\relax }}{55}{listing.caption.63}%
+\contentsline {listing}{\numberline {4.6}{\ignorespaces WHERE clause statements with overlapping statements\relax }}{55}{listing.caption.64}%
+\contentsline {listing}{\numberline {4.7}{\ignorespaces WHERE clause statements without overlapping statements\relax }}{56}{listing.caption.65}%
+\contentsline {listing}{\numberline {4.8}{\ignorespaces Properties and prefixes ready to be consumed by query building function\relax }}{57}{listing.caption.66}%
+\contentsline {listing}{\numberline {4.9}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_prefixes_query_build_function}\relax }}{58}{listing.caption.67}%
+\contentsline {listing}{\numberline {4.10}{\ignorespaces Example of properties dictionary to illustrate use of filters and optionals\relax }}{59}{listing.caption.68}%
+\contentsline {listing}{\numberline {4.11}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_filter_optionals}\relax }}{60}{listing.caption.69}%
 \addvspace {10\p@ }

@@ -1,16 +1,12 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k}{PREFIX} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}}
-
 \PYG{k}{SELECT} \PYG{n+nv}{?title} \PYG{n+nv}{?note}
-
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
     \PYG{c}{\PYGZsh{} title}
     \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P102\PYGZus{}has\PYGZus{}title} \PYG{n+nv}{?title}\PYG{p}{.}
-
     \PYG{c}{\PYGZsh{} description}
     \PYG{k}{OPTIONAL} \PYG{p}{\PYGZob{}}
         \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P3\PYGZus{}has\PYGZus{}note} \PYG{n+nv}{?note}\PYG{p}{.}
-
         \PYG{k}{FILTER}\PYG{p}{(}\PYG{n+nf}{REGEX}\PYG{p}{(}\PYG{n+nv}{?note}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}luchter\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}i\PYGZdq{}}\PYG{p}{))}
         \PYG{k}{FILTER}\PYG{p}{(}\PYG{n+nf}{LANG}\PYG{p}{(}\PYG{n+nv}{?note}\PYG{p}{)} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}nl\PYGZdq{}}\PYG{p}{)}
     \PYG{p}{\PYGZcb{}}
