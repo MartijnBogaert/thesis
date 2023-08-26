@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  26 AUG 2023 20:27
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  26 AUG 2023 21:36
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -3666,12 +3666,16 @@ F.pygtex) [71]) [72]
 
  (./chapters/10_handling_query_results.tex
 Chapter 5.
-[73
+
+Underfull \vbox (badness 1688) has occurred while \output is active []
+
+ [73
 
 
 
 
-]) [74]
+])
+[74]
 \openout2 = `chapters/11_conclusion.aux'.
 
  (./chapters/11_conclusion.tex) [75
@@ -3819,4 +3823,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,1013s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (96 pages, 1907076 bytes).
+Output written on main.xdv (96 pages, 1916708 bytes).
