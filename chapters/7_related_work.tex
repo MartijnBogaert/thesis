@@ -1,7 +1,22 @@
 \chapter{Related work}
 \label{chap:rel_work}
 
+The realm of Linked Data, particularly in the context of digital art collections, has witnessed significant advancements. This chapter seeks to elucidate the foundational concepts and their real-world applications.
+
+Section~\ref{sec:linked_data} provides an introduction to Linked Data, emphasizing its core principles, data modeling, and various RDF syntaxes. The section underscores the importance of unique URIs, dereferencing, and data interlinking.
+
+In Section~\ref{sec:ltqp}, the spotlight is on Link-Traversal-based Query Processing (LTQP). Through an example, the intricacies of querying across different documents are unraveled, highlighting the challenges and the specific reachability criteria for link traversal.
+
+Section~\ref{sec:comunica} delves into Comunica, a SPARQL query engine. The discussion revolves around its modularity, the foundational building blocks, and the potential to craft custom engine configurations tailored for distinct link traversal requirements.
+
+Section~\ref{sec:coghent} presents the Collections of Ghent (CoGhent) initiative, a collaborative venture between cultural institutions in Ghent. The adoption of Linked Data Event Streams (LDES) for publishing digital collections is explored, alongside the CoGhent Query Builder application that aids in query formulation.
+
+Concluding the chapter, Section~\ref{sec:iiif} introduces the International Image Interoperability Framework (IIIF). Namely, the role of IIIF Manifests and IIIF Viewers in the visualization of cultural data is discussed.
+
+These sections provide the foundation for the subsequent chapters, which delve into various stages of a systematic process for discovering digital art collections. Each chapter builds upon the insights and methodologies presented in this chapter, ensuring a cohesive exploration throughout.
+
 \section{Linked Data}
+\label{sec:linked_data}
 
 This section presents a comprehensive exploration of Linked Data, encompassing its fundamental principles, data modeling, syntax, query interfaces, and the associated challenges and advantages. In Section~\ref{subsec:introduction_principles}, the concept of Linked Data and its principles are introduced, highlighting the significance of unique URIs, dereferencing, and data interlinking. Section~\ref{subsec:rdf} focuses on the Resource Description Framework (RDF) as the cornerstone for representing relationships and knowledge connections within Linked Data. Section~\ref{subsec:rdf_syntax} provides an overview of RDF syntax, including popular formats such as XML, Turtle, N-Triples, and JSON-LD, which facilitate the flexible expression and exchange of RDF data. Lastly, Section~\ref{subsec:sparql} briefly introduces SPARQL, the query language for RDF data This comprehensive examination serves as a solid foundation for the subsequent discussions on Linked Traversal-based Query Processing.
 
