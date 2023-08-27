@@ -4,14 +4,19 @@
 \PYG{k}{PREFIX} \PYG{n+nn}{rdf}\PYG{p}{:} \PYG{n+nl}{\PYGZlt{}http://www.w3.org/1999/02/22\PYGZhy{}rdf\PYGZhy{}syntax\PYGZhy{}ns\PYGZsh{}\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{w3\PYGZhy{}exif}\PYG{p}{:} \PYG{n+nl}{\PYGZlt{}http://www.w3.org/2003/12/exif/ns\PYGZsh{}\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{w3\PYGZhy{}oa}\PYG{p}{:} \PYG{n+nl}{\PYGZlt{}http://www.w3.org/ns/oa\PYGZsh{}\PYGZgt{}}
+
 \PYG{k}{SELECT} \PYG{n+nv}{?manifest} \PYG{n+nv}{?height} \PYG{n+nv}{?image}
+
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
   \PYG{c}{\PYGZsh{} Manifest URI}
   \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P129i\PYGZus{}is\PYGZus{}subject\PYGZus{}of} \PYG{n+nv}{?manifest}\PYG{p}{.}
+
   \PYG{c}{\PYGZsh{} Image height}
   \PYG{n+nv}{?manifest} \PYG{n+nn}{iiif}\PYG{p}{:}\PYG{n+nt}{hasSequences}\PYG{o}{/}\PYG{n+nn}{rdf}\PYG{p}{:}\PYG{n+nt}{first}\PYG{o}{/}\PYG{n+nn}{iiif}\PYG{p}{:}\PYG{n+nt}{hasCanvases}\PYG{o}{/}\PYG{n+nn}{rdf}\PYG{p}{:}\PYG{n+nt}{first}\PYG{o}{/}\PYG{n+nn}{w3\PYGZhy{}exif}\PYG{p}{:}\PYG{n+nt}{height} \PYG{n+nv}{?height}\PYG{p}{.}
+
   \PYG{c}{\PYGZsh{} Image URI}
   \PYG{n+nv}{?canvas} \PYG{n+nn}{iiif}\PYG{p}{:}\PYG{n+nt}{hasImageAnnotations}\PYG{o}{/}\PYG{n+nn}{rdf}\PYG{p}{:}\PYG{n+nt}{first}\PYG{o}{/}\PYG{n+nn}{w3\PYGZhy{}oa}\PYG{p}{:}\PYG{n+nt}{hasBody} \PYG{n+nv}{?image}\PYG{p}{.}
 \PYG{p}{\PYGZcb{}}
+
 \PYG{k}{LIMIT} \PYG{l+m+mi}{10}
 \end{Verbatim}

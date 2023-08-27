@@ -2,13 +2,17 @@
 \PYG{k}{PREFIX} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{skos\PYGZhy{}xl}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.w3.org/2008/05/skos\PYGZhy{}xl\PYGZsh{}\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{getty}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://vocab.getty.edu/ontology\PYGZsh{}\PYGZgt{}}
+
 \PYG{k}{SELECT} \PYG{o}{*}
+
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
   \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P41i\PYGZus{}was\PYGZus{}classified\PYGZus{}by} \PYG{n+nv}{?classifier}\PYG{p}{.}
   \PYG{n+nv}{?classifier} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P42\PYGZus{}assigned} \PYG{n+nv}{?assignation}\PYG{p}{.}
   \PYG{n+nv}{?assignation} \PYG{n+nn}{skos\PYGZhy{}xl}\PYG{p}{:}\PYG{n+nt}{prefLabel} \PYG{n+nv}{?prefLabel}\PYG{p}{.}
   \PYG{n+nv}{?prefLabel} \PYG{n+nn}{getty}\PYG{p}{:}\PYG{n+nt}{term} \PYG{n+nv}{?thing}\PYG{p}{.}
+
   \PYG{k}{FILTER}\PYG{p}{(}\PYG{n+nf}{LANG}\PYG{p}{(}\PYG{n+nv}{?thing}\PYG{p}{)} \PYG{o}{=} \PYG{l+s}{\PYGZdq{}de\PYGZdq{}}\PYG{p}{)}
 \PYG{p}{\PYGZcb{}}
+
 \PYG{k}{LIMIT} \PYG{l+m+mi}{10}
 \end{Verbatim}

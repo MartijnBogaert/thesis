@@ -3,6 +3,7 @@
 \PYG{+w}{    }\PYG{n+nb}{Promise}\PYG{o}{\PYGZlt{}}\PYG{n+nx}{IActorRdfResolveHypermediaLinksOutput}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{gettyUriRegex}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+s+sr}{/\PYGZca{}https?:\PYGZbs{}/\PYGZbs{}/vocab\PYGZbs{}.getty\PYGZbs{}.edu\PYGZbs{}/.+\PYGZdl{}/u}\PYG{p}{;}
 \PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{extensions}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{[}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}.json\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}.jsonld\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}.rdf\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}.n3\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}.ttl\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}.nt\PYGZsq{}}\PYG{+w}{ }\PYG{p}{];}
+
 \PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{links}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{action}\PYG{p}{.}\PYG{n+nx}{metadata}\PYG{p}{.}\PYG{n+nx}{traverse}\PYG{p}{.}\PYG{n+nx}{map}\PYG{p}{((}\PYG{n+nx}{link}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{url}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{string}\PYG{+w}{ }\PYG{p}{\PYGZcb{})}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{    }\PYG{k}{if}\PYG{+w}{ }\PYG{p}{(}\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{gettyUriRegex}\PYG{p}{.}\PYG{n+nx}{test}\PYG{p}{(}\PYG{n+nx}{link}\PYG{p}{.}\PYG{n+nx}{url}\PYG{p}{))}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
 \PYG{+w}{      }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{hasExtension}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{extensions}\PYG{p}{.}\PYG{n+nx}{some}\PYG{p}{(}\PYG{n+nx}{ext}\PYG{+w}{ }\PYG{p}{=\PYGZgt{}}\PYG{+w}{ }\PYG{n+nx}{link}\PYG{p}{.}\PYG{n+nx}{url}\PYG{p}{.}\PYG{n+nx}{endsWith}\PYG{p}{(}\PYG{n+nx}{ext}\PYG{p}{));}
@@ -15,9 +16,11 @@
 \PYG{+w}{    }\PYG{p}{\PYGZcb{}}
 \PYG{+w}{    }\PYG{k}{return}\PYG{+w}{ }\PYG{n+nx}{link}\PYG{p}{;}
 \PYG{+w}{  }\PYG{p}{\PYGZcb{});}
+
 \PYG{+w}{  }\PYG{c+c1}{// Update metadata in action}
 \PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{context}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{n+nx}{action}\PYG{p}{.}\PYG{n+nx}{context}\PYG{p}{.}\PYG{n+nx}{set}\PYG{p}{(}\PYG{n+nx}{KEY\PYGZus{}CONTEXT\PYGZus{}EXTENDED}\PYG{p}{,}\PYG{+w}{ }\PYG{k+kc}{true}\PYG{p}{);}
 \PYG{+w}{  }\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{subAction}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{n+nx}{action}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{context}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{metadata}\PYG{o}{:}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{p}{...}\PYG{n+nx}{action}\PYG{p}{.}\PYG{n+nx}{metadata}\PYG{p}{,}\PYG{+w}{ }\PYG{n+nx}{traverse}\PYG{o}{:}\PYG{+w}{ }\PYG{n+nx}{links}\PYG{+w}{ }\PYG{p}{\PYGZcb{}\PYGZcb{};}
+
 \PYG{+w}{  }\PYG{c+c1}{// Forward updated metadata to next actor}
 \PYG{+w}{  }\PYG{k}{return}\PYG{+w}{ }\PYG{k}{this}\PYG{p}{.}\PYG{n+nx}{mediatorRdfResolveHypermediaLinks}\PYG{p}{.}\PYG{n+nx}{mediate}\PYG{p}{(}\PYG{n+nx}{subAction}\PYG{p}{);}
 \PYG{p}{\PYGZcb{}}

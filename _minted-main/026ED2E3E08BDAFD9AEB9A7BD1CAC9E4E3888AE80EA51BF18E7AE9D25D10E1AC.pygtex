@@ -18,5 +18,8 @@
 \PYG{+w}{        }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{predicate}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}http://www.w3.org/2004/02/skos/core\PYGZsh{}prefLabel\PYGZsq{}}\PYG{+w}{ }\PYG{p}{\PYGZcb{},}
 \PYG{+w}{    }\PYG{p}{],}
 \PYG{p}{\PYGZcb{};}
-\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{prefixes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}\PYG{+w}{ }\PYG{n+nx}{cidoc}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZsq{}}\PYG{p}{,}\PYG{+w}{ }\PYG{p}{\PYGZcb{};}
+
+\PYG{k+kd}{const}\PYG{+w}{ }\PYG{n+nx}{prefixes}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{p}{\PYGZob{}}
+\PYG{+w}{    }\PYG{n+nx}{cidoc}\PYG{o}{:}\PYG{+w}{ }\PYG{l+s+s1}{\PYGZsq{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZsq{}}\PYG{p}{,}
+\PYG{p}{\PYGZcb{};}
 \end{Verbatim}

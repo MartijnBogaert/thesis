@@ -1,5 +1,6 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k}{SELECT} \PYG{n+nv}{?humanMadeObject} \PYG{n+nv}{?image}
+
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
     \PYG{n+nv}{?humanMadeObject} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{hasManifest} \PYG{n+nv}{?manifest} \PYG{p}{.}
     \PYG{n+nv}{?manifest} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{firstSequence} \PYG{n+nv}{?sequence} \PYG{p}{.}

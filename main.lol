@@ -24,26 +24,26 @@
 \contentsline {listing}{\numberline {3.11}{\ignorespaces \textbf {Long} query fetching Human-Made Object and image\relax }}{32}{listing.caption.45}%
 \contentsline {listing}{\numberline {3.12}{\ignorespaces \textbf {Short} query fetching Human-Made Object and image\relax }}{33}{listing.caption.46}%
 \contentsline {listing}{\numberline {3.13}{\ignorespaces SPARQL query fetching ten Human-Made Object's institute's countries\relax }}{35}{listing.caption.49}%
-\contentsline {listing}{\numberline {3.14}{\ignorespaces Implementation of \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{ActorRdfResolveHypermediaLinksStadGentReplaceId}}'s \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{run}} function\relax }}{36}{listing.caption.50}%
+\contentsline {listing}{\numberline {3.14}{\ignorespaces Implementation of \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{ActorRdfResolveHypermediaLinksStadGentReplaceId}}'s \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{run}} function\relax }}{37}{listing.caption.50}%
 \contentsline {listing}{\numberline {3.15}{\ignorespaces Implementation of \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{ActorRdfResolveHypermediaLinksStadGentReplaceId}}'s \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{test}} function\relax }}{37}{listing.caption.51}%
-\contentsline {listing}{\numberline {3.16}{\ignorespaces \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{Accept}} header for HTTP requests made by Comunica engine\relax }}{37}{listing.caption.52}%
-\contentsline {listing}{\numberline {3.17}{\ignorespaces (Cleaned up) logs outputted during execution of engine with data source set to Getty Vocabulary resource\relax }}{38}{listing.caption.53}%
+\contentsline {listing}{\numberline {3.16}{\ignorespaces \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{Accept}} header for HTTP requests made by Comunica engine\relax }}{38}{listing.caption.52}%
+\contentsline {listing}{\numberline {3.17}{\ignorespaces (Cleaned up) logs outputted during execution of engine with data source set to Getty Vocabulary resource\relax }}{39}{listing.caption.53}%
 \contentsline {listing}{\numberline {3.18}{\ignorespaces Implementation of \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{ActorRdfResolveHypermediaLinksGettyJsonldExtension}}'s \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{run}} function\relax }}{42}{listing.caption.55}%
-\contentsline {listing}{\numberline {3.19}{\ignorespaces Implementation of \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{ActorRdfResolveHypermediaLinksGettyJsonldExtension}}'s \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{test}} function\relax }}{42}{listing.caption.56}%
+\contentsline {listing}{\numberline {3.19}{\ignorespaces Implementation of \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{ActorRdfResolveHypermediaLinksGettyJsonldExtension}}'s \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{test}} function\relax }}{43}{listing.caption.56}%
 \contentsline {listing}{\numberline {3.20}{\ignorespaces Extend Getty Links Actor configuration\relax }}{43}{listing.caption.57}%
-\contentsline {listing}{\numberline {3.21}{\ignorespaces Final custom link traversal engine configuration\relax }}{43}{listing.caption.58}%
+\contentsline {listing}{\numberline {3.21}{\ignorespaces Final custom link traversal engine configuration\relax }}{44}{listing.caption.58}%
 \contentsline {listing}{\numberline {3.22}{\ignorespaces SPARQL query fetching Human-Made Object's types in German\relax }}{44}{listing.caption.59}%
 \addvspace {10\p@ }
-\contentsline {listing}{\numberline {4.1}{\ignorespaces WHERE clause statements to query for \textit {objectname} stored as elements in an array\relax }}{47}{listing.caption.62}%
-\contentsline {listing}{\numberline {4.2}{\ignorespaces All possible PREFIX statements of the original CoGhent Query Builder\relax }}{48}{listing.caption.63}%
-\contentsline {listing}{\numberline {4.3}{\ignorespaces Prefixes and predicates for WHERE clause statements to query for \textit {objectname} stored as elements in an array\relax }}{48}{listing.caption.64}%
-\contentsline {listing}{\numberline {4.4}{\ignorespaces WHERE clause statements with object variable names constructed using numbers\relax }}{49}{listing.caption.65}%
-\contentsline {listing}{\numberline {4.5}{\ignorespaces WHERE clause statements with object variable names constructed from preceding statements\relax }}{49}{listing.caption.66}%
-\contentsline {listing}{\numberline {4.6}{\ignorespaces WHERE clause statements with overlapping statements\relax }}{49}{listing.caption.67}%
-\contentsline {listing}{\numberline {4.7}{\ignorespaces WHERE clause statements without overlapping statements\relax }}{50}{listing.caption.68}%
-\contentsline {listing}{\numberline {4.8}{\ignorespaces Properties and prefixes ready to be consumed by query building function\relax }}{51}{listing.caption.69}%
-\contentsline {listing}{\numberline {4.9}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_prefixes_query_build_function}\relax }}{52}{listing.caption.70}%
-\contentsline {listing}{\numberline {4.10}{\ignorespaces Example of properties dictionary to illustrate use of filters and optionals\relax }}{52}{listing.caption.71}%
-\contentsline {listing}{\numberline {4.11}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_filter_optionals}\relax }}{53}{listing.caption.72}%
-\contentsline {listing}{\numberline {4.12}{\ignorespaces Function returning a SPARQL query for completing a resource subject's triple pattern\relax }}{59}{listing.caption.76}%
+\contentsline {listing}{\numberline {4.1}{\ignorespaces WHERE clause statements to query for \textit {objectname} stored as elements in an array\relax }}{48}{listing.caption.62}%
+\contentsline {listing}{\numberline {4.2}{\ignorespaces All possible PREFIX statements of the original CoGhent Query Builder\relax }}{49}{listing.caption.63}%
+\contentsline {listing}{\numberline {4.3}{\ignorespaces Prefixes and predicates for WHERE clause statements to query for \textit {objectname} stored as elements in an array\relax }}{49}{listing.caption.64}%
+\contentsline {listing}{\numberline {4.4}{\ignorespaces WHERE clause statements with object variable names constructed using numbers\relax }}{50}{listing.caption.65}%
+\contentsline {listing}{\numberline {4.5}{\ignorespaces WHERE clause statements with object variable names constructed from preceding statements\relax }}{50}{listing.caption.66}%
+\contentsline {listing}{\numberline {4.6}{\ignorespaces WHERE clause statements with overlapping statements\relax }}{50}{listing.caption.67}%
+\contentsline {listing}{\numberline {4.7}{\ignorespaces WHERE clause statements without overlapping statements\relax }}{51}{listing.caption.68}%
+\contentsline {listing}{\numberline {4.8}{\ignorespaces Properties and prefixes ready to be consumed by query building function\relax }}{52}{listing.caption.69}%
+\contentsline {listing}{\numberline {4.9}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_prefixes_query_build_function}\relax }}{53}{listing.caption.70}%
+\contentsline {listing}{\numberline {4.10}{\ignorespaces Example of properties dictionary to illustrate use of filters and optionals\relax }}{54}{listing.caption.71}%
+\contentsline {listing}{\numberline {4.11}{\ignorespaces SPARQL query generated from input displayed in Code Fragment \ref {lst:properties_filter_optionals}\relax }}{55}{listing.caption.72}%
+\contentsline {listing}{\numberline {4.12}{\ignorespaces Function returning a SPARQL query for completing a resource subject's triple pattern\relax }}{61}{listing.caption.76}%
 \addvspace {10\p@ }

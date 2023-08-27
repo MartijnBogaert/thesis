@@ -388,32 +388,40 @@ PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX adms:<http://www.w3.org/ns/adms#>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
 PREFIX la:<https://linked.art/ns/terms/>
+
 SELECT ?title ?note ?associatie ?creator ?plaats ?techniek ?materiaal
+
 WHERE {
     # Title
     ?o cidoc:P102_has_title ?title.
+    
     # Description
     ?o cidoc:P3_has_note ?note.
+    
     # Association
     ?o cidoc:P128_carries ?carries.
     ?carries cidoc:P129_is_about ?about.
     ?about cidoc:P2_has_type ?type.
     ?type skos:prefLabel ?associatie.
+    
     # Creator
     ?o cidoc:P108i_was_produced_by ?production.
     ?production cidoc:P14_carried_out_by ?producer.
     ?producer la:equivalent ?equivalent.
     ?equivalent rdfs:label ?creator.
+    
     # Place
     ?o cidoc:P108i_was_produced_by ?produced.
     ?produced cidoc:P7_took_place_at ?tookplace.
     ?tookplace la:equivalent ?plaatsequivalent.
     ?plaatsequivalent skos:prefLabel ?plaats.
+    
     # Technique
     ?o cidoc:P108i_was_produced_by ?produced.
     ?produced cidoc:P32_used_general_technique ?technique.
     ?technique cidoc:P2_has_type ?hastype.
     ?hastype skos:prefLabel ?techniek.
+    
     # Material
     ?o cidoc:P45_consists_of ?consists.
     ?consists cidoc:P2_has_type ?materiaaltype.
@@ -436,6 +444,7 @@ TODO
 \subsection{IIIF Viewers}
 
 TODO (see Figure ~\ref{fig:mirador})
+% List: https://github.com/IIIF/awesome-iiif#iiif-viewers
 
 \begin{figure}[htbp]
     \centering

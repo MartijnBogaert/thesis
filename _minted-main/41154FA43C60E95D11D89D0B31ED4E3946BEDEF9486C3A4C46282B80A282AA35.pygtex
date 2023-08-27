@@ -1,9 +1,12 @@
 \begin{Verbatim}[commandchars=\\\{\}]
 \PYG{k}{PREFIX} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}}
 \PYG{k}{PREFIX} \PYG{n+nn}{wiki\PYGZhy{}prop}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://www.wikidata.org/prop/direct/\PYGZgt{}}
+
 \PYG{k}{SELECT} \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nv}{?country}
+
 \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
   \PYG{n+nv}{?human\PYGZus{}made\PYGZus{}object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P50\PYGZus{}has\PYGZus{}current\PYGZus{}keeper}\PYG{o}{/}\PYG{n+nn}{wiki\PYGZhy{}prop}\PYG{p}{:}\PYG{n+nt}{P17} \PYG{n+nv}{?country}\PYG{p}{.}
 \PYG{p}{\PYGZcb{}}
+
 \PYG{k}{LIMIT} \PYG{l+m+mi}{10}
 \end{Verbatim}

@@ -52,15 +52,20 @@ PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX w3-exif: <http://www.w3.org/2003/12/exif/ns#>
 PREFIX w3-oa: <http://www.w3.org/ns/oa#>
+
 SELECT ?manifest ?height ?image
+
 WHERE {
   # Manifest URI
   ?human_made_object cidoc:P129i_is_subject_of ?manifest.
+  
   # Image height
   ?manifest iiif:hasSequences/rdf:first/iiif:hasCanvases/rdf:first/w3-exif:height ?height.
+  
   # Image URI
   ?canvas iiif:hasImageAnnotations/rdf:first/w3-oa:hasBody ?image.
 }
+
 LIMIT 10
     \end{minted}
     \caption{SPARQL query fetching ten Human-Made Object's IIIF Manifest URIs, image heights and image file URIs}
@@ -249,7 +254,9 @@ However, after building the engine and instructing it to resolve the query, no r
              https://apidg.gent.be/opendata/adlib2eventstream/v1/
              dmg/objecten
              { ... , method: 'GET', actor: 'urn:comunica:default:http/actors#fetch' }
+             
 ...
+
 [...]  INFO: Requesting
              https://apidg.gent.be/opendata/adlib2eventstream/v1/
              context/cultureel-erfgoed-object-ap.jsonld
@@ -278,6 +285,7 @@ However, after building the engine and instructing it to resolve the query, no r
              https://apidg.gent.be/opendata/adlib2eventstream/v1/
              dmg/objecten?generatedAtTime=2023-08-12T00:01:27.217Z
              { actor: 'urn:comunica:default:rdf-resolve-hypermedia/actors#none' }
+             
 ...
     \end{minted}
     \caption{(Cleaned up) logs outputted during execution of engine configured by files displayed in Code Fragments~\ref{lst:config_predicates_actor} and~\ref{lst:actor_config_regexes_subject_true}}
@@ -465,6 +473,7 @@ Subsequently, two queries are introduced: a \textit{long} query that meticulousl
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 SELECT ?humanMadeObject ?image
+
 WHERE {
     ?humanMadeObject ex:hasManifest ?manifest .
     ?manifest ex:firstSequence ?sequence .
@@ -480,6 +489,7 @@ WHERE {
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 SELECT ?humanMadeObject ?image
+
 WHERE {
     ?humanMadeObject ex:hasManifest ?manifest .
     ?annotation iiif:hasBody ?image .
@@ -556,10 +566,13 @@ Given these findings, queries can also be formulated to retrieve specific Wikida
     \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX wiki-prop:<http://www.wikidata.org/prop/direct/>
+
 SELECT ?human_made_object ?country
+
 WHERE {
   ?human_made_object cidoc:P50_has_current_keeper/wiki-prop:P17 ?country.
 }
+
 LIMIT 10
     \end{minted}
     \caption{SPARQL query fetching ten Human-Made Object's institute's countries}
@@ -597,6 +610,7 @@ To achieve this, a new Comunica actor is built\footnote{Tutorial on building cus
 public async run(action: IActionRdfResolveHypermediaLinks):
     Promise<IActorRdfResolveHypermediaLinksOutput> {
   const stadGentUriRegex = /^https?:\/\/stad\.gent\/id\/.+$/u;
+  
   const links = action.metadata.traverse.map((link: { url: string }) => {
     if (this.stadGentUriRegex.test(link.url)) {
       const oldUrl = link.url;
@@ -606,9 +620,11 @@ public async run(action: IActionRdfResolveHypermediaLinks):
     }
     return link;
   });
+  
   // Update metadata in action
   const context = action.context.set(KEY_CONTEXT_REPLACED, true);
   const subAction = { ...action, context, metadata: { ...action.metadata, traverse: links }};
+  
   // Forward updated metadata to next actor
   return this.mediatorRdfResolveHypermediaLinks.mediate(subAction);
 }
@@ -755,6 +771,7 @@ public async run(action: IActionRdfResolveHypermediaLinks):
     Promise<IActorRdfResolveHypermediaLinksOutput> {
   const gettyUriRegex = /^https?:\/\/vocab\.getty\.edu\/.+$/u;
   const extensions = [ '.json', '.jsonld', '.rdf', '.n3', '.ttl', '.nt' ];
+  
   const links = action.metadata.traverse.map((link: { url: string }) => {
     if (this.gettyUriRegex.test(link.url)) {
       const hasExtension = this.extensions.some(ext => link.url.endsWith(ext));
@@ -767,9 +784,11 @@ public async run(action: IActionRdfResolveHypermediaLinks):
     }
     return link;
   });
+  
   // Update metadata in action
   const context = action.context.set(KEY_CONTEXT_EXTENDED, true);
   const subAction = { ...action, context, metadata: { ...action.metadata, traverse: links }};
+  
   // Forward updated metadata to next actor
   return this.mediatorRdfResolveHypermediaLinks.mediate(subAction);
 }
@@ -846,14 +865,18 @@ To make this new actor operational, a dedicated configuration file is provided. 
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX skos-xl:<http://www.w3.org/2008/05/skos-xl#>
 PREFIX getty:<http://vocab.getty.edu/ontology#>
+
 SELECT *
+
 WHERE {
   ?human_made_object cidoc:P41i_was_classified_by ?classifier.
   ?classifier cidoc:P42_assigned ?assignation.
   ?assignation skos-xl:prefLabel ?prefLabel.
   ?prefLabel getty:term ?thing.
+  
   FILTER(LANG(?thing) = "de")
 }
+
 LIMIT 10
     \end{minted}
     \caption{SPARQL query fetching Human-Made Object's types in German}
