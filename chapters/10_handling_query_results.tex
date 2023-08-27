@@ -12,35 +12,61 @@ It is important to clarify that this chapter does not strive to offer exhaustive
 \section{Visualizing Query Results}
 \label{sec:visualizing_query_results}
 
-TODO
+Given the research's focus on retrieving data as properties of specific CoGhent Human-Made Objects, the visual aspect of these objects revolves around displaying their corresponding digital images. The fact that each object is associated with a single image simplifies matters. Additionally, the provision to also showcase textual data for each object is crucial. Code Fragment~\ref{lst:sparql_manifest_height_image} serves as an example of a query that acquires some textual attributes for every Human-Made Object, alongside the object's digital image URI.
+
+Sections~\ref{subsec:visualizing_query_results_iiif_viewers} and~\ref{subsec:visualizing_query_results_custom_viewer} delve into the advantages and disadvantages of two visualization approaches. Irrespective of the method chosen, a key requirement is the ability to map the query results into the tool's internal structure. This entails that the visualization tools cannot possibly accommodate any query results without user instructions. They either solely accept results that strictly adherence to a predefined schema, or they offer a mapping interface empowering users to define how and where specific properties should be displayed.
 
 \subsection{IIIF Viewers}
+\label{subsec:visualizing_query_results_iiif_viewers}
 
-TODO
+As discussed in Section~\ref{sec:iiif}, IIIF Viewers are commonly used tools for visualizing cultural data. Therefore, they are also suitable candidates for visualizing query results that may arise from this research. The greatest advantage of using IIIF Viewers is, of course, that they don't need to be developed from scratch. Users have a wide range to choose from. Moreover, since these viewers are generally open-source projects, users can even customize an existing IIIF Viewer to their liking.
 
-% https://github.com/thesis-Martijn-Bogaert-2022-2023/iiif-generator
+Using a IIIF Viewer also implies that the query results need to be mapped to a IIIF Manifest. However, since these manifests can be structured in various ways, there can be different approaches to this mapping. Certain decisions need to be made, such as which Presentation API version the manifest should support - whereas Presentation API \mintinline{text}{3.*} is the latest and most capable version, some IIIF Viewers only support Presentation API \mintinline{text}{2.*} - as well as how the results should be organized. In the context of this research, a proof-of-concept mapper was developed, supporting Presentation API \mintinline{text}{2.*} and providing one canvas per Human-Made Object, all grouped together in a single sequence.
+
+The actual implementation can be found in the following GitHub repository:
+\begin{center}
+    \url{https://github.com/thesis-Martijn-Bogaert-2022-2023/iiif-generator}.
+\end{center}
+
+While using an existing IIIF Viewer indeed eliminates a lot of implementation work, it has one major drawback. IIIF Viewers expect the IIIF Manifest they are supposed to visualize, to be provided via its resource URI. While this aligns with the Linked Data principles, it restricts a true \textit{discovery} process. Since IIIF Manifests must be hosted – whether locally or externally – the IIIF Viewer cannot dynamically update itself when new results prompt changes in the corresponding IIIF Manifest. Hence, if such \textit{live update} feature holds significance, alternative solutions must be explored.
 
 \subsection{Custom Viewer}
+\label{subsec:visualizing_query_results_custom_viewer}
 
-TODO
+To have a true real-time visualizer at their disposal, developers need to take matters into their own hands. Fortunately, they can still rely on existing open-source tools. For instance, developers can work with the \textit{Annona Library}\footnote{\url{https://github.com/ncsu-libraries/annona}}. This library offers a somewhat more \textit{makeshift} IIIF Viewer, allowing the flexibility of presenting a IIIF Manifest as a string and deliberately abstaining from being classified as an \textit{official} IIIF Viewer. In principle, extending such a viewer to react in real-time to the results of a query engine should be achievable.
+
+However, relying solely on existing tools might impose restrictions on certain customization aspects. Consequently, developing a custom viewer from the ground up is also a valid approach. Nevertheless, the considerable implementation effort involved in this approach must be thoughtfully evaluated.
 
 \section{Saving Query Results}
 \label{sec:saving_query_results}
 
-TODO
+The query results acquired through this research might uncover new insights into the employed datasource(s). This naturally raises the need to archive these findings for future reference. There are various methods to achieve this, each approaching the notion of \textit{results} from a distinct angle.
 
-\subsection{SPARQL Query}
+Initially, as discussed in Section~\ref{subsec:saving_query_results_manifest}, results can be retained through direct storage – that is, by saving the corresponding \textit{bindings objects} for each \textit{bindings}. This approach ensures that the results remain accessible at any point. However, it also introduces the risk of the retained data not being up-to-date with the original data anymore. After all, the original data might have undergone changes or even been removed since the last retention. Moreover, while retaining query results literally, can be beneficial and deliberate, it could also present legal considerations. For instance, in case the copyright information for a CoGhent Man-Made Object's image is updated, this change will not be reflected in the stored results.
 
-TODO
+In contrast, Sections~\ref{subsec:saving_query_results_query} and~\ref{subsec:saving_query_results_predicates} adopt a fundamentally different perspective on the concept of \textit{results}. Here, the focus is not so much on the specific query outcomes but rather on the instructions to reproduce them. Consequently, in both cases, these instructions themselves are viewed as the data worthy of retention. While this approach implies that users don't possess specific results at their fingertips, it guarantees that upon executing these instructions, the obtained results consistently align with the current state of the utilized datasource(s).
 
 \subsection{IIIF Manifest}
+\label{subsec:saving_query_results_manifest}
 
-TODO
+The most straightforward way to store query results literally is by using a text-based file format. Examples include \mintinline{text}{.csv} and \mintinline{text}{.txt} files. Using a custom database is also an option, albeit a somewhat more advanced one. Alternatively, a IIIF Manifest can be used, identical to what was discussed in Section~\ref{subsec:visualizing_query_results_iiif_viewers}. However, in this scenario, the query results must be accurately integrated into the relevant sections of the manifest. Still, this approach offers the advantage of immediate and perpetual visualization of the results.
+
+\subsection{SPARQL Query}
+\label{subsec:saving_query_results_query}
+
+To retain the instructions for acquiring query results, a direct approach is to store the actual SPARQL query. This can be accomplished by saving it in a \mintinline{text}{.rq} file. However, when retrieving the query later on, it is essential to determine which query engine should execute it. This is due to the fact that certain queries are closely tied to the engine they were tailored to. This holds true for the type of queries central to this study as well. Notably, many of these queries are tailored to the custom engine introduced in Section~\ref{sec:comunica_link_traversal_engine_configuration} and may not function correctly when executed by others.
 
 \subsection{Predicate Sequences}
+\label{subsec:saving_query_results_predicates}
 
-TODO
+For queries specifically targeting Human-Made Objects in CoGhent's collections, an alternative method exists to preserve the instructions leading to query results. Section~\ref{sec:new_query_builder} namely introduced a JSON data structure to maintain corresponding \textit{predicate sequences} for various properties. The associated query builder application subsequently translates these JSON files into executable queries. One benefit of this approach is that it allows for the files to be shared as \textit{modules} with other users. However, this storage method is arguably quite niche, and users who are unfamiliar with the application may struggle to interpret these JSON files. Therefore, if the retention of query instructions is a significant consideration, it is advisable to store them directly as SPARQL queries.
 
 \section{Conclusion}
 
-TODO
+This chapter has delved into the intricate nuances of handling query results, building upon the foundational knowledge established in the preceding chapters on formulating and executing queries. The emphasis on digital art collections, particularly the CoGhent Human-Made Objects, has underscored the importance of visualizing and preserving query results.
+
+The visualization of query results, as discussed in Section~\ref{sec:visualizing_query_results}, given the visual nature of the datasets, poses unique challenges. While existing tools like IIIF Viewers offer a ready-made solution, they come with their own set of limitations, particularly in terms of real-time updates. On the other hand, custom viewers, though demanding in terms of development, offer greater flexibility and real-time capabilities.
+
+The preservation of query results, as elaborated in Section~\ref{sec:saving_query_results}, presents a \textit{dilemma}: retaining the actual results versus preserving the instructions to reproduce them. While direct storage methods, such as text-based files or IIIF Manifests, offer immediate access to results, they risk becoming outdated or misaligned with the original data. In contrast, storing the SPARQL query or predicate sequences ensures that results are always up-to-date with the current state of the data source, albeit at the cost of immediate accessibility.
+
+In essence, the handling of query results is a multifaceted process, with each method offering its own set of advantages and drawbacks. The choice largely depends on the specific requirements and constraints of the user or project. While the tools and methods presented in this chapter provide a comprehensive overview of the possibilities, it is essential to approach the handling of query results with a clear understanding of the desired outcome and the limitations of each method.
