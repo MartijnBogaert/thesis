@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  27 AUG 2023 18:46
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  27 AUG 2023 19:32
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -2472,7 +2472,7 @@ F.pygtex)
 
 (./_minted-main/38C9B859438ED64343A91441EE08A15B7D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Underfull \hbox (badness 3460) in paragraph at lines 180--181
+Underfull \hbox (badness 3460) in paragraph at lines 181--182
 \TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 to Comunica users to kick-start with
  LTQP. A common feature of these configurations is the initial import of
  []
@@ -2527,7 +2527,7 @@ F.pygtex)
 
 (./_minted-main/D4576FAAC25D7A04BB96E63A82398C7DD331C2BB7CD806F6B21C2134A30FDE8
 0.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 335--335
+Underfull \hbox (badness 10000) in paragraph at lines 336--336
 [][][][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][][][] [] [][]
 [][][][][][] [][] [][][][][][][] [][] [][][][] [][] [][][][][][][][][] [] [][][
 ][] [] [][][][][][] [] [][][][][][][] [] [][][][][][] [][] [][][][][] [][] [][]
@@ -2536,7 +2536,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 335--335
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 335--335
+Underfull \hbox (badness 10000) in paragraph at lines 336--336
 [][][][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][][][] [] [][]
 [][][][][][] [][] [][][][][][][] [][] [][][][] [][] [][][][][][][][][] [] [][][
 ][] [] [][][][][][] [] [][][][][][][] [] [][][][][][] [][] [][][][][] [][] [][]
@@ -2615,7 +2615,7 @@ A.pygtex)
 
 (./_minted-main/778AFA7B71C6B524FC44D929820B5CC1D3773C8B440B993359565A23D713B17
 A.pygtex)
-Overfull \hbox (8.3492pt too wide) in paragraph at lines 3--593
+Overfull \hbox (8.3492pt too wide) in paragraph at lines 3--594
 []\TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 ,  
  []
 
@@ -2634,7 +2634,7 @@ F.pygtex)
 
 (./_minted-main/6137CDE4893C59F76F005A8123D8E8E67D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 594--596
+Underfull \hbox (badness 10000) in paragraph at lines 595--597
 \TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 the server responds with an HTTP [] 
 response status along with the message
  []
@@ -2665,7 +2665,7 @@ F.pygtex)
 
 (./_minted-main/6137CDE4893C59F76F005A8123D8E8E67D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 602--603
+Underfull \hbox (badness 10000) in paragraph at lines 603--604
 \TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 results in an HTTP [] response statu
 s along with the message
  []
@@ -2690,7 +2690,7 @@ F.pygtex)
 
 (./_minted-main/746AF525DD5D082A3952900C32488B647D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 606--606
+Underfull \hbox (badness 10000) in paragraph at lines 607--607
 [][][]\TU/UGentPannoText-Normal.ttf(0)/m/n/9 Implementation: []$[][][][][] [] [
 ] [] [][][][][][] [] [][][] [] [][][][][][] [][] [][][][][][][] [][] [][][][][]
 [][] [][] [][][][] [][] [][][][] [] [][][][][][][][] [][] [][][][][][][] [][] [
@@ -2718,13 +2718,13 @@ F.pygtex)
 
 (./_minted-main/6137CDE4893C59F76F005A8123D8E8E67D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Underfull \hbox (badness 10000) in paragraph at lines 606--607
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
 []\TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 To achieve this, a new Comunica ac
 tor is built[][][]. This actor is coined
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 606--607
+Underfull \hbox (badness 10000) in paragraph at lines 607--608
 [][][][] \TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 and extends the
  []
 
@@ -2868,7 +2868,7 @@ F.pygtex)
 
 (./_minted-main/4027BFCF102E90AFBD21B660BE094B747D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Overfull \hbox (27.65079pt too wide) in paragraph at lines 3--688
+Overfull \hbox (27.65079pt too wide) in paragraph at lines 3--689
 [] 
  []
 
@@ -2918,7 +2918,7 @@ F.pygtex)
 
 (./_minted-main/8C4C13DAB6668C2437BA0598346B66B27D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Overfull \hbox (5.62033pt too wide) in paragraph at lines 713--714
+Overfull \hbox (5.62033pt too wide) in paragraph at lines 714--715
 []\TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 Nevertheless, whether the returned
  data has a [] of [] or []
  []
@@ -2928,7 +2928,7 @@ Overfull \hbox (5.62033pt too wide) in paragraph at lines 713--714
 
 (./_minted-main/3D6E3369884AE573F4B5A2091D58939C7D3289DBDE903A89739C57D3A0B8725
 F.pygtex)
-Overfull \hbox (2.3258pt too wide) in paragraph at lines 715--716
+Overfull \hbox (2.3258pt too wide) in paragraph at lines 716--717
 []\TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 To gain a better understanding of 
 the engine’s behavior, an examination of the tests[][][] within the []
  []
@@ -3156,7 +3156,7 @@ F.pygtex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
  [42]
-Underfull \hbox (badness 10000) in paragraph at lines 766--766
+Underfull \hbox (badness 10000) in paragraph at lines 767--767
 [][][][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][] [][] [][][]
 [][][][] [][] [][][][][][][] [][] [][][][] [][] [][][][] [] [][][][][][][][] []
 [] [][][][][][][] [][] [][][][] [][] [][][][][][][][][] [] [][][][] [] [][][][]
@@ -3787,12 +3787,12 @@ runsystem(rm main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 41244 strings out of 475890
- 946751 string characters out of 5780263
- 1946875 words of memory out of 5000000
- 60789 multiletter control sequences out of 15000+600000
+ 41245 strings out of 475890
+ 946785 string characters out of 5780263
+ 1945875 words of memory out of 5000000
+ 60790 multiletter control sequences out of 15000+600000
  564750 words of font info for 95 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,1013s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (90 pages, 2056152 bytes).
+Output written on main.xdv (90 pages, 2057716 bytes).
