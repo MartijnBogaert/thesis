@@ -4,7 +4,8 @@
 \contentsline {chapter}{List of Figures}{xi}{section*.4}%
 \contentsline {chapter}{List of Tables}{xii}{section*.5}%
 \contentsline {chapter}{List of Code Fragments}{xiv}{section*.6}%
-\contentsline {chapter}{\numberline {1}Related work}{2}{chapter.1}%
+\contentsline {chapter}{Introduction}{1}{chapter*.7}%
+\contentsline {chapter}{\numberline {1}Related Work}{2}{chapter.1}%
 \contentsline {section}{\numberline {1.1}Linked Data}{2}{section*.8}%
 \contentsline {subsection}{\numberline {1.1.1}Introduction and Principles}{3}{subsection.1.1.1}%
 \contentsline {subsection}{\numberline {1.1.2}Resource Description Framework}{5}{subsection.1.1.2}%
