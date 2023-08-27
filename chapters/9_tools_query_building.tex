@@ -165,7 +165,10 @@ const properties = {
         { predicate: 'http://www.w3.org/2004/02/skos/core#prefLabel' },
     ],
 };
-const prefixes = { cidoc: 'http://www.cidoc-crm.org/cidoc-crm/', };
+
+const prefixes = {
+    cidoc: 'http://www.cidoc-crm.org/cidoc-crm/',
+};
     \end{minted}
     \caption{Properties and prefixes ready to be consumed by query building function}
     \label{lst:properties_prefixes_query_build_function}
@@ -175,16 +178,21 @@ const prefixes = { cidoc: 'http://www.cidoc-crm.org/cidoc-crm/', };
     \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
 PREFIX skos:<http://www.w3.org/2004/02/skos/core#>
+
 SELECT ?title ?note ?objectname ?association
+
 WHERE {
     # title
     ?human_made_object cidoc:P102_has_title ?title.
+    
     # description
     ?human_made_object cidoc:P3_has_note ?note.
+    
     # objectname
     ?human_made_object
         cidoc:P41i_was_classified_by/cidoc:P42_assigned/skos:prefLabel
             ?objectname.
+            
     # association
     ?human_made_object cidoc:P128_carries/cidoc:P129_is_about ?about.
     ?about cidoc:P2_has_type/skos:prefLabel ?association.
@@ -227,13 +235,17 @@ Now that each property in the properties array can host various types of data, t
 \begin{listing}[htbp]
     \begin{minted}[samepage,fontsize=\small]{sparql}
 PREFIX cidoc:<http://www.cidoc-crm.org/cidoc-crm/>
+
 SELECT ?title ?note
+
 WHERE {
     # title
     ?human_made_object cidoc:P102_has_title ?title.
+    
     # description
     OPTIONAL {
         ?human_made_object cidoc:P3_has_note ?note.
+        
         FILTER(REGEX(?note, "luchter", "i"))
         FILTER(LANG(?note) = "nl")
     }
