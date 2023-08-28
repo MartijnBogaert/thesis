@@ -43,6 +43,15 @@ Bizer, C., Heath, T., and Berners-Lee, T. (2011).
 \newblock In {\em Semantic services, interoperability and web applications:
   emerging concepts}, pages 205--227. IGI global.
 
+\bibitem[Buil-Aranda et~al., 2013]{buil2013sparql}
+Buil-Aranda, C., Corby, O., Das, S., Feigenbaum, L., Gearon, P., Glimm, B.,
+  Harris, S., Hawke, S., Herman, I., Humfrey, N., Michaelis, N., Ogbuji, C.,
+  Perry, M., Passant, A., Polleres, A., Prud'hommeaux, E., Seaborne, A., and
+  Williams, G.~T. (2013).
+\newblock {SPARQL} 1.1 overview.
+\newblock {W3C} recommendation, W3C.
+\newblock \url{https://www.w3.org/TR/2013/REC-sparql11-overview-20130321/}.
+
 \bibitem[Candan et~al., 2001]{candan2001resource}
 Candan, K.~S., Liu, H., and Suvarna, R. (2001).
 \newblock Resource description framework: metadata and its applications.
@@ -60,6 +69,13 @@ Dongo, I. and Chbeir, R. (2019).
 \newblock In {\em {On the Move to Meaningful Internet Systems: OTM 2019
   Conferences}}, 28th International Conference on COOPERATIVE INFORMATION
   SYSTEMS, pages 246--264, Rhodes, Greece. {Springer International Publishing}.
+
+\bibitem[DuCharme, 2013]{ducharme2013learning}
+DuCharme, B. (2013).
+\newblock {\em Learning SPARQL: querying and updating with SPARQL 1.1}.
+\newblock " O'Reilly Media, Inc.".
+\newblock
+  \url{http://www.snee.com/semwebmeetup/2011-09-15/SPARQLBobDuCharme.pdf}.
 
 \bibitem[Fielding and Reschke, 2014]{fielding2014http}
 Fielding, R.~T. and Reschke, J. (2014).
@@ -110,12 +126,25 @@ Powers, S. (2003).
   framework}.
 \newblock O'Reilly Media, Inc.
 
+\bibitem[Seaborne and Harris, 2013]{seaborn2013sparql}
+Seaborne, A. and Harris, S. (2013).
+\newblock {SPARQL} 1.1 query language.
+\newblock {W3C} recommendation, W3C.
+\newblock \url{https://www.w3.org/TR/2013/REC-sparql11-query-20130321/}.
+
 \bibitem[Sporny et~al., 2020]{kellogg2020jsonld}
 Sporny, M., Longley, D., Kellogg, G., Lanthaler, M., Champin, P.-A., and
   Lindström, N. (2020).
 \newblock {JSON}-ld {1.1}.
 \newblock {W3C} recommendation, W3C.
 \newblock \url{https://www.w3.org/TR/2020/REC-json-ld11-20200716/}.
+
+\bibitem[Taelman, 2020]{taelman2020quad}
+Taelman, R. (2020).
+\newblock Quad pattern fragments.
+\newblock {W3C} draft, W3C.
+\newblock
+  \url{https://linkeddatafragments.org/specification/quad-pattern-fragments/}.
 
 \bibitem[Taelman et~al., 2018]{taelman2018comunica}
 Taelman, R., Van~Herwegen, J., Vander~Sande, M., and Verborgh, R. (2018).

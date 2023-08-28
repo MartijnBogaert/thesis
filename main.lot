@@ -18,23 +18,20 @@
 \setforeignlanguage {english}
 \addvspace {10\p@ }
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.1}{\ignorespaces CoGhent LDES endpoints as published by \citet {floreverk2022ldes}\relax }}{20}{table.caption.29}%
+\contentsline {table}{\numberline {2.1}{\ignorespaces CoGhent LDES endpoints as published by \citet {floreverk2022ldes}\relax }}{21}{table.caption.29}%
 \setforeignlanguage {english}
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.2}{\ignorespaces (Part of) results after \textbf {first} execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image}\relax }}{21}{table.caption.31}%
+\contentsline {table}{\numberline {2.2}{\ignorespaces (Part of) results after \textbf {first} execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image}\relax }}{22}{table.caption.31}%
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.3}{\ignorespaces (Part of) results after \textbf {second} execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image}\relax }}{22}{table.caption.32}%
+\contentsline {table}{\numberline {2.3}{\ignorespaces (Part of) results after \textbf {second} execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image}\relax }}{23}{table.caption.32}%
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.4}{\ignorespaces (Part of) results after execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image} with Design Museum Gent (\textbf {DMG}) LDES endpoint as \textbf {first} data source and Huis Van Alijn (\textbf {HVA}) LDES endpoint as \textbf {second} data source\relax }}{22}{table.caption.33}%
+\contentsline {table}{\numberline {2.4}{\ignorespaces (Part of) results after execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image} with Design Museum Gent (\textbf {DMG}) LDES endpoint as \textbf {first} data source and Huis Van Alijn (\textbf {HVA}) LDES endpoint as \textbf {second} data source\relax }}{23}{table.caption.33}%
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.5}{\ignorespaces (Part of) results after execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image} with Huis Van Alijn (\textbf {HVA}) LDES endpoint as \textbf {first} data source and Design Museum Gent (\textbf {DMG}) LDES endpoint as \textbf {second} datasource\relax }}{23}{table.caption.34}%
-\setforeignlanguage {english}
-\setforeignlanguage {english}
-\setforeignlanguage {english}
-\contentsline {table}{\numberline {2.6}{\ignorespaces Results from experiment comparing different Comunica link traversal engines\relax }}{27}{table.caption.40}%
+\contentsline {table}{\numberline {2.5}{\ignorespaces (Part of) results after execution of query displayed in Code Fragment\nobreakspace {}\ref {lst:sparql_manifest_height_image} with Huis Van Alijn (\textbf {HVA}) LDES endpoint as \textbf {first} data source and Design Museum Gent (\textbf {DMG}) LDES endpoint as \textbf {second} datasource\relax }}{24}{table.caption.34}%
 \setforeignlanguage {english}
 \setforeignlanguage {english}
 \setforeignlanguage {english}
+\contentsline {table}{\numberline {2.6}{\ignorespaces Results from experiment comparing different Comunica link traversal engines\relax }}{28}{table.caption.40}%
 \setforeignlanguage {english}
 \setforeignlanguage {english}
 \setforeignlanguage {english}
@@ -42,16 +39,19 @@
 \setforeignlanguage {english}
 \setforeignlanguage {english}
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.7}{\ignorespaces Results of \textbf {long} query displayed in Code Fragment\nobreakspace {}\ref {lst:long_query_hmo_image} and RDF document displayed in Code Fragment\nobreakspace {}\ref {lst:turtle_hypothetical_combination}\relax }}{34}{table.caption.49}%
-\setforeignlanguage {english}
-\contentsline {table}{\numberline {2.8}{\ignorespaces Results of \textbf {short} query displayed in Code Fragment\nobreakspace {}\ref {lst:short_query_hmo_image} and RDF document displayed in Code Fragment\nobreakspace {}\ref {lst:turtle_hypothetical_combination}\relax }}{34}{table.caption.50}%
 \setforeignlanguage {english}
 \setforeignlanguage {english}
 \setforeignlanguage {english}
+\contentsline {table}{\numberline {2.7}{\ignorespaces Results of \textbf {long} query displayed in Code Fragment\nobreakspace {}\ref {lst:long_query_hmo_image} and RDF document displayed in Code Fragment\nobreakspace {}\ref {lst:turtle_hypothetical_combination}\relax }}{35}{table.caption.49}%
+\setforeignlanguage {english}
+\contentsline {table}{\numberline {2.8}{\ignorespaces Results of \textbf {short} query displayed in Code Fragment\nobreakspace {}\ref {lst:short_query_hmo_image} and RDF document displayed in Code Fragment\nobreakspace {}\ref {lst:turtle_hypothetical_combination}\relax }}{35}{table.caption.50}%
 \setforeignlanguage {english}
 \setforeignlanguage {english}
 \setforeignlanguage {english}
-\contentsline {table}{\numberline {2.9}{\ignorespaces Results from experiment examining \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{Content-Type}}s of Getty Vocabularies server's HTTP responses\relax }}{42}{table.caption.56}%
+\setforeignlanguage {english}
+\setforeignlanguage {english}
+\setforeignlanguage {english}
+\contentsline {table}{\numberline {2.9}{\ignorespaces Results from experiment examining \FVExtraRobustCommand \RobustMintInline \FVExtraAlwaysUnexpanded {\FVExtraUnexpandedReadStarOArgMArgBVArg {text}{Content-Type}}s of Getty Vocabularies server's HTTP responses\relax }}{43}{table.caption.56}%
 \setforeignlanguage {english}
 \setforeignlanguage {english}
 \setforeignlanguage {english}
