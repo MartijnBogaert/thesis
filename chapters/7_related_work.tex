@@ -355,15 +355,53 @@ Up to this point, the terms \textit{triple} and \textit{triple pattern} have bee
 \section{Link-Traversal-based Query Processing}
 \label{sec:ltqp}
 
-TODO
+The vision behind Linked Data is a compelling one: a web of interconnected data that can be seamlessly queried and navigated. However, the practicalities of querying this vast, decentralized network using tools like SPARQL over RDF representations present challenges. How does one effectively access and integrate data scattered across diverse sources? This is where \textit{Link Traversal-based Query Processing} (LTQP) - often simply referred to using the \textit{broader} term \textit{link traversal} - becomes indispensable. By dynamically traversing links between documents, LTQP offers a solution that is not confined to a static dataset but instead capitalizes on the web's inherent interconnectivity. Through this method, the promise of Linked Data moves a step closer to its practical realization in a decentralized web environment. In Section~\ref{subsec:lt_basics}, a deeper dive into the foundational mechanisms of link traversal is presented, leading to Section~\ref{subsec:reachability_criteria} exploring possible criteria that determine which links should be pursued during the query process. \citep{hartig2012foundations} \citep{taelman2023ltqp}
 
 \subsection{Link Traversal Basics}
+\label{subsec:lt_basics}
 
-TODO
+Whereas \textit{conventional} SPARQL query processing is confined to the scope of the predetermined dataset(s), link traversal can, in principle, involve the entire RDF web in the query process by following the URIs - links - between RDF documents. The querying dataset is, in other words, dynamically expanded. To discuss this link traversal query process, the documents depicted in Code Fragment~\ref{lst:json_ld_spread_syntax} are used. The query engine is instructed to find the birthplace of the painter of the painting \textit{The Circus}, but initially only receives the URI to the first document. The specific query is shown in Code Fragment~\ref{lst:sparql_spread}.
+\begin{enumerate}
+    \item \textbf{Initialization}\\
+    The process starts with a link queue populated with seed URIs, either user-defined or derived from the query. For this example, the seed URI is derived from the query and points to the document containing the \textit{The Circus} painting's resource.
+    \item \textbf{Iteration and Appending}\\
+    During the iteration process, the link at the head of the queue is accessed, leading to the associated document. All URIs from that document are then added back into the queue. In this example, after accessing the document with the \textit{The Circus} resource, the link associated with the \textit{Georges Seurat} resource leads to the second document in Code Fragment~\ref{lst:json_ld_spread_syntax}. Furthermore, during this process, the \mintinline{text}{http://dbpedia.org/resource/France} link would also be added to the link queue. From this resource's document, other links might be discovered and added to the queue, and so on.
+    \item \textbf{Query Execution}: The query runs over the union of all the RDF triples from the discovered documents. For this example, this results in identifying \textit{France} as the birthplace of the painter of \textit{The Circus}.
+\end{enumerate}
+\citep{taelman2023ltqp}
+
+\begin{listing}[htbp]
+    \begin{minted}[fontsize=\small]{sparql}
+PREFIX ex:<http://example.org/>
+
+SELECT ?birthplace
+
+WHERE {
+  ex:The_Circus ex:painter ?painter.
+  ?painter ex:birthplace ?birthplace.
+}
+    \end{minted}
+    \caption{SPARQL query querying data that is spread over the two documents displayed in Code Fragment~\ref{lst:json_ld_spread_syntax}}
+    \label{lst:sparql_spread}
+\end{listing}
+
+It is important to note that link traversal is theoretically an infinite process. As links lead to more documents, which in turn contain more links, the process can continue indefinitely. This is also apparent from the example. Indeed, during the iteration process, it is very likely the query engine would have had to follow an enormous - possibly infinite - collection of links, as the \mintinline{text}{http://dbpedia.org/resource/France} resource might introduce other links, which in turn might introduce other links as well, and so on. This highlights the importance of introducing criteria to determine which links should be pursued and which should be ignored, ensuring more efficient query processing. \citep{taelman2023ltqp} \citep{hartig2012foundations}
 
 \subsection{Reachability Criteria}
+\label{subsec:reachability_criteria}
 
-TODO
+In LTQP, determining which links to traverse is essential. \citet{hartig2012foundations} introduced the concept of \textit{reachability criteria} to guide this decision-making process:
+\begin{enumerate}
+    \item \textbf{\textit{cAll}}\\
+    This criterion represents the most unrestricted approach to link traversal. It allows for arbitrary paths to reach Linked Data documents by following every possible link without any constraints. This approach adheres to the most basic idea of link traversal, ensuring comprehensive data retrieval but potentially leading to information overload.
+    \item \textbf{\textit{cNone}}\\
+    This is the exact opposite of \textit{cAll}. It is the most restrictive criterion, where no links are pursued at all. Effectively, link traversal is disallowed, confining the process strictly to the initial document.
+    \item \textbf{\textit{cMatch}}\\
+    This criterion is based on \textit{query pattern-based reachability}. Specifically, a link is pursued only if the quad it is part of corresponds to a specific quad pattern in the executed query. This approach offers a more targeted traversal, ensuring that only relevant links corresponding to the query patterns are followed.
+\end{enumerate}
+\citep{hartig2012foundations}
+
+While these criteria provide foundational strategies for traversal, they represent theoretical approaches. In practice, the actual traversal might be influenced by various factors, and more intricate rules can be devised to steer an LTQP engine. In the section that follows, namely Section~\ref{sec:comunica}, a system is introduced that allows for easy configuration of custom SPARQL query engines - link traversal engines as well - in turn allowing for the practical implementation of the aforementioned link traversal strategies, as well as new ones.
 
 \section{Comunica}
 \label{sec:comunica}
