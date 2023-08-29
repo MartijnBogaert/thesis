@@ -1,0 +1,15 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{PREFIX} \PYG{n+nn}{purl}\PYG{p}{:} \PYG{n+nl}{\PYGZlt{}http://purl.org/dc/terms/\PYGZgt{}}
+
+\PYG{k}{SELECT} \PYG{k}{DISTINCT} \PYG{n+nv}{?priref}
+
+\PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
+    \PYG{k}{SELECT} \PYG{n+nv}{?object} \PYG{n+nv}{?priref}
+
+    \PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
+        \PYG{n+nv}{?object} \PYG{n+nn}{purl}\PYG{p}{:}\PYG{n+nt}{isVersionOf} \PYG{n+nv}{?priref}\PYG{p}{.}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{ORDER BY} \PYG{k}{DESC}\PYG{p}{(}\PYG{n+nv}{?object}\PYG{p}{)}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

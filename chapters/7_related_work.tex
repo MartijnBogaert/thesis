@@ -366,7 +366,8 @@ Whereas \textit{conventional} SPARQL query processing is confined to the scope o
     The process starts with a link queue populated with seed URIs, either user-defined or derived from the query. For this example, the seed URI is derived from the query and points to the document containing the \textit{The Circus} painting's resource.
     \item \textbf{Iteration and Appending}\\
     During the iteration process, the link at the head of the queue is accessed, leading to the associated document. All URIs from that document are then added back into the queue. In this example, after accessing the document with the \textit{The Circus} resource, the link associated with the \textit{Georges Seurat} resource leads to the second document in Code Fragment~\ref{lst:json_ld_spread_syntax}. Furthermore, during this process, the \mintinline{text}{http://dbpedia.org/resource/France} link would also be added to the link queue. From this resource's document, other links might be discovered and added to the queue, and so on.
-    \item \textbf{Query Execution}: The query runs over the union of all the RDF triples from the discovered documents. For this example, this results in identifying \textit{France} as the birthplace of the painter of \textit{The Circus}.
+    \item \textbf{Query Execution}\\
+    The query runs over the union of all the RDF triples from the discovered documents. For this example, this results in identifying \textit{France} as the birthplace of the painter of \textit{The Circus}.
 \end{enumerate}
 \citep{taelman2023ltqp}
 
@@ -391,14 +392,16 @@ It is important to note that link traversal is theoretically an infinite process
 \label{subsec:reachability_criteria}
 
 In LTQP, determining which links to traverse is essential. \citet{hartig2012foundations} introduced the concept of \textit{reachability criteria} to guide this decision-making process:
-\begin{enumerate}
+\begin{itemize}
     \item \textbf{\textit{cAll}}\\
     This criterion represents the most unrestricted approach to link traversal. It allows for arbitrary paths to reach Linked Data documents by following every possible link without any constraints. This approach adheres to the most basic idea of link traversal, ensuring comprehensive data retrieval but potentially leading to information overload.
+    
     \item \textbf{\textit{cNone}}\\
     This is the exact opposite of \textit{cAll}. It is the most restrictive criterion, where no links are pursued at all. Effectively, link traversal is disallowed, confining the process strictly to the initial document.
+    
     \item \textbf{\textit{cMatch}}\\
     This criterion is based on \textit{query pattern-based reachability}. Specifically, a link is pursued only if the quad it is part of corresponds to a specific quad pattern in the executed query. This approach offers a more targeted traversal, ensuring that only relevant links corresponding to the query patterns are followed.
-\end{enumerate}
+\end{itemize}
 \citep{hartig2012foundations}
 
 While these criteria provide foundational strategies for traversal, they represent theoretical approaches. In practice, the actual traversal might be influenced by various factors, and more intricate rules can be devised to steer an LTQP engine. In the section that follows, namely Section~\ref{sec:comunica}, a system is introduced that allows for easy configuration of custom SPARQL query engines - link traversal engines as well - in turn allowing for the practical implementation of the aforementioned link traversal strategies, as well as new ones.
@@ -406,35 +409,123 @@ While these criteria provide foundational strategies for traversal, they represe
 \section{Comunica}
 \label{sec:comunica}
 
-TODO
+While various solutions exist for querying RDF data using SPARQL, Comunica\footnote{\url{https://comunica.dev}} stands out for several reasons. Beyond its capability to support heterogeneous interfaces, allowing for seamless querying across diverse data sources like data dumps, RDF documents, SPARQL endpoints and Triple Pattern Fragments (TPF) interfaces, it is built on and using web-based technologies. This ensures broad compatibility and easy integration with browsers and web applications. However, Comunica's defining characteristic is arguably its modularity. Users can choose from existing configurations or craft custom ones, creating query engines tailored to specific needs. The technical foundations that enable this modular approach are elaborated upon in Section~\ref{subsec:comunica_building_blocks}. \citep{taelman2018comunica}
 
 \subsection{Building Blocks}
+\label{subsec:comunica_building_blocks}
 
-TODO
+Comunica's unique modularity is achieved through an architectural design in which three types of components are core.
+\begin{itemize}
+    \item \textbf{Actors}\\
+    Actors are the primary computational units in Comunica. They are responsible for processing specific messages they receive via the buses they are subscribed to. Each actor is designed to accept certain types of messages and respond accordingly, ensuring efficient and targeted processing.
+
+    \item \textbf{Buses}\\
+    Buses serve as communication channels in Comunica. They facilitate the interaction between actors and mediators. To optimize performance and prevent congestion, Comunica employs multiple buses, each catering to different types of messages. This separation ensures that each bus handles specific tasks, streamlining the communication process.
+
+    \item \textbf{Mediators}\\
+    Mediators play a pivotal role in determining the best actor for a given task. They are connected to a single bus and operate in two phases: the test phase and the run phase. Initially, in the test phase, mediators evaluate the conditions under which each actor on the bus can perform a task. Once the most suitable actor is identified, the run phase is initiated, where the chosen actor processes the message and returns the result.
+\end{itemize}
+\citep{taelman2018comunica}
+
+Comunica is not only modular, but it also boasts a highly adaptable interface thank to its integration with \textit{Component.js}, a dependency injection framework. This framework allows for the semantic description of Comunica components in JSON-LD format, facilitating the dynamic selection and combination of components based on configuration files. As a result, Comunica can serve diverse purposes, from executing SPARQL queries to custom RDF parsing. The platform already offers a wide range of modules\footnote{\url{https://github.com/comunica/comunica/tree/master/packages}}, including buses, mediator types, and actors. Moreover, while it also already offers predetermined engine configurations\footnote{\url{https://github.com/comunica/comunica/tree/master/engines}} that combine these modules, users are also empowered to craft their own configurations, tailoring engines to their specific needs. \citep{taelman2018comunica}
 
 \subsection{Link Traversal Engines}
 
-TODO
+A review of the Comunica GitHub repository\footnote{\url{https://github.com/comunica/comunica}} reveals a comprehensive set of modules and configurations. Many of these modules serve to establish Comunica as a proficient \textit{standard} query engine. However, a distinct subset is dedicated to enhancing the engine with LTQP capabilities, and these components are systematically organized in a separate GitHub monorepo\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal}}.
+
+Central to this repository are various link extractors, which determine which links the engine should add to its link queue, effectively defining its \textit{reachability criteria}. For instance, the \textit{All Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-all}} and the \textit{Quad Pattern Query Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-quad-pattern-query}} are two actors that implement the \textit{cAll} and \textit{cMatch} reachability criteria that were introduced in Section~\ref{subsec:reachability_criteria}. Furthermore, the repository includes additional methodologies. Actors such as the \textit{Predicates Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-predicates}} and the \textit{Tree Extract Links Actor}\footnote{\url{https://github.com/comunica/comunica-feature-link-traversal/tree/master/packages/actor-extract-links-extract-tree}} introduce strategies that were not discussed. Specifically, the former instructs the query engine to solely follow links from quads that align with a series of given predicate rules, while the latter ensures the traversal of links that typically appear in documents that follow the TREE specification - this specification will be briefly mentioned in Section~\ref{subsec:ldes}. \citep{taelman2019lt}
+
+In summary, Comunica's modular and adaptable design allows for diverse and profound capabilities in LTQP within the Linked Data landscape.
 
 \section{Collections of Ghent}
 \label{sec:coghent}
 
-TODO
+This research mainly focuses on the data of \textit{Collections of Ghent}\footnote{\url{https://www.collections.gent}} (CoGhent), or \textit{Collectie van de Gentenaar}\footnote{\url{https://www.collectie.gent}} (CoGent) in Dutch. CoGhent is a collaborative effort involving the city of Ghent, Design Museum Gent, Digipolis, and other local organizations in Ghent. CoGhent was established with the aim of collecting and digitizing the city's cultural heritage into a central collection. This collection serves not only as an archive but also as an interactive platform. Residents of Ghent are encouraged to contribute their own heritage stories and objects, creating a vibrant blend of official history and personal narratives within the collection. \citep{leemputten2022gent} \citep{schouppe2022gent}
+
+However, more important for this research is the data specifically published by the participating cultural institutions. These institutions include Design Museum Gent (DMG), Huis van Alijn (HVA), Industriemuseum, STAM, and Archief Gent. Like many other cultural institutions, they use a content management system (CMS) to manage their data. However, to make their data interoperable and open, CoGhent decided to build \textit{Linked Data Event Stream} (LDES) endpoints on top of these systems. \citep{floreverk2022coghent} \citep{van2022publishing}
+
+Before delving deeper into these LDESs, it should be noted that the CoGhent partnership was terminated in June 2023 due to the discontinuation of project funding. However, the infrastructure remains up and running, allowing working with the data to continue. \textit{This information was obtained through personal email correspondence with Olivier Van D'huynslager, Strategic Project Manager and Content Lead at CoGhent.}
 
 \subsection{Linked Data Event Streams}
 \label{subsec:ldes}
 
-TODO
+The CoGhent data, being hosted in LDES, inherently adopts the RDF format, positioning the data within the web of Linked Data. An LDES is characterized by its collection of immutable objects, with each object being represented by RDF triples. This immutability is crucial, signifying that once an object is added to the LDES, it remains unchanged. Instead of updating existing objects, new versions are introduced. The LDES specification provides guidelines on versioning, enabling data consumers to differentiate between various versions of the same object. Furthermore, the inherent immutability suggests that objects are not to be deleted by default. Only when the LDES specifies a particular retention policy (or a combination of them), is the server allowed to delete objects. \citep{colpaert2023ldes}
+
+LDESs are highly suitable for involving rapidly growing and evolving datasets in the Linked Data web. However, even when speed is not the primary concern, LDESs are a great option for publishing collections of equivalent objects. For sure, this is the case with the CoGhent LDESs. Additionally, LDESs can become quite large. Therefore, they are fragmented into different pages. To describe this technically, LDESs rely on the \textit{TREE} specification. The TREE specification allows various relationships between HTTP resources to be defined. As the name suggests, this can even establish very complex \textit{tree-like} structures. To put it simply, all resources belong to the same \mintinline{text}{tree:Collection} but are divided into different \mintinline{text}{tree:Node}s. These nodes are then linked together in specific ways using \mintinline{text}{tree:Relation}s. These relations can describe various types of relationships, but in the case of LDESs, the different \mintinline{text}{tree:Node}s - pages - are simply interconnected in a two-dimensional manner using \mintinline{text}{tree:LessThanRelation}s and \mintinline{text}{tree:GreaterThanRelation}s. The pages' timestamps ultimately help these two types of relations in arrangin the pages from \textit{newest} to \textit{oldest}. \citep{colpaert2023ldes} \citep{colpaert2023tree}
+
+\subsection{Human-Made Objects}
+
+CoGhent's LDESs, specifically, consist of various \textit{Human-Made Object}s (HMO). These HMOs represent tangible and intangible items crafted or influenced by humans, ranging from artworks, books, and monuments to traditions, crafts, and the ideas they convey. The \textit{Open Standaarden voor Linkende Organisaties} (OSLO) initiative plays a pivotal role in standardizing the way they are described and exchanged. Essentially, OSLO is a framework set by the Flemish government to ensure a uniform method of data exchange. In addition, as is the case with all OSLO's standards, HMOs align with international standards to ensure semantic interoperability and a consistent approach to data representation within the cultural heritage domain. Throughout the rest of this research, Human-Made Objects (HMOs) will be predominantly equated with \textit{artworks} for the sake of simplicity. Nonetheless, it is imperative to underscore that this terminology is a notable simplification, as the term \textit{Human-Made Object} encompasses a broad spectrum of items beyond just artworks. \citep{van2022publishing} \citep{vanderperren2021oslo} \citep{linden2021object}
 
 \subsection{Example Queries}
 \label{sec:coghent_example_queries}
 
-TODO
+On its documentation website\footnote{\url{https://coghent.github.io}}, \citet{floreverk2022queries} provides some examples of queries that can be used to query their LDESs. Three of them are discussed here because they not only offer an initial insight into the type of data present in the LDESs but also potentially highlight challenges.
+
+The first example is presented in Code Fragment~\ref{lst:coghent_example_titles} and is very straightforward. Initially, it retrieves all titles of Human-Made Objects. However, they are immediately filtered in order to make sure only those titles containing the word \textit{Gent} are ultimately returned. \citep{floreverk2022queries}
+
+\begin{listing}[htbp]
+    \begin{minted}[fontsize=\small]{sparql}
+PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
+
+SELECT ?title
+
+WHERE { 
+  ?object cidoc:P102_has_title ?title.
+  FILTER (regex(?title, "Gent", "i"))
+}
+    \end{minted}
+    \caption{SPARQL query fetching Human-Made Objects' titles containing \textit{Gent} as proposed by \citet{floreverk2022queries}}
+    \label{lst:coghent_example_titles}
+\end{listing}
+
+The second example is depicted in Code Fragment~\ref{lst:coghent_example_labels} and is not much more complex. This time, it retrieves each Human-Made Object's \textit{objectname}'s label. It is worth noting that the \textit{objectname} essentially represents a resource URI pointing to an external vocabulary resource. However, for each \textit{objectname}, the LDESs themselves also specify a \textit{preferred} label, which is an atomic value. In fact, these are the values the query is looking for. \citep{floreverk2022queries}
+
+\begin{listing}[htbp]
+    \begin{minted}[fontsize=\small]{sparql}
+PREFIX cidoc: <http://www.cidoc-crm.org/cidoc-crm/>
+PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+
+SELECT ?label 
+
+WHERE { 
+  ?object cidoc:P41i_was_classified_by ?identifier.
+  ?identifier cidoc:P42_assigned ?objectname.
+  ?objectname skos:prefLabel ?label
+}
+    \end{minted}
+    \caption{SPARQL query fetching Human-Made Objects' \textit{objectname}'s titles as proposed by \citet{floreverk2022queries}}
+    \label{lst:coghent_example_labels}
+\end{listing}
+
+Interestingly, a \textit{regular} query engine that only has access to one or more of the CoGhent LDESs can retrieve nothing more than these preferred labels. This is rather unfortunate however, as the vocabulary resource represented by the \textit{objectname} contains much more additional information, including labels in different languages. Still, this additional information can in fact be accessed using a link traversal-capable query engine. Since this is more intricate than it sounds, this is one of the topics covered later on in this research.
+
+The third and final query is shown in Code Fragment~\ref{lst:coghent_example_ordered} and highlights a significant challenge that arises when querying LDESs. After all, it is quite reasonable to assume that users would want to retrieve only the latest version of LDES objects. Code Fragment~\ref{lst:coghent_example_ordered} demonstrates how this can be achieved in query form by cleverly utilizing a nested \mintinline{text}{WHERE} clause, along with the \mintinline{text}{ORDER BY} and \mintinline{text}{DISTINCT} keywords. However, aside from arguably overcomplicating the query, this approach also results in the delivery of results at the absolute end of query execution. After all, the results can only be sorted once they are all available. For this reason, this method cannot be considered optimal for achieving the desired outcome. Again, a different approach is suggested later on in the research, albeit it briefly. \citep{floreverk2022queries}
+
+\begin{listing}[htbp]
+    \begin{minted}[fontsize=\small]{sparql}
+PREFIX purl: <http://purl.org/dc/terms/>
+
+SELECT DISTINCT ?priref
+
+WHERE {
+    SELECT ?object ?priref
+    
+    WHERE { 
+        ?object purl:isVersionOf ?priref.
+    }
+    
+    ORDER BY DESC(?object)
+}
+    \end{minted}
+    \caption{SPARQL query fetching ordered unique versions of all Human-Made Objects as proposed by \citet{floreverk2022queries}}
+    \label{lst:coghent_example_ordered}
+\end{listing}
 
 \subsection{Query Builder}
 \label{subsec:coghent_query_builder}
 
-TODO (see Figure~\ref{fig:og_query_builder})
+This research is primarily centered on simplifying the query construction process, especially for culture enthusiasts who may not possess a technical background. In line with this objective, it is pertinent to introduce the \textit{CoGhent Query Builder}\footnote{\url{http://collectievandegentenaar.pythonanywhere.com/querybuilder}}, a user-friendly web application designed with the same goal in mind. As depicted in Figure~\ref{fig:og_query_builder}, the application allows users to select various \textit{properties} and even filter them based on specific string values. These properties, in essence, represent specific data points associated with Human-Made Objects. However, accessing these often involves navigating through a series of predicates. The CoGhent Query Builder simplifies this process by presenting them as a singular property. For a clearer understanding, Code Fragment~\ref{lst:coghent_builder_original} showcases the query generated when the selections illustrated in Figure~\ref{fig:og_query_builder} are made.
 
 \begin{figure}[htbp]
     \centering
@@ -492,6 +583,8 @@ WHERE {
     \caption{Example of SPARQL query created by original CoGhent Query Builder}
     \label{lst:coghent_builder_original}
 \end{listing}
+
+Furthermore, the application provides additional features to enhance the user experience. In concrete terms, users have the flexibility to choose which cultural collection(s) they wish to query, decide if the results should be unique or counted, and even set a limit on the number of results. With its intuitive user interface and these functionalities, the CoGhent Query Builder stands out as a valuable tool for those new to query creation.
 
 \section{International Image Interoperability Framework}
 \label{sec:iiif}

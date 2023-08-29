@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{PREFIX} \PYG{n+nn}{cidoc}\PYG{p}{:} \PYG{n+nl}{\PYGZlt{}http://www.cidoc\PYGZhy{}crm.org/cidoc\PYGZhy{}crm/\PYGZgt{}}
+
+\PYG{k}{SELECT} \PYG{n+nv}{?title}
+
+\PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
+  \PYG{n+nv}{?object} \PYG{n+nn}{cidoc}\PYG{p}{:}\PYG{n+nt}{P102\PYGZus{}has\PYGZus{}title} \PYG{n+nv}{?title}\PYG{p}{.}
+  \PYG{k}{FILTER} \PYG{p}{(}\PYG{n+nf}{regex}\PYG{p}{(}\PYG{n+nv}{?title}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}Gent\PYGZdq{}}\PYG{p}{,} \PYG{l+s}{\PYGZdq{}i\PYGZdq{}}\PYG{p}{))}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}
