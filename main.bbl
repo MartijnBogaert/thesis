@@ -105,6 +105,13 @@ Golbeck, J. and Rothstein, M. (2008).
   study.
 \newblock In {\em AAAI}, volume~8, pages 1138--1143.
 
+\bibitem[Hartig and Freytag, 2012]{hartig2012foundations}
+Hartig, O. and Freytag, J.-C. (2012).
+\newblock Foundations of traversal based query execution over linked data.
+\newblock In {\em Proceedings of the 23rd ACM conference on Hypertext and
+  social media}, pages 43--52.
+\newblock \url{https://arxiv.org/pdf/1108.6328.pdf}.
+
 \bibitem[Jacksi and Abass, 2019]{jacksi2019development}
 Jacksi, K. and Abass, S.~M. (2019).
 \newblock Development history of the world wide web.
@@ -145,6 +152,10 @@ Taelman, R. (2020).
 \newblock {W3C} draft, W3C.
 \newblock
   \url{https://linkeddatafragments.org/specification/quad-pattern-fragments/}.
+
+\bibitem[Taelman, 2023]{taelman2023ltqp}
+Taelman, R. (2023).
+\newblock Link traversal-based query processing.
 
 \bibitem[Taelman et~al., 2018]{taelman2018comunica}
 Taelman, R., Van~Herwegen, J., Vander~Sande, M., and Verborgh, R. (2018).

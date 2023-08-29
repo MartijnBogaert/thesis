@@ -1,0 +1,10 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{PREFIX} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nl}{\PYGZlt{}http://example.org/\PYGZgt{}}
+
+\PYG{k}{SELECT} \PYG{n+nv}{?birthplace}
+
+\PYG{k}{WHERE} \PYG{p}{\PYGZob{}}
+  \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{The\PYGZus{}Circus} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{painter} \PYG{n+nv}{?painter}\PYG{p}{.}
+  \PYG{n+nv}{?painter} \PYG{n+nn}{ex}\PYG{p}{:}\PYG{n+nt}{birthplace} \PYG{n+nv}{?birthplace}\PYG{p}{.}
+\PYG{p}{\PYGZcb{}}
+\end{Verbatim}

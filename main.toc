@@ -13,65 +13,65 @@
 \contentsline {subsection}{\numberline {1.1.4}SPARQL}{14}{subsection.1.1.4}%
 \contentsline {section}{\numberline {1.2}Link-Traversal-based Query Processing}{15}{section*.21}%
 \contentsline {subsection}{\numberline {1.2.1}Link Traversal Basics}{15}{subsection.1.2.1}%
-\contentsline {subsection}{\numberline {1.2.2}Reachability Criteria}{15}{subsection.1.2.2}%
-\contentsline {section}{\numberline {1.3}Comunica}{15}{section*.22}%
-\contentsline {subsection}{\numberline {1.3.1}Building Blocks}{15}{subsection.1.3.1}%
-\contentsline {subsection}{\numberline {1.3.2}Link Traversal Engines}{16}{subsection.1.3.2}%
-\contentsline {section}{\numberline {1.4}Collections of Ghent}{16}{section*.23}%
-\contentsline {subsection}{\numberline {1.4.1}Linked Data Event Streams}{16}{subsection.1.4.1}%
-\contentsline {subsection}{\numberline {1.4.2}Example Queries}{16}{subsection.1.4.2}%
-\contentsline {subsection}{\numberline {1.4.3}Query Builder}{16}{subsection.1.4.3}%
-\contentsline {section}{\numberline {1.5}International Image Interoperability Framework}{16}{section*.26}%
-\contentsline {subsection}{\numberline {1.5.1}IIIF Manifests}{16}{subsection.1.5.1}%
-\contentsline {subsection}{\numberline {1.5.2}IIIF Viewers}{16}{subsection.1.5.2}%
-\contentsline {chapter}{\numberline {2}CoGhent Data and Link Traversal}{20}{chapter.2}%
-\contentsline {section}{\numberline {2.1}CoGhent Data Sources}{20}{section*.28}%
-\contentsline {subsection}{\numberline {2.1.1}URI Redirection}{20}{subsection.2.1.1}%
-\contentsline {subsection}{\numberline {2.1.2}Non-deterministic results}{21}{subsection.2.1.2}%
-\contentsline {subsection}{\numberline {2.1.3}Duplicate Human-Made Objects}{24}{subsection.2.1.3}%
-\contentsline {subsection}{\numberline {2.1.4}Conclusion}{24}{subsection.2.1.4}%
-\contentsline {section}{\numberline {2.2}Comunica Link Traversal Engine Configuration}{24}{section*.35}%
-\contentsline {subsection}{\numberline {2.2.1}Base Configuration}{25}{subsection.2.2.1}%
-\contentsline {subsection}{\numberline {2.2.2}Basic Link Extractors}{25}{subsection.2.2.2}%
-\contentsline {subsection}{\numberline {2.2.3}Extracting Links based on Predicates}{26}{subsection.2.2.3}%
-\contentsline {subsection}{\numberline {2.2.4}Comparing Link Extractors}{28}{subsection.2.2.4}%
-\contentsline {subsection}{\numberline {2.2.5}Traversing LDES Pages}{31}{subsection.2.2.5}%
-\contentsline {subsection}{\numberline {2.2.6}Conclusion}{31}{subsection.2.2.6}%
-\contentsline {section}{\numberline {2.3}Links to Follow}{32}{section*.42}%
-\contentsline {subsection}{\numberline {2.3.1}IIIF Manifest}{33}{subsection.2.3.1}%
-\contentsline {subsection}{\numberline {2.3.2}Wikidata}{36}{subsection.2.3.2}%
-\contentsline {subsection}{\numberline {2.3.3}Stad Gent}{37}{subsection.2.3.3}%
-\contentsline {subsection}{\numberline {2.3.4}Getty Vocabularies}{40}{subsection.2.3.4}%
-\contentsline {subsection}{\numberline {2.3.5}Conclusion}{47}{subsection.2.3.5}%
-\contentsline {section}{\numberline {2.4}Conclusion}{47}{section*.62}%
-\contentsline {chapter}{\numberline {3}Tools for Query Building}{49}{chapter.3}%
-\contentsline {section}{\numberline {3.1}Building Queries from Predicate Sequences}{50}{section*.63}%
-\contentsline {subsection}{\numberline {3.1.1}Arrays of Triple Patterns}{50}{subsection.3.1.1}%
-\contentsline {subsection}{\numberline {3.1.2}Arrays of Predicates}{51}{subsection.3.1.2}%
-\contentsline {subsection}{\numberline {3.1.3}User-Defined Variable Names and Property Path Sequences}{53}{subsection.3.1.3}%
-\contentsline {subsection}{\numberline {3.1.4}Filtered and Optional Properties}{54}{subsection.3.1.4}%
-\contentsline {subsection}{\numberline {3.1.5}Limit and Offset}{56}{subsection.3.1.5}%
-\contentsline {subsection}{\numberline {3.1.6}Overview}{57}{subsection.3.1.6}%
-\contentsline {section}{\numberline {3.2}A Modular Query Builder}{59}{section*.75}%
-\contentsline {subsection}{\numberline {3.2.1}Modularity}{59}{subsection.3.2.1}%
-\contentsline {subsection}{\numberline {3.2.2}Signifying Intent with Questions}{60}{subsection.3.2.2}%
-\contentsline {section}{\numberline {3.3}Discovering Predicate Sequences}{60}{section*.76}%
-\contentsline {subsection}{\numberline {3.3.1}Tree Data Structure and Visualization}{61}{subsection.3.3.1}%
-\contentsline {subsection}{\numberline {3.3.2}Tree Expansion}{62}{subsection.3.3.2}%
-\contentsline {subsection}{\numberline {3.3.3}Predicate Sequences Selection}{63}{subsection.3.3.3}%
-\contentsline {section}{\numberline {3.4}Conclusion}{64}{section*.79}%
-\contentsline {chapter}{\numberline {4}Handling Query Results}{66}{chapter.4}%
-\contentsline {section}{\numberline {4.1}Visualizing Query Results}{66}{section*.80}%
-\contentsline {subsection}{\numberline {4.1.1}IIIF Viewers}{66}{subsection.4.1.1}%
-\contentsline {subsection}{\numberline {4.1.2}Custom Viewer}{67}{subsection.4.1.2}%
-\contentsline {section}{\numberline {4.2}Saving Query Results}{67}{section*.81}%
-\contentsline {subsection}{\numberline {4.2.1}IIIF Manifest}{68}{subsection.4.2.1}%
-\contentsline {subsection}{\numberline {4.2.2}SPARQL Query}{68}{subsection.4.2.2}%
-\contentsline {subsection}{\numberline {4.2.3}Predicate Sequences}{68}{subsection.4.2.3}%
-\contentsline {section}{\numberline {4.3}Conclusion}{68}{section*.82}%
-\contentsline {chapter}{Conclusion}{70}{chapter*.83}%
-\contentsline {section}{Ethical and social reflection}{70}{section*.85}%
-\contentsline {chapter}{References}{71}{chapter*.86}%
-\contentsline {chapter}{Appendices}{73}{section*.87}%
-\contentsline {section}{Appendix A}{74}{section*.88}%
-\contentsline {section}{Appendix B}{75}{section*.89}%
+\contentsline {subsection}{\numberline {1.2.2}Reachability Criteria}{16}{subsection.1.2.2}%
+\contentsline {section}{\numberline {1.3}Comunica}{17}{section*.23}%
+\contentsline {subsection}{\numberline {1.3.1}Building Blocks}{17}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}Link Traversal Engines}{17}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Collections of Ghent}{17}{section*.24}%
+\contentsline {subsection}{\numberline {1.4.1}Linked Data Event Streams}{17}{subsection.1.4.1}%
+\contentsline {subsection}{\numberline {1.4.2}Example Queries}{17}{subsection.1.4.2}%
+\contentsline {subsection}{\numberline {1.4.3}Query Builder}{18}{subsection.1.4.3}%
+\contentsline {section}{\numberline {1.5}International Image Interoperability Framework}{18}{section*.27}%
+\contentsline {subsection}{\numberline {1.5.1}IIIF Manifests}{20}{subsection.1.5.1}%
+\contentsline {subsection}{\numberline {1.5.2}IIIF Viewers}{20}{subsection.1.5.2}%
+\contentsline {chapter}{\numberline {2}CoGhent Data and Link Traversal}{21}{chapter.2}%
+\contentsline {section}{\numberline {2.1}CoGhent Data Sources}{21}{section*.29}%
+\contentsline {subsection}{\numberline {2.1.1}URI Redirection}{21}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2}Non-deterministic results}{22}{subsection.2.1.2}%
+\contentsline {subsection}{\numberline {2.1.3}Duplicate Human-Made Objects}{25}{subsection.2.1.3}%
+\contentsline {subsection}{\numberline {2.1.4}Conclusion}{25}{subsection.2.1.4}%
+\contentsline {section}{\numberline {2.2}Comunica Link Traversal Engine Configuration}{25}{section*.36}%
+\contentsline {subsection}{\numberline {2.2.1}Base Configuration}{26}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2}Basic Link Extractors}{26}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3}Extracting Links based on Predicates}{27}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4}Comparing Link Extractors}{29}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5}Traversing LDES Pages}{32}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6}Conclusion}{32}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3}Links to Follow}{33}{section*.43}%
+\contentsline {subsection}{\numberline {2.3.1}IIIF Manifest}{34}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2}Wikidata}{37}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3}Stad Gent}{38}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4}Getty Vocabularies}{41}{subsection.2.3.4}%
+\contentsline {subsection}{\numberline {2.3.5}Conclusion}{48}{subsection.2.3.5}%
+\contentsline {section}{\numberline {2.4}Conclusion}{48}{section*.63}%
+\contentsline {chapter}{\numberline {3}Tools for Query Building}{50}{chapter.3}%
+\contentsline {section}{\numberline {3.1}Building Queries from Predicate Sequences}{51}{section*.64}%
+\contentsline {subsection}{\numberline {3.1.1}Arrays of Triple Patterns}{51}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Arrays of Predicates}{52}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}User-Defined Variable Names and Property Path Sequences}{54}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Filtered and Optional Properties}{55}{subsection.3.1.4}%
+\contentsline {subsection}{\numberline {3.1.5}Limit and Offset}{57}{subsection.3.1.5}%
+\contentsline {subsection}{\numberline {3.1.6}Overview}{58}{subsection.3.1.6}%
+\contentsline {section}{\numberline {3.2}A Modular Query Builder}{60}{section*.76}%
+\contentsline {subsection}{\numberline {3.2.1}Modularity}{60}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Signifying Intent with Questions}{61}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Discovering Predicate Sequences}{61}{section*.77}%
+\contentsline {subsection}{\numberline {3.3.1}Tree Data Structure and Visualization}{62}{subsection.3.3.1}%
+\contentsline {subsection}{\numberline {3.3.2}Tree Expansion}{63}{subsection.3.3.2}%
+\contentsline {subsection}{\numberline {3.3.3}Predicate Sequences Selection}{64}{subsection.3.3.3}%
+\contentsline {section}{\numberline {3.4}Conclusion}{65}{section*.80}%
+\contentsline {chapter}{\numberline {4}Handling Query Results}{67}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Visualizing Query Results}{67}{section*.81}%
+\contentsline {subsection}{\numberline {4.1.1}IIIF Viewers}{67}{subsection.4.1.1}%
+\contentsline {subsection}{\numberline {4.1.2}Custom Viewer}{68}{subsection.4.1.2}%
+\contentsline {section}{\numberline {4.2}Saving Query Results}{68}{section*.82}%
+\contentsline {subsection}{\numberline {4.2.1}IIIF Manifest}{69}{subsection.4.2.1}%
+\contentsline {subsection}{\numberline {4.2.2}SPARQL Query}{69}{subsection.4.2.2}%
+\contentsline {subsection}{\numberline {4.2.3}Predicate Sequences}{69}{subsection.4.2.3}%
+\contentsline {section}{\numberline {4.3}Conclusion}{69}{section*.83}%
+\contentsline {chapter}{Conclusion}{71}{chapter*.84}%
+\contentsline {section}{Ethical and social reflection}{71}{section*.86}%
+\contentsline {chapter}{References}{72}{chapter*.87}%
+\contentsline {chapter}{Appendices}{74}{section*.88}%
+\contentsline {section}{Appendix A}{75}{section*.89}%
+\contentsline {section}{Appendix B}{76}{section*.90}%
