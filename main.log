@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  29 AUG 2023 22:27
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  30 AUG 2023 10:38
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1743,24 +1743,54 @@ LaTeX Info: Redefining \ttfamily on input line 25.
 LaTeX Info: Redefining \rmfamily on input line 26.
 LaTeX Info: Redefining \sffamily on input line 26.
 LaTeX Info: Redefining \ttfamily on input line 26.
-LaTeX Info: Redefining \rmfamily on input line 29.
-LaTeX Info: Redefining \sffamily on input line 29.
-LaTeX Info: Redefining \ttfamily on input line 29.
+\openout4 = `main.pyg'.
+
+ (./_minted-main/default.pygstyle)
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex
+
+Package fontspec Info: Could not resolve font "IPAGothic/BI" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "IPAGothic/B" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Could not resolve font "IPAGothic/I" (it probably
+(fontspec)             doesn't exist).
+
+
+Package fontspec Info: Font family 'IPAGothic(0)' created for font 'IPAGothic'
+(fontspec)             with options [Script={CJK}].
+(fontspec)              
+(fontspec)              This font family consists of the following NFSS
+(fontspec)             series/shapes:
+(fontspec)              
+(fontspec)             - 'normal' (m/n) with NFSS spec.:
+(fontspec)             <->"IPAGothic/OT:script=hani;language=dflt;"
+(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
+
+)
+LaTeX Info: Redefining \rmfamily on input line 28.
+LaTeX Info: Redefining \sffamily on input line 28.
+LaTeX Info: Redefining \ttfamily on input line 28.
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
 LaTeX Info: Redefining \rmfamily on input line 30.
 LaTeX Info: Redefining \sffamily on input line 30.
 LaTeX Info: Redefining \ttfamily on input line 30.
-LaTeX Info: Redefining \rmfamily on input line 31.
-LaTeX Info: Redefining \sffamily on input line 31.
-LaTeX Info: Redefining \ttfamily on input line 31.
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/CEBD95ADD62A1FBD31FCE88F17AF10177D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
 LaTeX Info: Redefining \rmfamily on input line 32.
 LaTeX Info: Redefining \sffamily on input line 32.
 LaTeX Info: Redefining \ttfamily on input line 32.
-LaTeX Info: Redefining \rmfamily on input line 33.
-LaTeX Info: Redefining \sffamily on input line 33.
-LaTeX Info: Redefining \ttfamily on input line 33.
-LaTeX Info: Redefining \rmfamily on input line 34.
-LaTeX Info: Redefining \sffamily on input line 34.
-LaTeX Info: Redefining \ttfamily on input line 34.
 LaTeX Info: Redefining \rmfamily on input line 35.
 LaTeX Info: Redefining \sffamily on input line 35.
 LaTeX Info: Redefining \ttfamily on input line 35.
@@ -1836,6 +1866,9 @@ LaTeX Info: Redefining \ttfamily on input line 58.
 LaTeX Info: Redefining \rmfamily on input line 59.
 LaTeX Info: Redefining \sffamily on input line 59.
 LaTeX Info: Redefining \ttfamily on input line 59.
+LaTeX Info: Redefining \rmfamily on input line 60.
+LaTeX Info: Redefining \sffamily on input line 60.
+LaTeX Info: Redefining \ttfamily on input line 60.
 LaTeX Info: Redefining \rmfamily on input line 61.
 LaTeX Info: Redefining \sffamily on input line 61.
 LaTeX Info: Redefining \ttfamily on input line 61.
@@ -1851,9 +1884,6 @@ LaTeX Info: Redefining \ttfamily on input line 64.
 LaTeX Info: Redefining \rmfamily on input line 65.
 LaTeX Info: Redefining \sffamily on input line 65.
 LaTeX Info: Redefining \ttfamily on input line 65.
-LaTeX Info: Redefining \rmfamily on input line 66.
-LaTeX Info: Redefining \sffamily on input line 66.
-LaTeX Info: Redefining \ttfamily on input line 66.
 LaTeX Info: Redefining \rmfamily on input line 67.
 LaTeX Info: Redefining \sffamily on input line 67.
 LaTeX Info: Redefining \ttfamily on input line 67.
@@ -1872,9 +1902,27 @@ LaTeX Info: Redefining \ttfamily on input line 71.
 LaTeX Info: Redefining \rmfamily on input line 72.
 LaTeX Info: Redefining \sffamily on input line 72.
 LaTeX Info: Redefining \ttfamily on input line 72.
+LaTeX Info: Redefining \rmfamily on input line 73.
+LaTeX Info: Redefining \sffamily on input line 73.
+LaTeX Info: Redefining \ttfamily on input line 73.
 LaTeX Info: Redefining \rmfamily on input line 74.
 LaTeX Info: Redefining \sffamily on input line 74.
 LaTeX Info: Redefining \ttfamily on input line 74.
+LaTeX Info: Redefining \rmfamily on input line 75.
+LaTeX Info: Redefining \sffamily on input line 75.
+LaTeX Info: Redefining \ttfamily on input line 75.
+LaTeX Info: Redefining \rmfamily on input line 76.
+LaTeX Info: Redefining \sffamily on input line 76.
+LaTeX Info: Redefining \ttfamily on input line 76.
+LaTeX Info: Redefining \rmfamily on input line 77.
+LaTeX Info: Redefining \sffamily on input line 77.
+LaTeX Info: Redefining \ttfamily on input line 77.
+LaTeX Info: Redefining \rmfamily on input line 78.
+LaTeX Info: Redefining \sffamily on input line 78.
+LaTeX Info: Redefining \ttfamily on input line 78.
+LaTeX Info: Redefining \rmfamily on input line 80.
+LaTeX Info: Redefining \sffamily on input line 80.
+LaTeX Info: Redefining \ttfamily on input line 80.
 )
 \tf@lof=\write11
 \openout11 = `main.lof'.
@@ -1940,42 +1988,42 @@ LaTeX Info: Redefining \ttfamily on input line 21.
 LaTeX Info: Redefining \rmfamily on input line 22.
 LaTeX Info: Redefining \sffamily on input line 22.
 LaTeX Info: Redefining \ttfamily on input line 22.
+LaTeX Info: Redefining \rmfamily on input line 23.
+LaTeX Info: Redefining \sffamily on input line 23.
+LaTeX Info: Redefining \ttfamily on input line 23.
 LaTeX Info: Redefining \rmfamily on input line 24.
 LaTeX Info: Redefining \sffamily on input line 24.
 LaTeX Info: Redefining \ttfamily on input line 24.
-LaTeX Info: Redefining \rmfamily on input line 26.
-LaTeX Info: Redefining \sffamily on input line 26.
-LaTeX Info: Redefining \ttfamily on input line 26.
+LaTeX Info: Redefining \rmfamily on input line 25.
+LaTeX Info: Redefining \sffamily on input line 25.
+LaTeX Info: Redefining \ttfamily on input line 25.
 LaTeX Info: Redefining \rmfamily on input line 27.
 LaTeX Info: Redefining \sffamily on input line 27.
 LaTeX Info: Redefining \ttfamily on input line 27.
 LaTeX Info: Redefining \rmfamily on input line 29.
 LaTeX Info: Redefining \sffamily on input line 29.
 LaTeX Info: Redefining \ttfamily on input line 29.
-LaTeX Info: Redefining \rmfamily on input line 31.
-LaTeX Info: Redefining \sffamily on input line 31.
-LaTeX Info: Redefining \ttfamily on input line 31.
-LaTeX Info: Redefining \rmfamily on input line 33.
-LaTeX Info: Redefining \sffamily on input line 33.
-LaTeX Info: Redefining \ttfamily on input line 33.
-LaTeX Info: Redefining \rmfamily on input line 35.
-LaTeX Info: Redefining \sffamily on input line 35.
-LaTeX Info: Redefining \ttfamily on input line 35.
+LaTeX Info: Redefining \rmfamily on input line 30.
+LaTeX Info: Redefining \sffamily on input line 30.
+LaTeX Info: Redefining \ttfamily on input line 30.
+LaTeX Info: Redefining \rmfamily on input line 32.
+LaTeX Info: Redefining \sffamily on input line 32.
+LaTeX Info: Redefining \ttfamily on input line 32.
+LaTeX Info: Redefining \rmfamily on input line 34.
+LaTeX Info: Redefining \sffamily on input line 34.
+LaTeX Info: Redefining \ttfamily on input line 34.
 LaTeX Info: Redefining \rmfamily on input line 36.
 LaTeX Info: Redefining \sffamily on input line 36.
 LaTeX Info: Redefining \ttfamily on input line 36.
-LaTeX Info: Redefining \rmfamily on input line 37.
-LaTeX Info: Redefining \sffamily on input line 37.
-LaTeX Info: Redefining \ttfamily on input line 37.
+LaTeX Info: Redefining \rmfamily on input line 38.
+LaTeX Info: Redefining \sffamily on input line 38.
+LaTeX Info: Redefining \ttfamily on input line 38.
 LaTeX Info: Redefining \rmfamily on input line 39.
 LaTeX Info: Redefining \sffamily on input line 39.
 LaTeX Info: Redefining \ttfamily on input line 39.
 LaTeX Info: Redefining \rmfamily on input line 40.
 LaTeX Info: Redefining \sffamily on input line 40.
 LaTeX Info: Redefining \ttfamily on input line 40.
-LaTeX Info: Redefining \rmfamily on input line 41.
-LaTeX Info: Redefining \sffamily on input line 41.
-LaTeX Info: Redefining \ttfamily on input line 41.
 LaTeX Info: Redefining \rmfamily on input line 42.
 LaTeX Info: Redefining \sffamily on input line 42.
 LaTeX Info: Redefining \ttfamily on input line 42.
@@ -1997,18 +2045,18 @@ LaTeX Info: Redefining \ttfamily on input line 47.
 LaTeX Info: Redefining \rmfamily on input line 48.
 LaTeX Info: Redefining \sffamily on input line 48.
 LaTeX Info: Redefining \ttfamily on input line 48.
+LaTeX Info: Redefining \rmfamily on input line 49.
+LaTeX Info: Redefining \sffamily on input line 49.
+LaTeX Info: Redefining \ttfamily on input line 49.
 LaTeX Info: Redefining \rmfamily on input line 50.
 LaTeX Info: Redefining \sffamily on input line 50.
 LaTeX Info: Redefining \ttfamily on input line 50.
-LaTeX Info: Redefining \rmfamily on input line 52.
-LaTeX Info: Redefining \sffamily on input line 52.
-LaTeX Info: Redefining \ttfamily on input line 52.
+LaTeX Info: Redefining \rmfamily on input line 51.
+LaTeX Info: Redefining \sffamily on input line 51.
+LaTeX Info: Redefining \ttfamily on input line 51.
 LaTeX Info: Redefining \rmfamily on input line 53.
 LaTeX Info: Redefining \sffamily on input line 53.
 LaTeX Info: Redefining \ttfamily on input line 53.
-LaTeX Info: Redefining \rmfamily on input line 54.
-LaTeX Info: Redefining \sffamily on input line 54.
-LaTeX Info: Redefining \ttfamily on input line 54.
 LaTeX Info: Redefining \rmfamily on input line 55.
 LaTeX Info: Redefining \sffamily on input line 55.
 LaTeX Info: Redefining \ttfamily on input line 55.
@@ -2018,59 +2066,35 @@ LaTeX Info: Redefining \ttfamily on input line 56.
 LaTeX Info: Redefining \rmfamily on input line 57.
 LaTeX Info: Redefining \sffamily on input line 57.
 LaTeX Info: Redefining \ttfamily on input line 57.
-\openout4 = `main.pyg'.
-
- (./_minted-main/default.pygstyle)
-(./_minted-main/F1EF5A1F5BE1257112CB359D913EC0277D3289DBDE903A89739C57D3A0B8725
-F.pygtex
-
-Package fontspec Info: Could not resolve font "IPAGothic/BI" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: Could not resolve font "IPAGothic/B" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: Could not resolve font "IPAGothic/I" (it probably
-(fontspec)             doesn't exist).
-
-
-Package fontspec Info: Font family 'IPAGothic(0)' created for font 'IPAGothic'
-(fontspec)             with options [Script={CJK}].
-(fontspec)              
-(fontspec)              This font family consists of the following NFSS
-(fontspec)             series/shapes:
-(fontspec)              
-(fontspec)             - 'normal' (m/n) with NFSS spec.:
-(fontspec)             <->"IPAGothic/OT:script=hani;language=dflt;"
-(fontspec)             - 'small caps'  (m/sc) with NFSS spec.: 
-
-)
+LaTeX Info: Redefining \rmfamily on input line 58.
+LaTeX Info: Redefining \sffamily on input line 58.
+LaTeX Info: Redefining \ttfamily on input line 58.
 LaTeX Info: Redefining \rmfamily on input line 59.
 LaTeX Info: Redefining \sffamily on input line 59.
 LaTeX Info: Redefining \ttfamily on input line 59.
 LaTeX Info: Redefining \rmfamily on input line 60.
 LaTeX Info: Redefining \sffamily on input line 60.
 LaTeX Info: Redefining \ttfamily on input line 60.
-LaTeX Info: Redefining \rmfamily on input line 61.
-LaTeX Info: Redefining \sffamily on input line 61.
-LaTeX Info: Redefining \ttfamily on input line 61.
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/F1EF5A1F5BE1257112CB359D913EC0277D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
 LaTeX Info: Redefining \rmfamily on input line 62.
 LaTeX Info: Redefining \sffamily on input line 62.
 LaTeX Info: Redefining \ttfamily on input line 62.
 LaTeX Info: Redefining \rmfamily on input line 63.
 LaTeX Info: Redefining \sffamily on input line 63.
 LaTeX Info: Redefining \ttfamily on input line 63.
+LaTeX Info: Redefining \rmfamily on input line 64.
+LaTeX Info: Redefining \sffamily on input line 64.
+LaTeX Info: Redefining \ttfamily on input line 64.
 LaTeX Info: Redefining \rmfamily on input line 65.
 LaTeX Info: Redefining \sffamily on input line 65.
 LaTeX Info: Redefining \ttfamily on input line 65.
 LaTeX Info: Redefining \rmfamily on input line 66.
 LaTeX Info: Redefining \sffamily on input line 66.
 LaTeX Info: Redefining \ttfamily on input line 66.
-LaTeX Info: Redefining \rmfamily on input line 67.
-LaTeX Info: Redefining \sffamily on input line 67.
-LaTeX Info: Redefining \ttfamily on input line 67.
 LaTeX Info: Redefining \rmfamily on input line 68.
 LaTeX Info: Redefining \sffamily on input line 68.
 LaTeX Info: Redefining \ttfamily on input line 68.
@@ -2101,6 +2125,15 @@ LaTeX Info: Redefining \ttfamily on input line 76.
 LaTeX Info: Redefining \rmfamily on input line 77.
 LaTeX Info: Redefining \sffamily on input line 77.
 LaTeX Info: Redefining \ttfamily on input line 77.
+LaTeX Info: Redefining \rmfamily on input line 78.
+LaTeX Info: Redefining \sffamily on input line 78.
+LaTeX Info: Redefining \ttfamily on input line 78.
+LaTeX Info: Redefining \rmfamily on input line 79.
+LaTeX Info: Redefining \sffamily on input line 79.
+LaTeX Info: Redefining \ttfamily on input line 79.
+LaTeX Info: Redefining \rmfamily on input line 80.
+LaTeX Info: Redefining \sffamily on input line 80.
+LaTeX Info: Redefining \ttfamily on input line 80.
 )
 \tf@lot=\write12
 \openout12 = `main.lot'.
@@ -2584,9 +2617,69 @@ File: images/og_query_builder.png Graphic file (type bmp)
 
 (./_minted-main/F1985761DF8898097B764CF9CEAE7D3546BEDEF9486C3A4C46282B80A282AA3
 5.pygtex) [21] [22]
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+Underfull \vbox (badness 1132) has occurred while \output is active []
+
+ [23]
+[24]
+File: images/pres_api_2.jpg Graphic file (type bmp)
+<images/pres_api_2.jpg>
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/2C83C2F6EF4D52C9BF74EB7D436138207D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+File: images/pres_api_2_simple.jpg Graphic file (type bmp)
+<images/pres_api_2_simple.jpg>
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/2C83C2F6EF4D52C9BF74EB7D436138207D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/CEBD95ADD62A1FBD31FCE88F17AF10177D3289DBDE903A89739C57D3A0B8725
+F.pygtex) [25] [26]
+File: images/pres_api_3.png Graphic file (type bmp)
+<images/pres_api_3.png>
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/CEBD95ADD62A1FBD31FCE88F17AF10177D3289DBDE903A89739C57D3A0B8725
+F.pygtex)
+\openout4 = `main.pyg'.
+
+
+(./_minted-main/CEBD95ADD62A1FBD31FCE88F17AF10177D3289DBDE903A89739C57D3A0B8725
+F.pygtex) [27] [28]
 File: images/mirador.png Graphic file (type bmp)
 <images/mirador.png>
-) [23] [24] [25]
+) [29]
 \openout2 = `chapters/8_coghent_link_traversal.aux'.
 
  (./chapters/8_coghent_link_traversal.tex
@@ -2600,7 +2693,7 @@ F.pygtex)
 
 
 (./_minted-main/F78EA029EE80DBF3294BA39B510EEED07D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [26
+F.pygtex) [30
 
 
 
@@ -2643,8 +2736,8 @@ F.pygtex)
 F.pygtex)
 Underfull \vbox (badness 1845) has occurred while \output is active []
 
- [27]
-[28] [29] [30]
+ [31]
+[32] [33] [34]
 \openout4 = `main.pyg'.
 
 
@@ -2660,7 +2753,7 @@ Underfull \hbox (badness 3460) in paragraph at lines 181--182
  LTQP. A common feature of these configurations is the initial import of
  []
 
-[31]
+[35]
 \openout4 = `main.pyg'.
 
 
@@ -2688,8 +2781,8 @@ F.pygtex)
 F.pygtex)
 Underfull \vbox (badness 1178) has occurred while \output is active []
 
- [32]
-[33]
+ [36]
+[37]
 \openout4 = `main.pyg'.
 
 
@@ -2727,12 +2820,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--336
 [][] [][][][][][] [][]
  []
 
-[34] [35] [36]
+[38] [39] [40]
 \openout3 = `main.pyg'.
 
 
 (./_minted-main/E960C8F3DF24EA1FB2A0A8891C4392ABD331C2BB7CD806F6B21C2134A30FDE8
-0.pygtex) [37] [38]
+0.pygtex) [41] [42]
 \openout3 = `main.pyg'.
 
 
@@ -2747,7 +2840,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--336
 
 
 (./_minted-main/B093A32721223647CEDA12ECC746030799554CDD76D347C7FD8AAA4267B8D4C
-6.pygtex) [39]
+6.pygtex) [43]
 \openout3 = `main.pyg'.
 
 
@@ -2762,7 +2855,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 336--336
 
 
 (./_minted-main/3F0B79CFC265914B4D7788DBA969AC9746BEDEF9486C3A4C46282B80A282AA3
-5.pygtex) [40] [41]
+5.pygtex) [44] [45]
 \openout4 = `main.pyg'.
 
 
@@ -2777,7 +2870,7 @@ F.pygtex)
 
 
 (./_minted-main/4866455AEA6DB52B826B1BA2BACD0F147D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [42]
+F.pygtex) [46]
 \openout4 = `main.pyg'.
 
 
@@ -2822,7 +2915,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 595--597
 response status along with the message
  []
 
-[43]
+[47]
 \openout4 = `main.pyg'.
 
 
@@ -3015,7 +3108,7 @@ F.pygtex)
 
 
 (./_minted-main/F1EF5A1F5BE1257112CB359D913EC0277D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [44] [45]
+F.pygtex) [48] [49]
 \openout3 = `main.pyg'.
 
 
@@ -3055,7 +3148,7 @@ Overfull \hbox (27.65079pt too wide) in paragraph at lines 3--689
 [] 
  []
 
-[46]
+[50]
 \openout4 = `main.pyg'.
 
 
@@ -3085,7 +3178,7 @@ F.pygtex)
 
 
 (./_minted-main/8C4C13DAB6668C2437BA0598346B66B27D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [47]
+F.pygtex) [51]
 \openout4 = `main.pyg'.
 
 
@@ -3165,7 +3258,7 @@ F.pygtex)
 
 
 (./_minted-main/F1EF5A1F5BE1257112CB359D913EC0277D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [48]
+F.pygtex) [52]
 \openout4 = `main.pyg'.
 
 
@@ -3338,7 +3431,7 @@ F.pygtex)
 F.pygtex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [49]
+ [53]
 Underfull \hbox (badness 10000) in paragraph at lines 767--767
 [][][][]$[][][][][] [] [] [] [][][][][][] [] [][][] [] [][][][][][] [][] [][][]
 [][][][] [][] [][][][][][][] [][] [][][][] [][] [][][][] [] [][][][][][][][] []
@@ -3418,7 +3511,7 @@ F.pygtex)
 F.pygtex)
 Underfull \vbox (badness 8019) has occurred while \output is active []
 
- [50]
+ [54]
 \openout3 = `main.pyg'.
 
 
@@ -3436,13 +3529,13 @@ Underfull \vbox (badness 8019) has occurred while \output is active []
 5.pygtex)
 Underfull \vbox (badness 10000) has occurred while \output is active []
 
- [51]
-[52]) [53] [54]
+ [55]
+[56]) [57] [58]
 \openout2 = `chapters/9_tools_query_building.aux'.
 
  (./chapters/9_tools_query_building.tex
 Chapter 3.
-[55
+[59
 
 
 
@@ -3477,7 +3570,7 @@ F.pygtex)
 
 
 (./_minted-main/1B4341B0423E270ECE6D7AC03CC7A0FB46BEDEF9486C3A4C46282B80A282AA3
-5.pygtex) [56]
+5.pygtex) [60]
 \openout3 = `main.pyg'.
 
 
@@ -3492,7 +3585,7 @@ F.pygtex)
 
 
 (./_minted-main/BB98430D867D170F7AB102AFB71FB81B46BEDEF9486C3A4C46282B80A282AA3
-5.pygtex) [57]
+5.pygtex) [61]
 \openout3 = `main.pyg'.
 
 
@@ -3525,7 +3618,7 @@ F.pygtex)
 5.pygtex)
 Underfull \vbox (badness 1052) has occurred while \output is active []
 
- [58]
+ [62]
 \openout3 = `main.pyg'.
 
 
@@ -3595,7 +3688,7 @@ F.pygtex)
 
 
 (./_minted-main/7A9897FC481D4D2FF6B03AF57C1A9EB67D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [59]
+F.pygtex) [63]
 \openout3 = `main.pyg'.
 
 
@@ -3608,8 +3701,8 @@ C.pygtex)
 5.pygtex)
 Underfull \vbox (badness 3343) has occurred while \output is active []
 
- [60]
-[61]
+ [64]
+[65]
 \openout4 = `main.pyg'.
 
 
@@ -3674,12 +3767,12 @@ F.pygtex)
 
 
 (./_minted-main/59C084AB2E28A5118835B55E2C23B8C07D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [62]
+F.pygtex) [66]
 \openout4 = `main.pyg'.
 
 
 (./_minted-main/2FE9AD67BDE455F16EDF889EC0A304AE7D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [63]
+F.pygtex) [67]
 \openout4 = `main.pyg'.
 
 
@@ -3704,7 +3797,7 @@ F.pygtex)
 
 
 (./_minted-main/E1DEB9AC5C8E416B78EE2B07502DF3C67D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [64]
+F.pygtex) [68]
 \openout4 = `main.pyg'.
 
 
@@ -3739,7 +3832,7 @@ F.pygtex)
 
 
 (./_minted-main/9EFF008D4A374AEFDDBCBDC8CD1BC7BB7D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [65]
+F.pygtex) [69]
 \openout4 = `main.pyg'.
 
 
@@ -3749,13 +3842,13 @@ F.pygtex)
 
 
 (./_minted-main/BA645ED04BB4D8E8FDA7B42DE42A9F277D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [66]
+F.pygtex) [70]
 File: images/rdf_explorer.png Graphic file (type bmp)
 <images/rdf_explorer.png>
- [67]
+ [71]
 Underfull \vbox (badness 2662) has occurred while \output is active []
 
- [68]
+ [72]
 \openout4 = `main.pyg'.
 
 
@@ -3790,12 +3883,12 @@ F.pygtex)
 
 
 (./_minted-main/EC492C82C5F4F1F33E0942B40003FCC67D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [69]) [70] [71]
+F.pygtex) [73]) [74] [75]
 \openout2 = `chapters/10_handling_query_results.aux'.
 
  (./chapters/10_handling_query_results.tex
 Chapter 4.
-[72
+[76
 
 
 
@@ -3815,7 +3908,7 @@ F.pygtex)
 
 
 (./_minted-main/2C83C2F6EF4D52C9BF74EB7D436138207D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [73]
+F.pygtex) [77]
 \openout4 = `main.pyg'.
 
 
@@ -3830,10 +3923,10 @@ F.pygtex)
 
 
 (./_minted-main/B6F5C2588E3596168D71ECB63384FD2E7D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [74]) [75]
+F.pygtex) [78]) [79]
 \openout2 = `chapters/11_conclusion.aux'.
 
- (./chapters/11_conclusion.tex) [76
+ (./chapters/11_conclusion.tex) [80
 
 
 
@@ -3849,7 +3942,7 @@ Underfull \hbox (badness 4726) in paragraph at lines 76--80
 [] [] [][][][][][] [] [][] []
  []
 
-[77
+[81
 
 
 
@@ -3857,25 +3950,25 @@ Underfull \hbox (badness 4726) in paragraph at lines 76--80
 ]
 
 LaTeX Font Warning: Font shape `TU/IPAMincho(0)/m/it' undefined
-(Font)              using `TU/IPAMincho(0)/m/n' instead on input line 150.
+(Font)              using `TU/IPAMincho(0)/m/n' instead on input line 167.
 
 
-Underfull \hbox (badness 1442) in paragraph at lines 192--196
+Underfull \hbox (badness 1442) in paragraph at lines 216--220
 []\TU/UGentPannoText-Normal.ttf(0)/m/n/10.95 Taelman, R. (2023).  Link traversa
 l-based query processing.  []$[][][][][] [] [] [] [][][] [] [][][][][][][][][][
 ][] [] [][][] [] [][][] [] [][][][][][] [] [][][][] [] [][][][][] [][]
  []
 
-[78])) [79]
+[82])) [83]
 \openout2 = `chapters/13_appendices.aux'.
 
- (./chapters/13_appendices.tex [80
+ (./chapters/13_appendices.tex [84
 
 
 
 
 
-] [81]) [82]
+] [85]) [86]
 The property list \polyglossia@langsetup contains the pairs (without outer
 braces):
 >  {latex/script}  =>  {latin}
@@ -3979,17 +4072,17 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: 7DCB38B4CEC3212BE7A5EE1D60CB49F1;12229.
+(rerunfilecheck)             Checksum: DBB67BFDC172840543D182E232942096;12229.
 runsystem(rm main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 41721 strings out of 475890
- 967070 string characters out of 5780263
+ 41799 strings out of 475890
+ 971306 string characters out of 5780263
  1946875 words of memory out of 5000000
- 61182 multiletter control sequences out of 15000+600000
+ 61229 multiletter control sequences out of 15000+600000
  564750 words of font info for 95 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 91i,17n,93p,2304b,1037s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 91i,17n,93p,2304b,879s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (98 pages, 2391232 bytes).
+Output written on main.xdv (102 pages, 2469868 bytes).

@@ -589,16 +589,72 @@ Furthermore, the application provides additional features to enhance the user ex
 \section{International Image Interoperability Framework}
 \label{sec:iiif}
 
-TODO
+In Section~\ref{sec:coghent_example_queries}, only query examples were provided that focus solely on textual data. Within the context of digital art collections, however, this is certainly not sufficient. After all, their most important information is arguably visual in nature. However, visual information typically encompasses more than just an image; often, metadata such as dimensions, notes, and legal information are equally important. In the case of CoGhent, it was decided not to directly include this rather \textit{technical} information in the LDESs. Instead, each CoGhent Human-Made Object refers to an IIIF Manifest. These are fully-fledged RDF resources specifically used to group this kind of information. Their specification is determined by the \textit{International Image Interoperability Framework} (IIIF), an organization described by \citet{snydman2015international} as \textit{a community of academic and national libraries, research institutions, museums, archives, nonprofits and commercial organizations that are committed to interoperable image delivery on the web}. \citep{floreverk2022coghent} \citep{snydman2015international}
 
 \subsection{IIIF Manifests}
 
-TODO
+IIIF Manifests are central structured documents within the IIIF framework. They provide the overall description of the structure and properties of the digital representation of an object. Each manifest describes how to present a single object, such as a book, photograph, or statue, and carries essential information needed for a viewer to present the digitized content to the user, such as a title and other descriptive details about the object or the intellectual work it represents. \citep{appleby2017presentation}
+
+The structure of IIIF Manifests is stipulated by the \textit{IIIF Presentation API}. However, multiple versions of this API exist. Figure~\ref{fig:pres_api_2} and the following overview briefly introduce the components that are puth forth by Presentation API \mintinline{text}{2.1.1}, as described by \citet{appleby2017presentation}:
+\begin{itemize}
+    \item \textbf{Sequence}\\
+    Defines the order of the views of the object. Multiple sequences can account for situations where there are various valid orders through the content.
+    \item \textbf{Canvas}\\
+    A virtual container representing a page or view. It provides a frame of reference for content layout.
+    \item \textbf{Annotation}\\
+    Content resources and commentary are linked to a canvas via annotations.
+    \item \textbf{AnnotationList}\\
+    An ordered list of annotations, typically linked to a single canvas.
+    \item \textbf{Layer}\\
+    An ordered list of annotation lists, allowing for higher-level groupings of annotations.
+    \item \textbf{Range}\\
+    Groups canvases or parts thereof in an ordered list. This can be for textual reasons or physical features.
+    \item \textbf{Collection}\\
+    An ordered list of manifests or further collections, allowing hierarchical structuring and advertising of manifests.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+	\includegraphics[height=0.6\textheight]{images/pres_api_2.jpg}
+	\caption{Presentation API \mintinline{text}{2.1.1}'s resource types visualization taken from \citet{appleby2017presentation}}
+	\label{fig:pres_api_2}
+\end{figure}
+
+Beyond the Presentation API, IIIF also offers the \textit{Image API}, which delivers the pixels of an image through a structure specifying the image's source, region, size, rotation, quality, and format. This API simply brings the pixels, specifying the image's source, region, size, rotation, quality, and format. The Presentation API then provides just enough metadata to drive a remote viewing experience. \citep{emanuel2018stitching}
+
+To accomodate each Human-Made Object's technical image data, CoGhent specifically relies on Presentation API \mintinline{text}{2.*}. In fact, since each Human-Made Object only has one image, its corresponding IIIF Manifest is structured in a very straightforward manner. Namely, each CoGhent manifest holds one sequence, which in turn holds one canvas, which in turn holds one annotation to house the image resource and its metadata. This structure broadly corresponds to the structure visualized in Figure~\ref{fig:pres_api_2_simple}. \citep{floreverk2022coghent}
+
+\begin{figure}[htbp]
+    \centering
+	\includegraphics[height=0.4\textheight]{images/pres_api_2_simple.jpg}
+	\caption{Presentation API \mintinline{text}{2.1.1}'s \textbf{primary} resource types visualization taken from \citet{appleby2017presentation}}
+	\label{fig:pres_api_2_simple}
+\end{figure}
+
+Despite the CoGhent manifests relying on Presentation API \mintinline{text}{2.*}, there is in fact a newer version availble, namely Presentation API \mintinline{text}{3.0}. For the sake of completeness, Figure~\ref{fig:pres_api_3} visualizes its components, with the following overview briefly introducing the most notable updates, as described by \citet{appleby2020presentation}:
+\begin{itemize}
+    \item \textbf{Canvas}\\
+    The concept has been expanded to provide a frame of reference for content layout, both spatially and temporally.
+    \item \textbf{Annotation Page}\\
+    Introduced as an ordered list of Annotations typically associated with a Canvas. Annotation Pages collect and order lists of Annotations.
+    \item \textbf{Annotation Collection}\\
+    A new concept introduced as an ordered list of Annotation Pages, allowing for higher-level groupings of Annotations.
+    \item \textbf{Content}\\
+    Defined as web resources, such as images or texts, associated with a Canvas via an Annotation.
+\end{itemize}
+
+\begin{figure}[htbp]
+    \centering
+	\includegraphics[height=0.6\textheight]{images/pres_api_3.png}
+	\caption{Presentation API \mintinline{text}{3.0}'s \textbf{primary} resource types visualization taken from \citet{appleby2020presentation}}
+	\label{fig:pres_api_3}
+\end{figure}
+
+Whatever the Presentation API version, together with the Image API, it provides a cohesive framework for the representation and delivery of digital images across various platforms and institutions. In fact, it allows for easy visualization using a IIIF Viewer. \citep{snydman2015international}
 
 \subsection{IIIF Viewers}
 
-TODO (see Figure ~\ref{fig:mirador})
-% List: https://github.com/IIIF/awesome-iiif#iiif-viewers
+IIIF Manifests are not only invaluable tools for archiving but also play a pivotal role in visualization. After all, these manifests, which describe the structure and properties of digital representations, provide essential instructions for visualization. In this context, a variety of \textit{IIIF Viewer}s\footnote{IIIF maintains a useful overview of some prominent IIIF Viewers: \url{https://github.com/IIIF/awesome-iiif\#iiif-viewers}} are available that ingest a IIIF Manifest resource and visualize its contents in user-friendly ways. Harnessing the IIIF framework, these viewers ensure consistent features such as multi-image object rendering, pan, deep zoom, and annotation across different platforms. Among the array of IIIF-compatible viewers, \textit{Mirador} stands out. Developed collaboratively by multiple institutions, Mirador exemplifies the capabilities of a viewer built on the IIIF framework, offering users a seamless and interoperable viewing experience. Figure~\ref{fig:mirador} displays a screenshot of the Mirador web app in action. \citep{snydman2015international}
 
 \begin{figure}[htbp]
     \centering

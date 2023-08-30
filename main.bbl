@@ -99,6 +99,13 @@ DuCharme, B. (2013).
 \newblock
   \url{http://www.snee.com/semwebmeetup/2011-09-15/SPARQLBobDuCharme.pdf}.
 
+\bibitem[Emanuel, 2018]{emanuel2018stitching}
+Emanuel, J.~P. (2018).
+\newblock Stitching together technology for the digital humanities with the
+  international image interoperability framework (iiif).
+\newblock In {\em Digital Humanities, Libraries, and Partnerships}, pages
+  125--135. Elsevier.
+
 \bibitem[Fielding and Reschke, 2014]{fielding2014http}
 Fielding, R.~T. and Reschke, J. (2014).
 \newblock {Hypertext Transfer Protocol (HTTP/1.1): Semantics and Content}.
@@ -134,6 +141,16 @@ Hartig, O. and Freytag, J.-C. (2012).
   social media}, pages 43--52.
 \newblock \url{https://arxiv.org/pdf/1108.6328.pdf}.
 
+\bibitem[IIIF, 2017]{appleby2017presentation}
+IIIF (2017).
+\newblock Presentation api 2.1.1.
+\newblock \url{https://iiif.io/api/presentation/2.1/}.
+
+\bibitem[IIIF, 2020]{appleby2020presentation}
+IIIF (2020).
+\newblock Presentation api 3.0.
+\newblock \url{https://iiif.io/api/presentation/3.0/}.
+
 \bibitem[Jacksi and Abass, 2019]{jacksi2019development}
 Jacksi, K. and Abass, S.~M. (2019).
 \newblock Development history of the world wide web.
@@ -168,6 +185,13 @@ Seaborne, A. and Harris, S. (2013).
 \newblock {SPARQL} 1.1 query language.
 \newblock {W3C} recommendation, W3C.
 \newblock \url{https://www.w3.org/TR/2013/REC-sparql11-query-20130321/}.
+
+\bibitem[Snydman et~al., 2015]{snydman2015international}
+Snydman, S., Sanderson, R., and Cramer, T. (2015).
+\newblock The international image interoperability framework (iiif): A
+  community \& technology approach for web-based images.
+\newblock In {\em Archiving conference}, volume 2015, pages 16--21. Society for
+  Imaging Science and Technology.
 
 \bibitem[Sporny et~al., 2020]{kellogg2020jsonld}
 Sporny, M., Longley, D., Kellogg, G., Lanthaler, M., Champin, P.-A., and
