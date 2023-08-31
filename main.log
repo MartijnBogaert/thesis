@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  31 AUG 2023 19:32
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  31 AUG 2023 20:13
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -4132,7 +4132,7 @@ L3 programming layer <2022/08/05>
 LaTeX Font Warning: Some font shapes were not available, defaults substituted.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E320996A81D40BA318E99A894DF85BB4;12321.
+(rerunfilecheck)             Checksum: E534603735F6D0B548CEA5B252F40AC9;12225.
 runsystem(rm main.pyg)...executed.
 
  ) 
@@ -4145,4 +4145,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,879s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (112 pages, 2622388 bytes).
+Output written on main.xdv (112 pages, 2635456 bytes).
