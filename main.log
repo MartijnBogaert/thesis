@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  31 AUG 2023 19:13
+This is XeTeX, Version 3.141592653-2.6-0.999995 (TeX Live 2023) (preloaded format=xelatex 2023.8.1)  31 AUG 2023 19:32
 entering extended mode
  \write18 enabled.
  file:line:error style messages enabled.
@@ -1638,51 +1638,108 @@ File: cover-sheet.pdf Graphic file (type pdf)
 
 
 (./chapters/4_extended_abstract.tex
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 1>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 1>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 1>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 1>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 1>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 1>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 1>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 1>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 1>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 1>
  [7
 
 
 
 ]
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 2>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 2>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 2>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 2>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 2>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 2>
  [8]
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 3>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 3>
-File: abstract.pdf Graphic file (type pdf)
-<use abstract.pdf, page 3>
- [9]) (./main.toc
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 3>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 3>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 3>
+ [9]
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 4>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 4>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 4>
+ [10]
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 5>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 5>
+File: abstract-en.pdf Graphic file (type pdf)
+<use abstract-en.pdf, page 5>
+ [11]
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 1>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 1>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 1>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 1>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 1>
+ [12]
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 2>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 2>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 2>
+ [13]
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 3>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 3>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 3>
+ [14]
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 4>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 4>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 4>
+
+[15]
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 5>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 5>
+File: abstract-nl.pdf Graphic file (type pdf)
+<use abstract-nl.pdf, page 5>
+ [16]) (./main.toc
 LaTeX Info: Redefining \rmfamily on input line 2.
 LaTeX Info: Redefining \sffamily on input line 2.
 LaTeX Info: Redefining \ttfamily on input line 2.
- [10
+ [17
 
 
-] [11])
+] [18])
 \tf@toc=\write10
 \openout10 = `main.toc'.
 
-
-[12] (./main.lof
+ [19] (./main.lof
 LaTeX Info: Redefining \rmfamily on input line 3.
 LaTeX Info: Redefining \sffamily on input line 3.
 LaTeX Info: Redefining \ttfamily on input line 3.
@@ -1745,7 +1802,8 @@ LaTeX Info: Redefining \sffamily on input line 26.
 LaTeX Info: Redefining \ttfamily on input line 26.
 \openout4 = `main.pyg'.
 
- (./_minted-main/default.pygstyle)
+
+(./_minted-main/default.pygstyle)
 (./_minted-main/BAA878978E539D570AD99AF783F2E3D27D3289DBDE903A89739C57D3A0B8725
 F.pygtex
 
@@ -1927,7 +1985,7 @@ LaTeX Info: Redefining \ttfamily on input line 80.
 \tf@lof=\write11
 \openout11 = `main.lof'.
 
- [13] (./main.lot
+ [20] (./main.lot
 LaTeX Info: Redefining \rmfamily on input line 3.
 LaTeX Info: Redefining \sffamily on input line 3.
 LaTeX Info: Redefining \ttfamily on input line 3.
@@ -2138,12 +2196,12 @@ LaTeX Info: Redefining \ttfamily on input line 80.
 \tf@lot=\write12
 \openout12 = `main.lot'.
 
- [14]
+ [21]
 \openout2 = `chapters/5_list_of_acronyms.aux'.
 
  (./chapters/5_list_of_acronyms.tex
 No file main.acr.
-) [15
+) [22
 
 ] (./main.lol
 \openout4 = `main.pyg'.
@@ -2165,7 +2223,7 @@ F.pygtex)
 
 
 (./_minted-main/D8E8FCA2DC0F896FD7CB4CB0031BA2497D3289DBDE903A89739C57D3A0B8725
-F.pygtex) [16
+F.pygtex) [23
 
 
 ]
@@ -2208,19 +2266,17 @@ func-
 \tf@lol=\write13
 \openout13 = `main.lol'.
 
- [17] [18
-
-]
+ [24]
 \openout2 = `chapters/6_introduction.aux'.
 
  (./chapters/6_introduction.tex [1
 
 
+
 ]) [2]
 \openout2 = `chapters/7_related_work.aux'.
 
-
-(./chapters/7_related_work.tex
+ (./chapters/7_related_work.tex
 Chapter 1.
 LaTeX Font Info:    Trying to load font information for TU+pbk on input line 1.
 
@@ -4081,12 +4137,12 @@ runsystem(rm main.pyg)...executed.
 
  ) 
 Here is how much of TeX's memory you used:
- 41831 strings out of 475890
- 971754 string characters out of 5780263
+ 41855 strings out of 475890
+ 972471 string characters out of 5780263
  1946875 words of memory out of 5000000
- 61261 multiletter control sequences out of 15000+600000
+ 61283 multiletter control sequences out of 15000+600000
  564750 words of font info for 95 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  91i,17n,93p,2304b,879s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on main.xdv (106 pages, 2618040 bytes).
+Output written on main.xdv (112 pages, 2622388 bytes).
