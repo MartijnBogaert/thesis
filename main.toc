@@ -74,5 +74,5 @@
 \contentsline {section}{Ethical and social reflection}{82}{section*.93}%
 \contentsline {chapter}{References}{83}{chapter*.94}%
 \contentsline {chapter}{Appendices}{86}{section*.95}%
-\contentsline {section}{Appendix A}{87}{section*.96}%
-\contentsline {section}{Appendix B}{88}{section*.97}%
+\contentsline {section}{\numberline {A}Notes on the usage of AI}{87}{section*.96}%
+\contentsline {section}{\numberline {B}RDF Syntaxes}{88}{section*.97}%
