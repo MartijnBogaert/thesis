@@ -71,8 +71,8 @@
 \contentsline {subsection}{\numberline {4.2.3}Predicate Sequences}{79}{subsection.4.2.3}%
 \contentsline {section}{\numberline {4.3}Conclusion}{79}{section*.90}%
 \contentsline {chapter}{Conclusion}{81}{chapter*.91}%
-\contentsline {section}{Ethical and social reflection}{81}{section*.93}%
-\contentsline {chapter}{References}{82}{chapter*.94}%
-\contentsline {chapter}{Appendices}{85}{section*.95}%
-\contentsline {section}{Appendix A}{86}{section*.96}%
-\contentsline {section}{Appendix B}{87}{section*.97}%
+\contentsline {section}{Ethical and social reflection}{82}{section*.93}%
+\contentsline {chapter}{References}{83}{chapter*.94}%
+\contentsline {chapter}{Appendices}{86}{section*.95}%
+\contentsline {section}{Appendix A}{87}{section*.96}%
+\contentsline {section}{Appendix B}{88}{section*.97}%
